@@ -103,7 +103,7 @@ Office hours: Tuesday 1-2pm; Thursday 1-2pm
 
 TR 12.00-12.50pm\\
 F 1-1.50pm\\
-Classroom: SN3060
+Classroom: SN3060\\
 
 All Course Announcements will be made on BrightSpace. Should lectures be remote a WebEx link will be provided on BrightSpace.
 
@@ -117,10 +117,19 @@ Course expectations:\\
 Please attend lectures and respect the learning environment of other students.\\
 
 Learning goals:\\
-The course content emphasizes a deeper understanding of fewer concepts. You have seen much of the course material in pre-requisite courses. In this course, I will revisit the models, clarify the assumptions and when they are appropriate, and we will fit the models to data to estimate parameters. By the end of the course, I hope that if you were given population data, that you would know the key quantities that you might estimate, and could do the analysis.
+The course content emphasizes a deeper understanding of fewer concepts. You have seen much of the course material in pre-requisite courses. In this course, I will revisit the models, clarify the assumptions and when they are appropriate, and we will fit the models to data to estimate parameters. By the end of the course, I hope that if you were given population data, that you would know the key quantities that you might estimate, and could complete the analysis.
 
 Required Text and Resources:\\
-The course materials are online at \url{https://ahurford.github.io/BIOL-3295-Winter-2023/}.
+The course materials are online at \url{https://ahurford.github.io/biol-3295-winter-2023/index.html}.
+
+Most readings are assigned from two textbooks that are available electronically from the library:
+
+\begin{itemize}
+\item
+  Vandermeer, J.H., Goldberg, D.E., 2013. Population Ecology: First Principles (Second Edition). Princeton University Press, Princeton, United States. \href{https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619}{Link}
+\item
+  Otto, Sarah P., and Troy Day. 2007. A Biologist's Guide to Mathematical Modeling in Ecology and Evolution, Princeton University Press. \href{https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=768551}{Link}
+\end{itemize}
 
 If you wish to use your own computer for assignments you should install \texttt{R} and \texttt{RStudio} (see also \href{https://ahurford.github.io/quant-guide-all-courses/install.html}{here}).
 
@@ -130,11 +139,11 @@ If you wish to use your own computer for assignments you should install \texttt{
 \begin{itemize}
 \tightlist
 \item
-  4 Assignments - 20\%
+  4 Assignments - 20\%\\
 \item
-  2 Exams - 40\%
+  2 Exams - 40\%\\
 \item
-  Final Exam - 40\%
+  Final Exam - 40\%\\
 \end{itemize}
 
 Late assignments, labs, and missed midterms, and final exams will be accommodated as described by University Regulation 6.7.3 and 6.7.5 (see \url{https://www.mun.ca/regoff/calendar/sectionNo=REGS-0474} for Regulations).
@@ -204,7 +213,7 @@ Resources for additional support can be found at:
 \item
   Tues Jan 31: Discrete time density dependence
 \item
-  Thurs Feb 2: \textbf{EXAM I}
+  Thurs Feb 2: \textbf{EXAM I} (all material covered to date)
 \item
   Fri Feb 3: Age-structured models
 \item
@@ -235,7 +244,7 @@ Resources for additional support can be found at:
 \item
   Tues Mar 14: Overview of models in population biology
 \item
-  Thurs Mar 16: \textbf{EXAM II}
+  Thurs Mar 16: \textbf{EXAM II} (All material since Exam I)
 \item
   Fri Mar 17: What is evolutionary ecology?
 \item
@@ -256,6 +265,107 @@ Resources for additional support can be found at:
   Thurs Apr 5: Evolutionarily stable and convergent stable strategies
 \item
   Fri Apr 6: Review
+  TBD \textbf{FINAL EXAM} (all course material)
 \end{itemize}
+
+\hypertarget{jan-5-introduction}{%
+\chapter{Jan 5: Introduction}\label{jan-5-introduction}}
+
+\begin{itemize}
+\tightlist
+\item
+  Survey of student computer preferences
+\end{itemize}
+
+\hypertarget{some-questions}{%
+\section{Some questions}\label{some-questions}}
+
+\begin{itemize}
+\tightlist
+\item
+  What is a population?
+\item
+  What are some definitions of a population that are given in textbooks?
+\item
+  In research studies, how are populations discussed in the \emph{Discussion}?
+\item
+  How are individuals that comprise the sample selected in the \emph{Methods} of a research study?
+\item
+  List some potential differences between how populations are defined and discussed and the research methods?
+\item
+  Why does the definition of a population matter?
+\end{itemize}
+
+\hypertarget{references}{%
+\section{References}\label{references}}
+
+Vandermeer, J.H., Goldberg, D.E., 2013. Population Ecology: First Principles (Second Edition). Princeton University Press, Princeton, United States. \href{https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619}{Link}
+
+The Princeton Guide to Ecology, edited by Simon A. Levin, et al., Princeton University Press, 2009. ProQuest Ebook Central, \href{https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=557123}{Link}
+
+Sacchi, R., Gentilli, A., Razzetti, E., Barbieri, F., 2002. Effects of building features on density and flock distribution of feral pigeons Columba livia var. domestica in an urban environment. Can. J. Zool. 80, 48-54. \href{https://cdnsciencepub.com/doi/10.1139/z01-202}{Link}
+
+\hypertarget{jan-6-discrete-and-continous-variables}{%
+\chapter{Jan 6: Discrete and continous variables}\label{jan-6-discrete-and-continous-variables}}
+
+Reading: Otto, Sarah P., and Troy Day. 2007. A Biologist's Guide to Mathematical Modeling in Ecology and Evolution, Princeton University Press. \href{https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=768551}{Link} \textbf{pages 33-38 in Section 2.3}
+
+\begin{itemize}
+\tightlist
+\item
+  Parameters versus variables
+\item
+  Fitted versus independently estimated parameters
+\end{itemize}
+
+\hypertarget{jan-10-assignment-rmarkdown-and-tidyverse}{%
+\chapter{\texorpdfstring{Jan 10: \textbf{ASSIGNMENT} Rmarkdown and tidyverse}{Jan 10: ASSIGNMENT Rmarkdown and tidyverse}}\label{jan-10-assignment-rmarkdown-and-tidyverse}}
+
+The assignment will appear here
+
+\hypertarget{jan-12-geometric-growth}{%
+\chapter{Jan 12: Geometric growth}\label{jan-12-geometric-growth}}
+
+\hypertarget{reading}{%
+\section{Reading}\label{reading}}
+
+Vandermeer, J.H., Goldberg, D.E., 2013. Population Ecology: First Principles (Second Edition). Princeton University Press, Princeton, United States. \textbf{p1-3.} \href{https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619}{Link}
+
+\hypertarget{jan-13-geometric-growth}{%
+\chapter{Jan 13: Geometric growth}\label{jan-13-geometric-growth}}
+
+\hypertarget{reading-1}{%
+\section{Reading}\label{reading-1}}
+
+Download the .pdf of the MSc thesis below and read the Abstract (the first two pages prior to the title page). Pay specific attention to the number of pheasants at different points in time, these might be \(N_{t+1}\) and \(N_t\) in the geometric growth model formula; and the number of births and deaths that occur, these may help you estimate \(\lambda\) in the geoemtric growth formula. Pay attention to the length of time that births and deaths are reported over, and what time of the year the population size is reported.
+
+Newcomb, HR. 1940. \href{https://ir.library.oregonstate.edu/concern/graduate_thesis_or_dissertations/js956j801?locale=en}{Ring-necked pheasant studies on Protection Island in the Strait of Juan de Fuca}, Washington. MS thesis. Oregon State University. {[}two pages prior to the title page{]}
+
+Noteably,
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Pheasant chicks are born during the summer.
+\item
+  In May 1937, 10 pheasants were introduced to the island. Before the next breeding season there were 35.
+\item
+  November 10, 1938 a census estimated 110 pheasants.
+\item
+  October 13, 1939 a census estimated 400 pheasants.
+\item
+  Between the 1938 and 1939 censuses, Newcomb observed that 17 adult birds died.
+\item
+  During the 1938 nesting season there were 5.86 eggs/nest. 83.57\% of eggs hatched.
+\item
+  During the 1939 nesting season there were 8.73 eggs/nest. 64.58\% hatched.
+\item
+  During the 1939 nesting season: Average number of chicks per clutch was 6.93.\(^1\)
+\item
+  You can assume the sex ratio is 50:50 male to female. Pheasants are a sexually reproducing species.
+\end{enumerate}
+
+\(^1\) Note that g. and h. appear to be contradictory.
 
 \end{document}

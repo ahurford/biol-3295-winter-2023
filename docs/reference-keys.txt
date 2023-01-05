@@ -8,3 +8,12 @@ academic-misconduct
 equity-and-diversity
 additional-supports
 schedule
+jan-5-introduction
+some-questions
+references
+jan-6-discrete-and-continous-variables
+jan-10-assignment-rmarkdown-and-tidyverse
+jan-12-geometric-growth
+reading
+jan-13-geometric-growth
+reading-1
