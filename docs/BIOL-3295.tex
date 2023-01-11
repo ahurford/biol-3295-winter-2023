@@ -33,6 +33,46 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -77,7 +117,7 @@
 
 \title{BIOL 3295: Population and Evolutionary Ecology, Winter 2023}
 \author{Amy Hurford}
-\date{2023-01-06}
+\date{2023-01-11}
 
 \begin{document}
 \maketitle
@@ -319,28 +359,77 @@ Sacchi, R., Gentilli, A., Razzetti, E., Barbieri, F., 2002. Effects of building 
 Reading: Otto, Sarah P., and Troy Day. 2007. A Biologist's Guide to Mathematical Modeling in Ecology and Evolution, Princeton University Press. \href{https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=768551}{Link} \textbf{pages 33-38 in Section 2.3}
 
 \begin{itemize}
-\tightlist
 \item
   Parameters versus variables
 \item
   Fitted versus independently estimated parameters
 \end{itemize}
 
-\hypertarget{jan-10-assignment-rmarkdown-and-tidyverse}{%
-\chapter{\texorpdfstring{Jan 10: \textbf{ASSIGNMENT} Rmarkdown and tidyverse}{Jan 10: ASSIGNMENT Rmarkdown and tidyverse}}\label{jan-10-assignment-rmarkdown-and-tidyverse}}
+\hypertarget{jan-12-assignment-rmarkdown-and-tidyverse}{%
+\chapter{\texorpdfstring{Jan 12: \textbf{ASSIGNMENT} Rmarkdown and tidyverse}{Jan 12: ASSIGNMENT Rmarkdown and tidyverse}}\label{jan-12-assignment-rmarkdown-and-tidyverse}}
 
-The assignment will appear here
+(Dates changed owing to the university closure for a snow day)
 
-\hypertarget{jan-12-geometric-growth}{%
-\chapter{Jan 12: Geometric growth}\label{jan-12-geometric-growth}}
+ASSIGNMENT 1 due Jan 19.
+
+PART I is to reproduce a figure and the figure caption of a plot in \href{https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619}{Vandermeer and Goldberg 2013} or another textbook or a published paper in Rmarkdown and as an output file: .hmtl, .pdf, or .docx. Please choose a figure to reproduce in the area of Population Biology or Evolutionary Ecology.
+
+You can simplify a complex figure if necessary. Your figure should be made in \texttt{ggplot()} have:
+- the title (if there is one),
+- axes labels,
+- points or lines or both,
+- approximately the same data as the original figure,
+- the correct axes limits.
+
+The objective is for you to learn how to use Rmarkdown to make a synthetic write-up that includes code, a figure and text. Your completed output should have:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  A brief text description of where I can find the figure you reproduced.
+\item
+  Code that makes a figure that is suppressed in the output file.
+\item
+  The reproduced figure (or simplified figure).
+\item
+  The actual figure
+\end{enumerate}
+
+You are to hand-in the .Rmd file and an output file (.html, .pdf, or .docx)
+
+Here, is an example of what a completed PART 1 looks like (as an .html output).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+The graph is Figure 3.1 from \href{https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619}{Population Ecology: First Principles - Second Edition (Vandermeer and Goldberg)} on p67.
+
+\includegraphics{BIOL-3295_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+\textbf{FIGURE 3.1} Difference in per capita egg production between the O lines and B lines from Rose and Charlesworth's (1981) experiment.
+
+\includegraphics[width=0.9\linewidth]{figures/actual-fig}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+Instructions to complete PART I are \protect\hyperlink{partI}{here}.
+
+PART II: Messy data
+
+As a biologist, much of my coding work involves getting data into the right format to use in functions, this might be a plot function like \texttt{ggplot()}, which you used in PART I, or a statistical function like \texttt{lm()}, which will perform a regression, t-test, or analysis of variance. The objective of PART II is to practice cleaning messy data into a useable format.
+
+\href{}{Download} the messy data from \href{https://datacarpentry.org/semester-biology/exercises/Tidy-data-improving-messy-data-SQL/}{here}.
+
+\hypertarget{jan-13-geometric-growth}{%
+\chapter{Jan 13: Geometric growth}\label{jan-13-geometric-growth}}
 
 \hypertarget{reading}{%
 \section{Reading}\label{reading}}
 
 Vandermeer, J.H., Goldberg, D.E., 2013. Population Ecology: First Principles (Second Edition). Princeton University Press, Princeton, United States. \textbf{p1-3.} \href{https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619}{Link}
 
-\hypertarget{jan-13-geometric-growth}{%
-\chapter{Jan 13: Geometric growth}\label{jan-13-geometric-growth}}
+\hypertarget{jan-17-geometric-growth}{%
+\chapter{Jan 17: Geometric growth}\label{jan-17-geometric-growth}}
 
 \hypertarget{reading-1}{%
 \section{Reading}\label{reading-1}}
@@ -375,5 +464,171 @@ Noteably,
 \end{enumerate}
 
 \(^1\) Note that g. and h. appear to be contradictory.
+
+\hypertarget{partI}{%
+\chapter*{PART I - Instructions}\label{partI}}
+
+For general instructions on installing \texttt{R}, \texttt{RStudio} and installing packages see the \href{https://ahurford.github.io/quant-guide-all-courses/}{Quantitative Training Manual}.
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://ahurford.github.io/quant-guide-all-courses/install.html}{Install} the \texttt{Rmarkdown} package and all dependencies.
+\item
+  Install \texttt{tinytex}. In the past we have had some problems with this on PCs. If your \texttt{tinytex} installation fails, what you might try is a package manager for Windows, i.e.~\texttt{Chocolatey} or \texttt{Scoop}. See \href{https://github.com/rstudio/tinytex-releases}{here} for details. You are unsuccessful at installing \texttt{tinytex} that is okay, this package is only necessary to produce a .pdf output. You can complete your assignment as a .docx output or .html output.
+\end{itemize}
+
+\textbf{Why use R markdown?}
+
+\begin{itemize}
+\item
+  Integrate code and write-up to avoid mistakes moving between \texttt{.R} (or other software) for analysis and \texttt{.docx} for write-up.
+\item
+  It is easier to find all your work when everything is in one file (or linked to from one file).
+\item
+  Run code in the background of your write-up so that if something changes the write-up automatically updates in all the relevant places. The reduces the chances of errors in your write-up.
+\item
+  Publish your work as a website. This facilitates hyper-linking, you can update your work at any time, avoiding emailing your work keeps email storage free, and your work can be easily shared (i.e., in conversation I might say `that analysis is linked off my faculty website').
+\item
+  Include math symbols quickly because your hands don't leave the keyboard to make selections from drop-down menus.
+\item
+  If your analysis is time-consuming you might not want the calculations in your write-up, slowing the compilation of your write-up. In this case you might have a separate \texttt{.R} analysis file that outputs your results as a \texttt{.csv} or plot. You can read these in automatically to your write-up by specifying the path to the \texttt{.csv} or plot.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  In \texttt{R\ Studio}, select \texttt{File\ \textgreater{}\ New\ Project...\ \textgreater{}\ R\ Markdown}. Give the file a name, etc.
+\item
+  The default \texttt{.Rmd} opens already with some code to help you. With the default \texttt{.Rmd} opened, there should be a \texttt{Knit} button at the top and center of the Editor pane. Click the \texttt{Knit} button to knit to \texttt{.pdf}, \texttt{.html}, or \texttt{.docx} output. Alternatively, do \texttt{Cmd/Ctrl\ +\ Shift\ +\ K}.
+\end{enumerate}
+
+\begin{center}\includegraphics[width=0.5\linewidth]{figures/Knit} \end{center}
+
+\emph{(If this did not work, perhaps you have not installed the rmarkdown or tinytex packages)}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Beside the \texttt{Knit} button is an arrow. You have the option to knit to \texttt{.pdf}, \texttt{.html}, or \texttt{.docx} output. Try producing other outputs.
+\end{enumerate}
+
+\emph{(For me, producing a .docx opened Skype (clearly a bug). This was fixed by using Finder (on my Mac) to find the .docx file that I made, and selecting Open With \textgreater{} Microsoft Word)}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Below are some things to try, that will help you to complete PART I. Type the code, then \texttt{Knit} to see what happens.
+\end{enumerate}
+
+\begin{itemize}
+\item
+  Include variables in-text by enclosing in \texttt{\$x\$}, i.e.~this renders as \(x\), which is italicized to indicate in your writing that \(x\) is a variable rather than a letter.
+\item
+  \href{https://ahurford.github.io/quant-guide-all-courses/data-entry.html\#loading-or-importing-data}{Load data} using R commands. \emph{(If you want to do this quickly copy and paste the command at the end of this section)}
+\item
+  \href{https://bookdown.org/yihui/rmarkdown/r-code.html}{Hide the code} that loads the data in the output. i.e., read about the options for r code chunks: \texttt{echo}, \texttt{include}, \texttt{message}, \texttt{warning}, \texttt{eval}, and \texttt{results}. Print the data in your output. Show both the code and the output. Try it all!
+\item
+  Show only your code print out. Can you do this?
+\end{itemize}
+
+\begin{verbatim}
+##   Psoil Pcorn
+## 1     1    64
+## 2     4    71
+## 3     5    54
+## 4     9    81
+## 5    13    93
+## 6    11    76
+\end{verbatim}
+
+\begin{itemize}
+\item
+  Include code in-text as \texttt{\textasciigrave{}r\ x\ \textasciigrave{}}. This renders as 80 because in a hidden coding block I loaded data and assigned \texttt{x\textless{}-mean(data\$Pcorn)}. Therefore, the reported value of \(x\) = 80 is the mean phosphorous in the soil for the data I loaded in the background. If the data change, the mean reported in this document will automatically change too.
+\item
+  Make \href{https://bookdown.org/yihui/rmarkdown/markdown-syntax.html\#block-level-elements}{headings, subheadings}, \href{https://bookdown.org/yihui/rmarkdown/markdown-syntax.html\#inline-formatting}{bold font}, etc.
+\item
+  Make a \href{https://bookdown.org/yihui/rmarkdown/markdown-syntax.html\#inline-formatting}{hyperlink}.
+\item
+  Use latex commands to include in-text equations, i.e., \texttt{\$y\ =\ \textbackslash{}beta\_0\ +\ \textbackslash{}beta\_1\ x\$} renders as \(y = \beta_0 + \beta_1 x\); \texttt{\$\textbackslash{}frac\{dy\}\{dt\}\ =\ e\^{}x\$} renders as \(\frac{dy}{dt} = e^x\). \emph{(You may need to type \texttt{require(tinytex)} in the Console to get this to work. `The website \href{https://detexify.kirelabs.org/classify.html}{Detexify} is fun for identifying latex commands for different symbols (Some advanced symbols may require packages that you haven't installed and therfore won't work))}.
+\item
+  Try some \href{https://bookdown.org/yihui/rmarkdown/markdown-syntax.html\#math-expressions}{more complicated} Latex.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{\textquotesingle{}https://raw.githubusercontent.com/ahurford/biol{-}4605{-}data/main/data/corn.csv\textquotesingle{}}\NormalTok{, }\AttributeTok{fill=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  If you would like a more structured introduction to R Markdown you can read \href{https://bookdown.org/yihui/rmarkdown/}{R Markdown: the definitive guide}.
+\item
+  This \href{https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf}{R markdown cheat sheet} is helpful.
+\item
+  Some more advanced skills you might learn are making alert boxes, or changing some of the options in the \href{https://bookdown.org/yihui/rmarkdown/html-document.html}{YAML}. The alert boxes in this document are made as \texttt{div\ class="alert\ alert-info"} between \texttt{\textless{}\ \textgreater{}}, then the text, and closed with \texttt{/div} between \texttt{\textless{}\ \textgreater{}}.
+\item
+  My experience making tables in \texttt{.Rmd} has not been good. Usually, I make the table in \texttt{.docx}, print to \texttt{.pdf}, take a screenshot and import the \texttt{.png} to \texttt{.Rmd} or \texttt{.tex}.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  For your PART I specifically, you need to make a figure in \texttt{ggplot}. For \texttt{ggplot} you need your data as a data frame. The code that I used in the example was:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{age }\OtherTok{=} \FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{25}\NormalTok{)}
+\NormalTok{difference }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{20}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{26}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{24}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{20}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{22}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{20}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{10}\NormalTok{, }\DecValTok{0}\NormalTok{,}
+               \DecValTok{20}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{14}\NormalTok{, }\DecValTok{16}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\NormalTok{data }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{age=}\NormalTok{age, }\AttributeTok{difference =}\NormalTok{ difference)}
+\end{Highlighting}
+\end{Shaded}
+
+As you can see, I have guessed the values in the plot and entered them manually. This is okay for the purposes of completing your assignment. (Extra for experts - try a package like \href{https://github.com/adamkucharski/scrapR}{\texttt{scrapR}} or \href{https://github.com/tpoisot/digitize}{\texttt{digitize}}).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  You need to install \texttt{ggplot2}. You also need to load that package because we are going to use functions from it now (do this as \texttt{require(ggplot2)}). The code that I used to make my \texttt{ggplot} was:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{g1}\OtherTok{=}\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =}\NormalTok{ difference)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{"Adult Age, Days"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{ylab}\NormalTok{(}\StringTok{"Difference"}\NormalTok{)}
+\NormalTok{g1}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{BIOL-3295_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+If you need to add a title, you can add a layer \texttt{+\ ggtitle("Your\ title)}, to control the axis limits, use \texttt{+\ xlim(c(-10,10))} (with the values you need). Generally, you should be able to use an internet search to find what you need. You can also read more about \texttt{ggplot} \href{https://ahurford.github.io/quant-guide-all-courses/ggplot.html}{here}.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\item
+  To make your figure caption, just type below where your figure prints. To get bold text, use ** bold text ** (but without space between the ** and the text).
+\item
+  The last thing we need is to take a screenshot of the figure you are trying to reproduce, and to include it as a figure. I like to put all my figures in a folder named figure. You can read about including a \href{https://bookdown.org/yihui/rmarkdown/r-code.html\#figures}{figure} that is a \texttt{.png} or other format. Of the options, I find using knitr::include\_graphics() within a code chunk best because it seems easier to control the figure size. The code that I used in my example of how I completed PART I was:
+\end{enumerate}
+
+\includegraphics[width=0.9\linewidth]{figures/actual-fig}
+
+Now you have all the information you need to complete PART I, you just need to put the pieces together. If you are stuck, ask me or a classmate.
 
 \end{document}
