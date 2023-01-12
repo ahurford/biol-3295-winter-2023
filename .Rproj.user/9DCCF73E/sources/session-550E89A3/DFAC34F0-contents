@@ -55,6 +55,8 @@ PART II: Messy data
 
 As a biologist, much of my coding work involves getting data into the right format to use in functions, this might be a plot function like `ggplot()`, which you used in PART I, or a statistical function like `lm()`, which  will perform a regression, t-test, or analysis of variance. The objective of PART II is to practice cleaning messy data into a useable format.
 
-[Download]() the messy data from [here](https://datacarpentry.org/semester-biology/exercises/Tidy-data-improving-messy-data-SQL/).
+The messy data from [here](https://datacarpentry.org/semester-biology/exercises/Tidy-data-improving-messy-data-SQL/).
+
+1. You are to clean 
 
 

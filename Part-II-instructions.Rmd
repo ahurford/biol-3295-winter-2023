@@ -2,3 +2,8 @@
 
 - [Install](https://ahurford.github.io/quant-guide-all-courses/install.html) the `tidyverse` package, all dependencies, and load the package.
 
+- Load the unt
+
+```{r, include=FALSE,eval=TRUE}
+data = read.csv("https://raw.githubusercontent.com/ahurford/biol-4605-data/main/untidy-portal-data.csv")
+```

@@ -123,7 +123,10 @@ Placeholder
 
 - Load the unt
 
+```{r}
+require(readxl)
+data = read_excel("https://raw.githubusercontent.com/ahurford/biol-4605-data/main/data/untidy-portal-data.xlsx")
+```
 
-
-
+<!--chapter:end:Part-II-instructions.Rmd-->
 
