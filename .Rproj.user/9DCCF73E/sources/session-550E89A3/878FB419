@@ -3,7 +3,7 @@
     "path": "~/Desktop/Work/Teaching/BIOL 3295/Winter 2023/lecture-notes/biol-3295-winter-2023/04-jan10-Rmarkdown.Rmd",
     "project_path": "04-jan10-Rmarkdown.Rmd",
     "type": "r_markdown",
-    "hash": "3763133339",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1673541874972.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "60,136",
-        "scrollLine": "59"
+        "cursorPosition": "64,14",
+        "scrollLine": "61"
     },
     "folds": "",
-    "lastKnownWriteTime": 1673541985,
+    "lastKnownWriteTime": 1673542102,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1673541985958,
+    "last_content_update": 1673542102937,
     "read_only": false,
     "read_only_alternatives": []
 }

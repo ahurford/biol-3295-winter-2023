@@ -58,7 +58,7 @@ Instructions to complete PART I are [here](#partI).
 
 **PART II** of this assignment is to clean up messy data. As a biologist, much of my coding work involves getting data into the right format to use in functions, this might be a plot function like `ggplot()`, which you used in PART I, or a statistical function like `lm()`, which  will perform a regression, t-test, or analysis of variance. The objective of PART II is to practice cleaning messy data into a useable format.
 
-1. You are to clean the messy data from [here](https://datacarpentry.org/semester-biology/exercises/Tidy-data-improving-messy-data-SQL/) enough so you can make a plot using `ggplot()`. Some helpful instructions for how to do this are [here](#partII). The code that you write **must use the `select()`, `mutate()`, and `ggplot()` functions**. The graph that you make must be different than the example given in the instructions.
+1. You are to clean the messy data from [here](https://datacarpentry.org/semester-biology/exercises/Tidy-data-improving-messy-data-SQL/) enough so you can make a plot using `ggplot()`. Some helpful instructions for how to do this are [here](#partII). The code that you write **must use the `select()`, `mutate()`, and `ggplot()` functions**. The graph that you make must be different than the example given in the instructions - for example, you might plot the same variables but for Plot 2.
 
 (perhaps this sounds easy - this data is pretty messy - I found it quite hard!)
 
