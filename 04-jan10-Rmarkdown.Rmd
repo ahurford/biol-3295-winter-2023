@@ -62,6 +62,6 @@ Instructions to complete PART I are [here](#partI).
 
 (perhaps this sounds easy - this data is pretty messy - I found it quite hard!)
 
-** TO HAND IN**
+**TO HAND IN**
 
 1. Hand in an `.Rmd` file and an output file (`.html`, `.docx`, or `.pdf`) with the solutions to both PART I and PART II of this assignment. Each part is 10 marks for a total of 20 marks.
