@@ -117,7 +117,7 @@
 
 \title{BIOL 3295: Population and Evolutionary Ecology, Winter 2023}
 \author{Amy Hurford}
-\date{2023-01-11}
+\date{2023-01-12}
 
 \begin{document}
 \maketitle
@@ -372,9 +372,9 @@ Reading: Otto, Sarah P., and Troy Day. 2007. A Biologist's Guide to Mathematical
 
 ASSIGNMENT 1 due Jan 19.
 
-PART I is to reproduce a figure and the figure caption of a plot in \href{https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619}{Vandermeer and Goldberg 2013} or another textbook or a published paper in Rmarkdown and as an output file: .hmtl, .pdf, or .docx. Please choose a figure to reproduce in the area of Population Biology or Evolutionary Ecology.
+\textbf{PART I} is to reproduce a figure and the figure caption of a plot in \href{https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619}{Vandermeer and Goldberg 2013} or another textbook or a published paper in Rmarkdown and as an output file: .hmtl, .pdf, or .docx. Please choose a figure to reproduce in the area of Population Biology or Evolutionary Ecology.
 
-You can simplify a complex figure if necessary. Your figure should be made in \texttt{ggplot()} have:
+You can simplify a complex figure if necessary. Your figure should be made in \texttt{ggplot()} and have:
 - the title (if there is one),
 - axes labels,
 - points or lines or both,
@@ -396,7 +396,7 @@ The objective is for you to learn how to use Rmarkdown to make a synthetic write
   The actual figure
 \end{enumerate}
 
-You are to hand-in the .Rmd file and an output file (.html, .pdf, or .docx)
+You are to hand-in the \texttt{.Rmd} file and an output file (\texttt{.html}, \texttt{.pdf}, or \texttt{.docx})
 
 Here, is an example of what a completed PART 1 looks like (as an .html output).
 
@@ -414,11 +414,25 @@ The graph is Figure 3.1 from \href{https://ebookcentral-proquest-com.qe2a-proxy.
 
 Instructions to complete PART I are \protect\hyperlink{partI}{here}.
 
-PART II: Messy data
+\textbf{PART II} of this assignment is to clean up messy data. As a biologist, much of my coding work involves getting data into the right format to use in functions, this might be a plot function like \texttt{ggplot()}, which you used in PART I, or a statistical function like \texttt{lm()}, which will perform a regression, t-test, or analysis of variance. The objective of PART II is to practice cleaning messy data into a useable format.
 
-As a biologist, much of my coding work involves getting data into the right format to use in functions, this might be a plot function like \texttt{ggplot()}, which you used in PART I, or a statistical function like \texttt{lm()}, which will perform a regression, t-test, or analysis of variance. The objective of PART II is to practice cleaning messy data into a useable format.
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  You are to clean the messy data from \href{(https://datacarpentry.org/semester-biology/exercises/Tidy-data-improving-messy-data-SQL/)}{here} enough so you can make a plot using \texttt{ggplot()}. Some helpful instructions for how to do this are \protect\hyperlink{partII}{here}. The code that you write \textbf{must use the \texttt{select()}, \texttt{mutate()}, and \texttt{ggplot()} functions}. The graph that you make must be different than the example given in the instructions.
+\end{enumerate}
 
-\href{}{Download} the messy data from \href{https://datacarpentry.org/semester-biology/exercises/Tidy-data-improving-messy-data-SQL/}{here}.
+(perhaps this sounds easy - this data is pretty messy - I found it quite hard!)
+
+** TO HAND IN**
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Hand in an \texttt{.Rmd} file and an output file (\texttt{.html}, \texttt{.docx}, or \texttt{.pdf}) with the solutions to both PART I and PART II of this assignment. Each part is 10 marks for a total of 20 marks.
+\end{enumerate}
 
 \hypertarget{jan-13-geometric-growth}{%
 \chapter{Jan 13: Geometric growth}\label{jan-13-geometric-growth}}
@@ -630,5 +644,127 @@ If you need to add a title, you can add a layer \texttt{+\ ggtitle("Your\ title)
 \includegraphics[width=0.9\linewidth]{figures/actual-fig}
 
 Now you have all the information you need to complete PART I, you just need to put the pieces together. If you are stuck, ask me or a classmate.
+
+\hypertarget{partII}{%
+\chapter*{PART II - Instructions}\label{partII}}
+
+\begin{itemize}
+\item
+  \href{https://ahurford.github.io/quant-guide-all-courses/install.html}{Install} the \texttt{dplyr} package, all dependencies, and load the package.
+\item
+  For instructions to clean data using tidyverse see \href{https://ahurford.github.io/quant-guide-all-courses/handling-data.html\#dplyr}{here}
+\end{itemize}
+
+First you need to \href{https://ahurford.github.io/quant-guide-all-courses/data-entry.html\#loading-or-importing-data}{load} the messy data from \href{https://datacarpentry.org/semester-biology/exercises/Tidy-data-improving-messy-data-SQL/}{here}.
+
+It may be helpful to view the data in Excel to understand what it looks like before you import it to \texttt{R}.
+
+Use \texttt{head(data)} in the Console, or \texttt{data} to view your data (where \texttt{data} is the name I gave my data).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 X          X.1       X.2      X.3    X.4 X.5            X.6
+## 1                                                         NA               
+## 2 Data for Site 7                                         NA               
+## 3                                                         NA               
+## 4         Plot: 1                                         NA        Plot: 2
+## 5  Date collected       Family     Genus  Species Weight  NA Date collected
+## 6        01/09/14 Heteromyidae Dipodomys merriami     40  NA       01/08/14
+##          X.7     X.8      X.9   X.10 X.11           X.12             X.13
+## 1                                      NA                                
+## 2                                      NA                                
+## 3                                      NA                                
+## 4                                      NA        Plot: 3                 
+## 5     Family   Genus  Species Weight   NA Date collected          Species
+## 6 Cricetidae Neotoma albigula   -999   NA            1/8 Dipodomys ordii*
+##     X.14
+## 1       
+## 2       
+## 3       
+## 4       
+## 5 Weight
+## 6     42
+\end{verbatim}
+
+These data are very messy indeed! A helpful command is to know the column names:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colnames}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "X"    "X.1"  "X.2"  "X.3"  "X.4"  "X.5"  "X.6"  "X.7"  "X.8"  "X.9" 
+## [11] "X.10" "X.11" "X.12" "X.13" "X.14"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Extract a row using tidyverse commands}
+\NormalTok{dataX }\OtherTok{=}\FunctionTok{select}\NormalTok{(data, }\StringTok{"X"}\NormalTok{)}
+\CommentTok{\# This is base R syntax to extract specifically rows 6 to 14}
+\NormalTok{date.collected }\OtherTok{=}\NormalTok{ dataX}\SpecialCharTok{$}\NormalTok{X[}\DecValTok{6}\SpecialCharTok{:}\DecValTok{14}\NormalTok{]}
+\CommentTok{\# as.Date() is needed for R to treat this variable as a date}
+\NormalTok{date.collected }\OtherTok{=} \FunctionTok{as.Date}\NormalTok{(date.collected, }\AttributeTok{format =} \StringTok{"\%m/\%d/\%y"}\NormalTok{)}
+\CommentTok{\# This prints to the output, so you can see what I have done}
+\NormalTok{date.collected}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "2014-01-09" "2014-01-09" "2014-01-09" "2014-01-09" "2014-01-20"
+## [6] "2014-01-20" "2014-03-13" "2014-03-13" "2014-03-13"
+\end{verbatim}
+
+I will aim to make a data frame with ``date collected'' and ``weight'' for Plot 1. Inspecting the data, weight is \texttt{"X.4"} for Plot 1.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{weight }\OtherTok{=} \FunctionTok{select}\NormalTok{(data, }\StringTok{"X.4"}\NormalTok{)}
+\CommentTok{\# as.numeric() is needed because otherwise R doesn\textquotesingle{}t recognize these data as numbers {-} which I need for the multiplication later}
+\NormalTok{weight }\OtherTok{=} \FunctionTok{as.numeric}\NormalTok{(weight}\SpecialCharTok{$}\NormalTok{X}\FloatTok{.4}\NormalTok{[}\DecValTok{6}\SpecialCharTok{:}\DecValTok{14}\NormalTok{])}
+\CommentTok{\# Make this into a data frame so I can plot using ggplot}
+\NormalTok{cleaned.data }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(date.collected, weight)}
+\CommentTok{\# add a column that is a mutated column}
+\NormalTok{cleaned.data }\OtherTok{=} \FunctionTok{mutate}\NormalTok{(cleaned.data,}\AttributeTok{weight.kg =}\NormalTok{ weight}\SpecialCharTok{/}\DecValTok{1000}\NormalTok{)}
+\CommentTok{\# print the cleaned data so we can see what it looks like}
+\NormalTok{cleaned.data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   date.collected weight weight.kg
+## 1     2014-01-09     40     0.040
+## 2     2014-01-09     36     0.036
+## 3     2014-01-09    135     0.135
+## 4     2014-01-09     39     0.039
+## 5     2014-01-20     43     0.043
+## 6     2014-01-20    144     0.144
+## 7     2014-03-13     51     0.051
+## 8     2014-03-13     44     0.044
+## 9     2014-03-13    146     0.146
+\end{verbatim}
+
+Now the data is in a format that I can make a plot:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{require}\NormalTok{(ggplot2)}
+\NormalTok{g1}\OtherTok{=}\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ cleaned.data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ date.collected, }\AttributeTok{y =}\NormalTok{ weight.kg)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{"Date collected"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{ylab}\NormalTok{(}\StringTok{"Weight in kg"}\NormalTok{)}
+\NormalTok{g1}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{BIOL-3295_files/figure-latex/unnamed-chunk-14-1.pdf}
 
 \end{document}

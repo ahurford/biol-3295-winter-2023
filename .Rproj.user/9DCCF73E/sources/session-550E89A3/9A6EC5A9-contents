@@ -117,15 +117,51 @@ Placeholder
 
 <!--chapter:end:Part-I-instructions.Rmd-->
 
-# PART II - Instructions {#partI .unlisted .unnumbered}
+# PART II - Instructions {#partII .unlisted .unnumbered}
 
-- [Install](https://ahurford.github.io/quant-guide-all-courses/install.html) the `tidyverse` package, all dependencies, and load the package.
+- [Install](https://ahurford.github.io/quant-guide-all-courses/install.html) the `dplyr` package, all dependencies, and load the package.
 
-- Load the unt
+- For instructions to clean data using tidyverse see [here](https://ahurford.github.io/quant-guide-all-courses/handling-data.html#dplyr)
+
+```{r, include=FALSE,eval=TRUE}
+require(dplyr)
+data = read.csv("https://raw.githubusercontent.com/ahurford/biol-4605-data/main/untidy-portal-data.csv")
+```
+
+Use `head(data)` in the Console, or `data` to view your data. A helpful command is to know the column names:
 
 ```{r}
-require(readxl)
-data = read_excel("https://raw.githubusercontent.com/ahurford/biol-4605-data/main/data/untidy-portal-data.xlsx")
+colnames(data)
+# Extract a row
+dataX =select(data, "X")
+# This is base R syntax to extract specific rows
+# as.Date() is needed for R to treat this variable as a date
+date.collected = dataX$X[6:14]
+date.collected = as.Date(date.collected, format = "%m/%d/%y")
+```
+
+I will aim to make a data frame with date collected and weight for Plot 1. Inspecting the data, weigh is `"X.4"` for Plot 1.
+
+```{r}
+weight = select(data, "X.4")
+# as.numeric() is needed because otherwise R doesn't recognize these data as numbers - which I need for the multiplication later
+weight = as.numeric(weight$X.4[6:14])
+# Make this into a dataframe
+cleaned.data = data.frame(date.collected, weight)
+# add a column that is a mutated column
+cleaned.data = mutate(cleaned.data,weight.kg = weight/1000)
+```
+
+Now the data is in a format that I can make a plot
+
+```{r}
+require(ggplot2)
+g1=ggplot(data = cleaned.data, aes(x = data.collected, y = weight.kg)) + 
+  geom_point() +
+  geom_line() +
+  xlab("Date collected")+
+  ylab("Weight in kg")
+g1
 ```
 
 <!--chapter:end:Part-II-instructions.Rmd-->
