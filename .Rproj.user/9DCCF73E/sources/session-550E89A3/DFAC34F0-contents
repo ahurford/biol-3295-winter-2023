@@ -6,10 +6,15 @@ ASSIGNMENT 1 due Jan 19.
 **PART I** is to reproduce a figure and the figure caption of a plot in [Vandermeer and Goldberg 2013](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619) or another textbook or a published paper in Rmarkdown and as an output file: .hmtl, .pdf, or .docx. Please choose a figure to reproduce in the area of Population Biology or Evolutionary Ecology.
 
 You can simplify a complex figure if necessary. Your figure should be made in `ggplot()` and have:
+
 - the title (if there is one),
+
 - axes labels,
+
 - points or lines or both,
+
 - approximately the same data as the original figure,
+
 - the correct axes limits.
 
 The objective is for you to learn how to use Rmarkdown to make a synthetic write-up that includes code, a figure and text. Your completed output should have:
