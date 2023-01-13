@@ -23,7 +23,7 @@
 <meta name="author" content="Amy Hurford" />
 
 
-<meta name="date" content="2023-01-12" />
+<meta name="date" content="2023-01-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="jan-12-assignment-rmarkdown-and-tidyverse.html"/>
-<link rel="next" href="jan-17-geometric-growth.html"/>
+<link rel="next" href="pheasant.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -158,9 +158,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.1" data-path="jan-13-geometric-growth.html"><a href="jan-13-geometric-growth.html#reading"><i class="fa fa-check"></i><b>6.1</b> Reading</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="jan-17-geometric-growth.html"><a href="jan-17-geometric-growth.html"><i class="fa fa-check"></i><b>7</b> Jan 17: Geometric growth</a>
+<li class="chapter" data-level="7" data-path="pheasant.html"><a href="pheasant.html"><i class="fa fa-check"></i><b>7</b> Jan 17: Geometric growth</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="jan-17-geometric-growth.html"><a href="jan-17-geometric-growth.html#reading-1"><i class="fa fa-check"></i><b>7.1</b> Reading</a></li>
+<li class="chapter" data-level="7.1" data-path="pheasant.html"><a href="pheasant.html#reading-1"><i class="fa fa-check"></i><b>7.1</b> Reading</a></li>
 </ul></li>
 </ul>
 
@@ -184,6 +184,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="reading" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Reading<a href="jan-13-geometric-growth.html#reading" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Vandermeer, J.H., Goldberg, D.E., 2013. Population Ecology: First Principles (Second Edition). Princeton University Press, Princeton, United States. <strong>p1-3.</strong> <a href="https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619">Link</a></p>
+<ul>
+<li><p>Von Foerster human population become effectively infinite on Nov 13 2026</p></li>
+<li><p>Lilly pads replicate once per week. If it take a year for 1/2 a pond to be covered, when will it be completely covered? See also the <a href="https://en.wikipedia.org/wiki/Wheat_and_chessboard_problem">wheat and chessboard</a></p></li>
+<li><p><span class="math inline">\(N_{t+1} = \lambda N_t\)</span> equation 3 in <a href="https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619">Vandermeer and Goldberg</a>. For what values of <span class="math inline">\(\lambda\)</span> will the population size, <span class="math inline">\(N_t\)</span>, grow?</p></li>
+<li><p><span class="math inline">\(N_t = N_0 \lambda^t\)</span> is equation 4 in <a href="https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619">Vandermeer and Goldberg</a> (but written more generally). With <span class="math inline">\(N_0 &gt; 0\)</span> sketch a graph of <span class="math inline">\(N_t\)</span> for different values of <span class="math inline">\(\lambda\)</span>. If <span class="math inline">\(N_0 = 0\)</span>, sketch a graph of <span class="math inline">\(N_t\)</span>.</p></li>
+<li><p>If <span class="math inline">\(N_0 = 1.1\)</span> individuals per km<span class="math inline">\(^2\)</span>, <span class="math inline">\(\lambda = 2\)</span>, what is is the population size at time <span class="math inline">\(t = 10\)</span>?</p></li>
+<li><p>Consider population growth of pheasants on <a href="pheasant.html#pheasant">Protection Island</a>. If we were to apply the geometric growth model to the pheasant population, what are some assumptions? How might this affect our parameterization (i.e., our estimate of <span class="math inline">\(\lambda\)</span>) for the pheasant population?</p></li>
+<li><p>How can we understand what <span class="math inline">\(\lambda\)</span> is in a population that has births and deaths?</p></li>
+</ul>
 
 </div>
 </div>
@@ -193,7 +202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="jan-12-assignment-rmarkdown-and-tidyverse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="jan-17-geometric-growth.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pheasant.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

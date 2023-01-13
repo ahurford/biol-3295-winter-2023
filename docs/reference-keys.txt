@@ -15,5 +15,5 @@ jan-6-discrete-and-continous-variables
 jan-12-assignment-rmarkdown-and-tidyverse
 jan-13-geometric-growth
 reading
-jan-17-geometric-growth
+pheasant
 reading-1

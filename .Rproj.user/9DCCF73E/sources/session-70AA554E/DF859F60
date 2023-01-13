@@ -1,26 +1,26 @@
 {
-    "id": "5B888E4F",
-    "path": "~/Desktop/Work/Teaching/BIOL 3295/Winter 2023/lecture-notes/biol-3295-winter-2023/06-jan13-geometric.Rmd",
-    "project_path": "06-jan13-geometric.Rmd",
+    "id": "DF859F60",
+    "path": "~/Desktop/Work/Teaching/BIOL 3295/Winter 2023/lecture-notes/biol-3295-winter-2023/Part-II-instructions.Rmd",
+    "project_path": "Part-II-instructions.Rmd",
     "type": "r_markdown",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1673545136590.0,
+    "created": 1673619661483.0,
     "source_on_save": false,
     "relative_order": 8,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "0,8",
+        "cursorPosition": "8,104",
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1673468157,
+    "lastKnownWriteTime": 1673535237,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1673468157,
+    "last_content_update": 1673535237,
     "read_only": false,
     "read_only_alternatives": []
 }
