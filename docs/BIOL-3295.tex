@@ -117,7 +117,7 @@
 
 \title{BIOL 3295: Population and Evolutionary Ecology, Winter 2023}
 \author{Amy Hurford}
-\date{2023-01-13}
+\date{2023-01-17}
 
 \begin{document}
 \maketitle
@@ -502,6 +502,27 @@ Noteably,
 \end{enumerate}
 
 \(^1\) Note that g. and h. appear to be contradictory.
+
+\hypertarget{questions}{%
+\section{Questions}\label{questions}}
+
+This approach is called independent parameter estimation because we will estimate the birth and mortality rates independently of the population size data for different years.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(b > 0\) is the per capita number of births each year. The estimation of \(b\) for a geometric growth model is more subtle. First, \(b\) is estimated as the number of births (occurring between \(t\) and \(t+1\)), divided by the number of individuals that could have given birth, \(N_t\). You might average this value across multiple years if sufficient data are available. Furthermore, to correctly project the future population size, we should consider what we have assumed about survival of the pheasant chicks, given the time step of our model. \textbf{Given a.-i. estimate \(b\). Write down any assumptions you have made.}
+\item
+  Is the probability that pheasants survive from one time step to the next. Estimate \(d\).
+\item
+  What is the value of \(\lambda\) given your estimate of \(b\) and \(d\) from previous questions? Is this population is expected to grow over time?
+\item
+  Lets assume that the pheasant population on Protection Island grows geometrically (i.e.~exponentially but for a discrete time model) where the geometric growth rate, \(\lambda\), is the value that you estimated in question 3. Let \(N_0 = 10\) and let \(t\) be the number of years since May 1937. Recall that when a population grows geometrically,
+\end{enumerate}
+
+\[ N_t = N_0 \lambda^t \]
+
+Use the formula and your answer to 3. to predict the number of pheasants in May 1938, May 1939, May 1940, and May 1950.
 
 \hypertarget{partI}{%
 \chapter*{PART I - Instructions}\label{partI}}

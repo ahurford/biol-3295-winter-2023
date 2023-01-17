@@ -23,7 +23,7 @@
 <meta name="author" content="Amy Hurford" />
 
 
-<meta name="date" content="2023-01-13" />
+<meta name="date" content="2023-01-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -161,6 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="pheasant.html"><a href="pheasant.html"><i class="fa fa-check"></i><b>7</b> Jan 17: Geometric growth</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="pheasant.html"><a href="pheasant.html#reading-1"><i class="fa fa-check"></i><b>7.1</b> Reading</a></li>
+<li class="chapter" data-level="7.2" data-path="pheasant.html"><a href="pheasant.html#questions"><i class="fa fa-check"></i><b>7.2</b> Questions</a></li>
 </ul></li>
 </ul>
 
@@ -198,6 +199,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>You can assume the sex ratio is 50:50 male to female. Pheasants are a sexually reproducing species.</li>
 </ol>
 <p><span class="math inline">\(^1\)</span> Note that g. and h. appear to be contradictory.</p>
+</div>
+<div id="questions" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Questions<a href="pheasant.html#questions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This approach is called independent parameter estimation because we will estimate the birth and mortality rates independently of the population size data for different years.</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(b &gt; 0\)</span> is the per capita number of births each year. The estimation of <span class="math inline">\(b\)</span> for a geometric growth model is more subtle. First, <span class="math inline">\(b\)</span> is estimated as the number of births (occurring between <span class="math inline">\(t\)</span> and <span class="math inline">\(t+1\)</span>), divided by the number of individuals that could have given birth, <span class="math inline">\(N_t\)</span>. You might average this value across multiple years if sufficient data are available. Furthermore, to correctly project the future population size, we should consider what we have assumed about survival of the pheasant chicks, given the time step of our model. <strong>Given a.-i. estimate <span class="math inline">\(b\)</span>. Write down any assumptions you have made.</strong></p></li>
+<li><p>Is the probability that pheasants survive from one time step to the next. Estimate <span class="math inline">\(d\)</span>.</p></li>
+<li><p>What is the value of <span class="math inline">\(\lambda\)</span> given your estimate of <span class="math inline">\(b\)</span> and <span class="math inline">\(d\)</span> from previous questions? Is this population is expected to grow over time?</p></li>
+<li><p>Lets assume that the pheasant population on Protection Island grows geometrically (i.e. exponentially but for a discrete time model) where the geometric growth rate, <span class="math inline">\(\lambda\)</span>, is the value that you estimated in question 3. Let <span class="math inline">\(N_0 = 10\)</span> and let <span class="math inline">\(t\)</span> be the number of years since May 1937. Recall that when a population grows geometrically,</p></li>
+</ol>
+<p><span class="math display">\[ N_t = N_0 \lambda^t \]</span></p>
+<p>Use the formula and your answer to 3. to predict the number of pheasants in May 1938, May 1939, May 1940, and May 1950.</p>
 
 </div>
 </div>
