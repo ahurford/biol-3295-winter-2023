@@ -18,10 +18,3 @@ reading
 pheasant
 reading-1
 questions
-estimate
-code
-loading-and-plotting-the-data
-function-for-geometric-growth
-fitting-lambda
-plotting-the-fit
-to-hand-in
