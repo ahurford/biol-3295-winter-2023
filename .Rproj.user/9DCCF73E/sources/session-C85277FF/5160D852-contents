@@ -116,9 +116,6 @@ g2 = g1 +
   geom_line(aes(y=fit.predictions)) +
   geom_ribbon(aes(ymin = lower.fit, ymax = upper.fit), alpha = .2)
 ```
-```{r}
-g2
-```
 
 (The value of `alpha = 0.2` makes the ribbon transparent)
 
