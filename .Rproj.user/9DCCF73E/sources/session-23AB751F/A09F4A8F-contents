@@ -1,0 +1,10 @@
+---
+title: "Assignment 2"
+author: "Amy Hurford"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r}
+data = read.csv("https://raw.githubusercontent.com/ahurford/biol-4605-data/main/data/protection-island.csv")
+```

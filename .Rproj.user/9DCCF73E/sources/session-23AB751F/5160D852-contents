@@ -115,6 +115,7 @@ We had already made a plot of the data and we named our graph `g1`. We can now a
 g2 = g1 +
   geom_line(aes(y=fit.predictions)) +
   geom_ribbon(aes(ymin = lower.fit, ymax = upper.fit), alpha = .2)
+g2
 ```
 
 (The value of `alpha = 0.2` makes the ribbon transparent)
