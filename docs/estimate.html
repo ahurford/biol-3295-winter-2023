@@ -194,16 +194,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="estimate" class="section level1 hasAnchor" number="8">
 <h1><span class="header-section-number">8</span> Jan 19: <strong>ASSIGNMENT</strong> Estimating the geometric growth rate<a href="estimate.html#estimate" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>ASSIGNMENT 2 due Jan 26.</p>
-<p>You are to write an Rmarkdown report that estimates the geometric growth rate, <span class="math inline">\(\lambda\)</span>, for the <a href="pheasant.html#pheasant">Protection Island pheasant population</a>. Your report needs to consider two methods for estimating the geometric growth rate: (1) fitting; and (2) estimation from independent data.</p>
+<p>You are to write an Rmarkdown report that estimates the geometric growth rate, <span class="math inline">\(\lambda\)</span>, for the <a href="pheasant.html#pheasant">Protection Island pheasant population</a>. Your report needs to consider two methods for estimating the geometric growth rate: fitting; and estimation from independent data.</p>
 <p>The code you will need to complete this assignment is below. You may copy and paste this code into your Rmarkdown report. Sometimes you will need to change the values.</p>
 <p>The requirements of the report follow the code.</p>
 <div id="code" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> Code<a href="estimate.html#code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="loading-and-plotting-the-data" class="section level3 hasAnchor" number="8.1.1">
 <h3><span class="header-section-number">8.1.1</span> Loading and plotting the data<a href="estimate.html#loading-and-plotting-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Load the data. I copied the data on to a website, so it can be loaded with the command below. Click <a href="https://github.com/ahurford/biol-4605-data/blob/main/data/protection-island.csv">here</a> to view the code on the website</p>
+<p>Load the data. I copied the data on to a website, so it can be loaded with the command below. Click <a href="https://github.com/ahurford/biol-4605-data/blob/main/data/protection-island.csv">here</a> to view the code on the website.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="estimate.html#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ahurford/biol-4605-data/main/data/protection-island.csv&quot;</span>)</span></code></pre></div>
-<p>Let’s plot the data. We select only columns 1 and 2 of the data because column 3 contains comments. We plot <code>year</code> on the horizontal axis and <code>size</code> on the vertical axis.</p>
+<p>Let’s plot the data. We select only columns 1 and 2 of the data because column 3 contains comments. We plot <code>year</code> on the horizontal (x-) axis and <code>size</code> on the (y-) vertical axis.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="estimate.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span>
 <span id="cb2-2"><a href="estimate.html#cb2-2" aria-hidden="true" tabindex="-1"></a>protection.island <span class="ot">&lt;-</span> data[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
 <span id="cb2-3"><a href="estimate.html#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -217,15 +217,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="function-for-geometric-growth" class="section level3 hasAnchor" number="8.1.2">
 <h3><span class="header-section-number">8.1.2</span> Function for geometric growth<a href="estimate.html#function-for-geometric-growth" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Below is the definition of a geometric growth function with time, <span class="math inline">\(t\)</span>, specifically defined for the number of years of Protection Island pheasant data and the initial population size, <span class="math inline">\(N_0\)</span>, defined specifically for the Protection Island data. Define this function in your code before you call the function.</p>
+<p>Below is the definition of a geometric growth function with time, <span class="math inline">\(t\)</span>, specifically defined for the number of years of Protection Island pheasant data, and the initial population size, <span class="math inline">\(N_0\)</span>, defined specifically for the Protection Island data. You need to give this function in your code <em>before</em> you call the function.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="estimate.html#cb3-1" aria-hidden="true" tabindex="-1"></a>geo.pred <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda){</span>
 <span id="cb3-2"><a href="estimate.html#cb3-2" aria-hidden="true" tabindex="-1"></a>  t <span class="ot">=</span> protection.island<span class="sc">$</span>year <span class="sc">-</span> protection.island<span class="sc">$</span>year[<span class="dv">1</span>]</span>
 <span id="cb3-3"><a href="estimate.html#cb3-3" aria-hidden="true" tabindex="-1"></a>  N0 <span class="ot">=</span> protection.island<span class="sc">$</span>size[<span class="dv">1</span>]</span>
 <span id="cb3-4"><a href="estimate.html#cb3-4" aria-hidden="true" tabindex="-1"></a>  size <span class="ot">=</span> N0<span class="sc">*</span>lambda<span class="sc">^</span>t</span>
 <span id="cb3-5"><a href="estimate.html#cb3-5" aria-hidden="true" tabindex="-1"></a>  pred <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">year =</span> protection.island<span class="sc">$</span>year, <span class="at">size =</span> size)</span>
 <span id="cb3-6"><a href="estimate.html#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>The function <code>geo.pred(lambda)</code> will predict the population size of the pheasant population for values of <code>lambda</code> that you supply.</p>
-<p>After you have run the code (i.e. in the Console) that defines the <code>geo.pred(lambda)</code> function, try <code>lambda = 3</code>:</p>
+<p>The function is called by running <code>geo.pred(lambda)</code> in the console, where you enter a specific value for <code>lambda</code>.</p>
+<p>After you have run the code (i.e. in the Console) that defines the <code>geo.pred(lambda)</code> function (above), try <code>lambda = 3</code> as:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="estimate.html#cb4-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">=</span> <span class="fu">geo.pred</span>(<span class="dv">3</span>)</span>
 <span id="cb4-2"><a href="estimate.html#cb4-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
 <pre><code>##   year size
@@ -233,7 +233,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 1937   30
 ## 3 1938   90
 ## 4 1939  270</code></pre>
-<p><strong>Question 1</strong> This code works with the lines of code inside the <code>geo.pred()</code> function. What are these lines of code doing? What is the data frame <code>protection.island</code>? (Note that <code>data[1]</code> selects the first value of a list of values).</p>
+<p><strong>Question 1</strong> The <code>geo.pred()</code> function works by running the lines of code inside the <code>geo.pred()</code> function definition for the value of <code>lambda</code> that you supply (inside the parentheses in the function call). In the function definition, what are the lines of code that are pasted below doing? (Hint: What is the data frame <code>protection.island</code>? Note that <code>data[1]</code> selects the first value of a list of values and the <code>$</code> selects a particular column of a data frame).</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="estimate.html#cb6-1" aria-hidden="true" tabindex="-1"></a>  t <span class="ot">=</span> protection.island<span class="sc">$</span>year <span class="sc">-</span> protection.island<span class="sc">$</span>year[<span class="dv">1</span>]</span>
 <span id="cb6-2"><a href="estimate.html#cb6-2" aria-hidden="true" tabindex="-1"></a>  N0 <span class="ot">=</span> protection.island<span class="sc">$</span>size[<span class="dv">1</span>]</span></code></pre></div>
 </div>
@@ -241,50 +241,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">8.1.3</span> Fitting lambda<a href="estimate.html#fitting-lambda" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We have defined a function that will predict the population size of pheasants on Protection Island for different user supplied values of <code>lambda</code>. But what value of <code>lambda</code> is most likely given the data?</p>
 <p>To answer this question we will use a statistical method known as maximum likelihood.</p>
-<p>Our first step is to define a function that quantifies the fit of a given <code>lambda</code> value. This function assumes that deviations of the recorded data from the predicted values follow a normal distribution with a standard deviation, <code>sigma</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="estimate.html#cb7-1" aria-hidden="true" tabindex="-1"></a>geofit <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda, sigma){</span>
+<p>Our first step is to define a function that quantifies the fit of a given <code>lambda</code> value. This function assumes that deviations of the recorded data from the model-predicted values follow a Poisson distribution:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="estimate.html#cb7-1" aria-hidden="true" tabindex="-1"></a>geofit <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda){</span>
 <span id="cb7-2"><a href="estimate.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  pred<span class="ot">=</span><span class="fu">geo.pred</span>(<span class="at">lambda=</span>lambda)</span>
 <span id="cb7-3"><a href="estimate.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  Ypred <span class="ot">=</span> pred<span class="sc">$</span>size</span>
-<span id="cb7-4"><a href="estimate.html#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span><span class="fu">sum</span>(<span class="fu">dnorm</span>(protection.island<span class="sc">$</span>size, <span class="at">mean=</span>Ypred, <span class="at">sd=</span>sigma, <span class="at">log=</span>T))</span>
+<span id="cb7-4"><a href="estimate.html#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span><span class="fu">sum</span>(<span class="fu">dpois</span>(protection.island<span class="sc">$</span>size, Ypred, <span class="at">log=</span>T))</span>
 <span id="cb7-5"><a href="estimate.html#cb7-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>After running the <code>geo.fit(lambda, sigma)</code> function (in the Console), lets try to use the function and get some values of the negative log likelihood (i.e. the fit):</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="estimate.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">geofit</span>(<span class="dv">3</span>,<span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 2172.073</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="estimate.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">geofit</span>(<span class="dv">1</span>,<span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 20347.07</code></pre>
-<p>This result tells us that when <code>sigma = 2</code>, given the data, <code>lambda = 3</code> is much more likely than <code>lambda = 1</code> because the negative log likelihood value (2172.073) is much smaller.</p>
-<p>But what value of <code>lambda</code> is most likelihood given the data? To answer this question we need to call some functions that will perform an optimization. Specifically, we need to find the value of <code>lambda</code> that minimizes the log likelihood. This requires the <code>mle2</code> function from the <code>bbmle</code> package, and you will need to install this package prior to using this function.</p>
+<p>After running the <code>geo.fit(lambda)</code> function (in the Console), lets try to use the function and get some values of the negative log likelihood (i.e. the fit):</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="estimate.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">geofit</span>(<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 41.64846</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="estimate.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">geofit</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 1280.129</code></pre>
+<p>This result tells us that given the data <code>lambda = 3</code> is much more likely than <code>lambda = 1</code> because the negative log likelihood value (41.65) is much smaller.</p>
+<p>But what value of <code>lambda</code> is most likelihood given the data? i.e., for what value of <code>lambda</code> is the negative log likelihood minimized? To answer this question we need to call a function that will perform an optimization. This requires the <code>mle2</code> function from the <code>bbmle</code> package, and you will need to install this package prior to using this function.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="estimate.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bbmle)</span></code></pre></div>
 <pre><code>## Loading required package: stats4</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="estimate.html#cb14-1" aria-hidden="true" tabindex="-1"></a>fit.geo <span class="ot">&lt;-</span> <span class="fu">mle2</span>(geofit, <span class="at">start=</span><span class="fu">list</span>(<span class="at">lambda=</span><span class="dv">3</span>, <span class="at">sigma=</span><span class="dv">1</span>))</span>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="estimate.html#cb14-1" aria-hidden="true" tabindex="-1"></a>fit.geo <span class="ot">&lt;-</span> <span class="fu">mle2</span>(geofit, <span class="at">start=</span><span class="fu">list</span>(<span class="at">lambda=</span><span class="dv">3</span>))</span>
 <span id="cb14-2"><a href="estimate.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit.geo)</span></code></pre></div>
 <pre><code>## Maximum likelihood estimation
 ## 
 ## Call:
-## mle2(minuslogl = geofit, start = list(lambda = 3, sigma = 1))
+## mle2(minuslogl = geofit, start = list(lambda = 3))
 ## 
 ## Coefficients:
-##         Estimate Std. Error  z value   Pr(z)    
-## lambda 3.4162840  0.0096489 354.0611 &lt; 2e-16 ***
-## sigma  3.4416804  1.2168831   2.8283 0.00468 ** 
+##        Estimate Std. Error z value     Pr(z)    
+## lambda 3.408974   0.053472  63.752 &lt; 2.2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## -2 log L: 21.2389</code></pre>
+## -2 log L: 24.32396</code></pre>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="estimate.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(fit.geo)</span></code></pre></div>
-<pre><code>##           2.5 %   97.5 %
-## lambda 3.391599 3.440619
-## sigma  1.963852 8.440683</code></pre>
-<p>The output above tells us that the maximum likelihood estimate of <code>lambda</code> is 3.41 and that the 95% confidence interval is [3.39, 3.44]. (This approach also fits the standard deviation in the normal distribution, but this estimate is less interesting).</p>
+<pre><code>##    2.5 %   97.5 % 
+## 3.304256 3.513845</code></pre>
+<p>The output above tells us that the maximum likelihood estimate of <code>lambda</code> is 3.41 and that the 95% confidence interval is [3.30, 3.51].</p>
 </div>
 <div id="plotting-the-fit" class="section level3 hasAnchor" number="8.1.4">
 <h3><span class="header-section-number">8.1.4</span> Plotting the fit<a href="estimate.html#plotting-the-fit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Finally, we would like to use our estimate values of <code>lambda</code> in the geometric growth function and compare the fitted values with the observed data.</p>
-<p>In the code below, <code>lambda = 3</code> is the estimated lambda value and the 95% confidence interval is [2,4]. To use this code for your assignment you will need to substitute different values.</p>
+<p>In the code below, <code>lambda = 3</code> is the estimated lambda value, and the 95% confidence interval is [2,4]. To use this code for your assignment you will need to substitute different values.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="estimate.html#cb18-1" aria-hidden="true" tabindex="-1"></a>fit.predictions <span class="ot">=</span> <span class="fu">geo.pred</span>(<span class="dv">3</span>)<span class="sc">$</span>size</span>
 <span id="cb18-2"><a href="estimate.html#cb18-2" aria-hidden="true" tabindex="-1"></a>lower.fit <span class="ot">=</span> <span class="fu">geo.pred</span>(<span class="dv">2</span>)<span class="sc">$</span>size</span>
 <span id="cb18-3"><a href="estimate.html#cb18-3" aria-hidden="true" tabindex="-1"></a>upper.fit <span class="ot">=</span> <span class="fu">geo.pred</span>(<span class="dv">4</span>)<span class="sc">$</span>size</span></code></pre></div>
-<p>We had already made a plot of the data and we named our graph <code>g1</code>. We can now add some more layers to the graph as shown below. Note that the line is the value of <code>fit.predictions</code> as defined above, and the shaded ribbon spans from <code>lower.fit</code> to <code>upper.fit</code>.</p>
+<p>We had already made a plot of the data and we named our graph <code>g1</code>. We can now add some more layers to the graph as shown below. Note that the line is the value of <code>fit.predictions</code> as defined above (i.e., set <code>=3</code> as an example), and the shaded ribbon spans from <code>lower.fit</code> to <code>upper.fit</code> (i.e., set to <code>1</code> and <code>2</code> as an example).</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="estimate.html#cb19-1" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">=</span> g1 <span class="sc">+</span></span>
 <span id="cb19-2"><a href="estimate.html#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>fit.predictions)) <span class="sc">+</span></span>
 <span id="cb19-3"><a href="estimate.html#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower.fit, <span class="at">ymax =</span> upper.fit), <span class="at">alpha =</span> .<span class="dv">2</span>)</span></code></pre></div>
@@ -305,10 +303,10 @@ You must include a graph that shows:</p></li>
 <p>You must include a figure caption that explains the main point of your graph, and what the symbols are.</p>
 <p>Your Rmarkdown file must contain a sequence of R commands that produces the graph.</p>
 <ol start="3" style="list-style-type: decimal">
-<li>Estimate <span class="math inline">\(\lambda\)</span> from data independent of the time series describing the population size of pheasants on Protection Island. This means that you cannot use more than one value of the population size to estimate one value of a quantity (you should only be using the population size in a given year to calculate per capita rates by dividing). In your Rmarkdown report you should:</li>
+<li>Estimate <span class="math inline">\(\lambda\)</span> from data independent of the time series describing the population size of pheasants on Protection Island. This means that you cannot use more than one value of the population size to estimate one value of a quantity (you should be using the population size in a given year to calculate per capita rates by dividing only). You goal is to keep your parameter estimation method independent from the time series of pheasant population size so that you can <em>validate</em> the assumptions of your geometric growth model. In your Rmarkdown report you should:</li>
 </ol>
 <ul>
-<li><p>Derive a formula for <span class="math inline">\(\lambda\)</span> in terms of <span class="math inline">\(b\)</span> the per capita birth rate, and the probability of mortality <span class="math inline">\(d\)</span> each year.</p></li>
+<li><p>Derive a formula for <span class="math inline">\(\lambda\)</span> in terms of <span class="math inline">\(b\)</span> the per capita birth rate, and the probability of mortality <span class="math inline">\(d\)</span> each year. Do this based on the class discussion on January 17 or by reading <a href="https://ebookcentral.proquest.com/lib/mun/reader.action?docID=768551&amp;ppg=29">Otto and Day, 2007</a> <em>Section 2.5.1 Discrete-Time Models</em> p47-50 and omit migration, <span class="math inline">\(m=0\)</span> for the application to the Protection Island pheasant population.</p></li>
 <li><p>State some important assumptions of your <span class="math inline">\(\lambda\)</span> formula.</p></li>
 <li><p>Estimate <span class="math inline">\(b\)</span> and <span class="math inline">\(d\)</span> using some of the information given <a href="pheasant.html#pheasant">here</a>. Calculate <span class="math inline">\(\lambda\)</span> given the formula you derived.</p></li>
 <li><p>Use the <code>geo.pred(lambda)</code> function to predict the population size of pheasants on Protection Island for your independently estimated <span class="math inline">\(\lambda\)</span> value. The code to do this must be included in your Rmarkdown file.</p></li>

@@ -1,0 +1,5 @@
+"0","geofit <- function(lambda){"
+"0","  pred=geo.pred(lambda=lambda)"
+"0","  Ypred = pred$size"
+"0","  -sum(dpois(protection.island$size, Ypred, log=T))"
+"0","}"
