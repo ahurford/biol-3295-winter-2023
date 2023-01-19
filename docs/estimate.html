@@ -291,7 +291,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="to-hand-in" class="section level2 hasAnchor" number="8.2">
 <h2><span class="header-section-number">8.2</span> To hand in<a href="estimate.html#to-hand-in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
-<li><p>Answer Question 1 which appears in bold in the <em>Function for geometric growth</em> section. [3 marks]</p></li>
+<li><p>Answer Question 1 which appears in bold in the <em>Function for geometric growth</em> section.</p></li>
 <li><p>Write an Rmarkdown report that estimates <span class="math inline">\(\lambda\)</span> (i.e. <code>lambda</code>) in the geometric growth rate function using maximum likelihood fitting.
 You must include a graph that shows:</p></li>
 </ol>
@@ -301,16 +301,16 @@ You must include a graph that shows:</p></li>
 <li>The predicted values for the 95% confidence interval for the estimate of <code>lambda</code> (shown as a shaded region);</li>
 </ul>
 <p>You must include a figure caption that explains the main point of your graph, and what the symbols are.</p>
-<p>Your Rmarkdown file must contain a sequence of R commands that produces the graph. [10 marks]</p>
+<p>Your Rmarkdown file must contain a sequence of R commands that produces the graph.</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Estimate <span class="math inline">\(\lambda\)</span> from data independent of the time series describing the population size of pheasants on Protection Island. This means that you cannot use more than one value of the population size to estimate one value of a quantity (you should be using the population size in a given year to calculate per capita rates by dividing only). You goal is to keep your parameter estimation method independent from the time series of pheasant population size so that you can <em>validate</em> the assumptions of your geometric growth model. In your Rmarkdown report you should:</li>
 </ol>
 <ul>
-<li><p>Derive a formula for <span class="math inline">\(\lambda\)</span> in terms of <span class="math inline">\(b\)</span> the per capita birth rate, and the probability of mortality <span class="math inline">\(d\)</span> each year. Do this based on the class discussion on January 17 or by reading <a href="https://ebookcentral.proquest.com/lib/mun/reader.action?docID=768551&amp;ppg=29">Otto and Day, 2007</a> <em>Section 2.5.1 Discrete-Time Models</em> p47-50 and omit migration, <span class="math inline">\(m=0\)</span> for the application to the Protection Island pheasant population. [2 marks]</p></li>
-<li><p>State some important assumptions of your <span class="math inline">\(\lambda\)</span> formula. [3 marks]</p></li>
-<li><p>Estimate <span class="math inline">\(b\)</span> and <span class="math inline">\(d\)</span> using some of the information given <a href="pheasant.html#pheasant">here</a>. State assumptions that you have made when data is lacking or information isi contradictory. Calculate <span class="math inline">\(\lambda\)</span> given the formula you derived. [4 marks]</p></li>
-<li><p>Use the <code>geo.pred(lambda)</code> function to predict the population size of pheasants on Protection Island for your independently estimated <span class="math inline">\(\lambda\)</span> value. The code to do this must be included in your Rmarkdown file. [2 marks]</p></li>
-<li><p>Make a plot of your predictions relative to the reported data. Include a figure caption that describes the main point of your figure and defines all the symbols. [3 marks]</p></li>
+<li><p>Derive a formula for <span class="math inline">\(\lambda\)</span> in terms of <span class="math inline">\(b\)</span> the per capita birth rate, and the probability of mortality <span class="math inline">\(d\)</span> each year. Do this based on the class discussion on January 17 or by reading <a href="https://ebookcentral.proquest.com/lib/mun/reader.action?docID=768551&amp;ppg=29">Otto and Day, 2007</a> <em>Section 2.5.1 Discrete-Time Models</em> p47-50 and omit migration, <span class="math inline">\(m=0\)</span> for the application to the Protection Island pheasant population.</p></li>
+<li><p>State some important assumptions of your <span class="math inline">\(\lambda\)</span> formula.</p></li>
+<li><p>Estimate <span class="math inline">\(b\)</span> and <span class="math inline">\(d\)</span> using some of the information given <a href="pheasant.html#pheasant">here</a>. Calculate <span class="math inline">\(\lambda\)</span> given the formula you derived.</p></li>
+<li><p>Use the <code>geo.pred(lambda)</code> function to predict the population size of pheasants on Protection Island for your independently estimated <span class="math inline">\(\lambda\)</span> value. The code to do this must be included in your Rmarkdown file.</p></li>
+<li><p>Make a plot of your predictions relative to the reported data. Include a figure caption that describes the main point of your figure and defines all the symbols.</p></li>
 </ul>
 
 </div>

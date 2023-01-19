@@ -117,7 +117,7 @@ g2 = g1 +
 
 ## To hand in
 
-1. Answer Question 1 which appears in bold in the _Function for geometric growth_ section. [3 marks]
+1. Answer Question 1 which appears in bold in the _Function for geometric growth_ section.
 
 2. Write an Rmarkdown report that estimates $\lambda$ (i.e. `lambda`) in the geometric growth rate function using maximum likelihood fitting. 
 You must include a graph that shows:
@@ -127,18 +127,18 @@ You must include a graph that shows:
 
 You must include a figure caption that explains the main point of your graph, and what the symbols are.
 
-Your Rmarkdown file must contain a sequence of R commands that produces the graph. [10 marks]
+Your Rmarkdown file must contain a sequence of R commands that produces the graph.
 
 3. Estimate $\lambda$ from data independent of the time series describing the population size of pheasants on Protection Island. This means that you cannot use more than one value of the population size to estimate one value of a quantity (you should be using the population size in a given year to calculate per capita rates by dividing only). You goal is to keep your parameter estimation method independent from the time series of pheasant population size so that you can _validate_ the assumptions of your geometric growth model. In your Rmarkdown report you should:
 
-- Derive a formula for $\lambda$ in terms of $b$ the per capita birth rate, and the probability of mortality $d$ each year. Do this based on the class discussion on January 17 or by reading [Otto and Day, 2007](https://ebookcentral.proquest.com/lib/mun/reader.action?docID=768551&ppg=29) _Section 2.5.1 Discrete-Time Models_ p47-50 and omit migration, $m=0$ for the application to the Protection Island pheasant population. [2 marks]
+- Derive a formula for $\lambda$ in terms of $b$ the per capita birth rate, and the probability of mortality $d$ each year. Do this based on the class discussion on January 17 or by reading [Otto and Day, 2007](https://ebookcentral.proquest.com/lib/mun/reader.action?docID=768551&ppg=29) _Section 2.5.1 Discrete-Time Models_ p47-50 and omit migration, $m=0$ for the application to the Protection Island pheasant population.
 
-- State some important assumptions of your $\lambda$ formula. [3 marks]
+- State some important assumptions of your $\lambda$ formula.
 
-- Estimate $b$ and $d$ using some of the information given [here](#pheasant). State assumptions that you have made when data is lacking or information isi contradictory. Calculate $\lambda$ given the formula you derived. [4 marks]
+- Estimate $b$ and $d$ using some of the information given [here](#pheasant). Calculate $\lambda$ given the formula you derived.
 
-- Use the `geo.pred(lambda)` function to predict the population size of pheasants on Protection Island for your independently estimated $\lambda$ value. The code to do this must be included in your Rmarkdown file. [2 marks]
+- Use the `geo.pred(lambda)` function to predict the population size of pheasants on Protection Island for your independently estimated $\lambda$ value. The code to do this must be included in your Rmarkdown file.
 
-- Make a plot of your predictions relative to the reported data. Include a figure caption that describes the main point of your figure and defines all the symbols. [3 marks]
+- Make a plot of your predictions relative to the reported data. Include a figure caption that describes the main point of your figure and defines all the symbols.
 
 
