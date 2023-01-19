@@ -1,0 +1,138 @@
+--- 
+title: "BIOL 3295: Population and Evolutionary Ecology, Winter 2023"
+author: "Amy Hurford"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+biblio-style: apalike
+link-citations: false 
+---
+
+# Syllabus
+
+Placeholder
+
+
+## Instructor Information
+## Course Information	
+## Method of Evaluation
+## Additional Policies
+### Accommodation of students with disabilities
+### Academic misconduct
+### Equity and Diversity
+## Additional Supports
+
+<!--chapter:end:index.Rmd-->
+
+
+# Schedule {#schedule}
+
+Placeholder
+
+
+
+<!--chapter:end:01-schedule.Rmd-->
+
+# Jan 5: Introduction
+
+- Survey of student computer preferences
+
+## Some questions
+
+- What is a population?
+- What are some definitions of a population that are given in textbooks?
+- In research studies, how are populations discussed in the _Discussion_?
+- How are individuals that comprise the sample selected in the _Methods_ of a research study?
+- List some potential differences between how populations are defined and discussed and the research methods?
+- Why does the definition of a population matter?
+
+## References
+
+Vandermeer, J.H., Goldberg, D.E., 2013. Population Ecology: First Principles (Second Edition). Princeton University Press, Princeton, United States. [Link](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619)
+
+The Princeton Guide to Ecology, edited by Simon A. Levin, et al., Princeton University Press, 2009. ProQuest Ebook Central, [Link](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=557123)
+
+Sacchi, R., Gentilli, A., Razzetti, E., Barbieri, F., 2002. Effects of building features on density and flock distribution of feral pigeons Columba livia var. domestica in an urban environment. Can. J. Zool. 80, 48-54. [Link](https://cdnsciencepub.com/doi/10.1139/z01-202)
+
+<!--chapter:end:02-jan5-introduction.Rmd-->
+
+# Jan 6: Discrete and continous variables
+
+Reading: Otto, Sarah P., and Troy Day. 2007. A Biologist’s Guide to Mathematical Modeling in Ecology and Evolution, Princeton University Press. [Link](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=768551) **pages 33-38 in Section 2.3**
+
+- Parameters versus variables
+
+- Fitted versus independently estimated parameters
+
+<!--chapter:end:03-jan6-discrete-continuous.Rmd-->
+
+
+# Jan 12: **ASSIGNMENT** Rmarkdown and tidyverse 
+
+Placeholder
+
+
+
+<!--chapter:end:04-jan10-Rmarkdown.Rmd-->
+
+# Jan 13: Geometric growth
+
+## Reading
+
+Vandermeer, J.H., Goldberg, D.E., 2013. Population Ecology: First Principles (Second Edition). Princeton University Press, Princeton, United States. **p1-3.** [Link](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619)
+
+- Von Foerster human population become effectively infinite on Nov 13 2026
+
+- Lilly pads replicate once per week. If it take a year for 1/2 a pond to be covered, when will it be completely covered? See also the [wheat and chessboard](https://en.wikipedia.org/wiki/Wheat_and_chessboard_problem)
+
+- $N_{t+1} = \lambda N_t$ equation 3 in [Vandermeer and Goldberg](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619). For what values of $\lambda$ will the population size, $N_t$, grow?
+
+- $N_t = N_0 \lambda^t$ is equation 4 in [Vandermeer and Goldberg](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619) (but written more generally). With $N_0 > 0$ sketch a graph of $N_t$ for different values of $\lambda$. If $N_0 = 0$, sketch a graph of $N_t$.
+
+- If $N_0 = 1.1$ individuals per km$^2$, $\lambda = 2$, what is is the population size at time $t = 10$?
+
+- Consider population growth of pheasants on [Protection Island](#pheasant). If we were to apply the geometric growth model to the pheasant population, what are some assumptions? How might this affect our parameterization (i.e., our estimate of $\lambda$) for the pheasant population?
+
+- How can we understand what $\lambda$ is in a population that has births and deaths?
+
+<!--chapter:end:05-jan12-geometric.Rmd-->
+
+
+# Jan 17: Geometric growth {#pheasant}
+
+Placeholder
+
+
+## Reading
+## Questions
+
+<!--chapter:end:06-jan13-geometric.Rmd-->
+
+
+# Jan 19: **ASSIGNMENT** Estimating the geometric growth rate {#estimate}
+
+Placeholder
+
+
+
+<!--chapter:end:07-jan18-protection.Rmd-->
+
+
+# PART I - Instructions {#partI .unlisted .unnumbered}
+
+Placeholder
+
+
+
+<!--chapter:end:Part-I-instructions.Rmd-->
+
+
+# PART II - Instructions {#partII .unlisted .unnumbered}
+
+Placeholder
+
+
+
+<!--chapter:end:Part-II-instructions.Rmd-->
+

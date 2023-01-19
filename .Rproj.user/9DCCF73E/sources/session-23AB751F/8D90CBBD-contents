@@ -1,0 +1,58 @@
+# MLE code for the non-symetric Laplace distrubution. 
+
+# The purpose of this code is to fit the non-asymetric Laplace 
+# distrubution to the Bay d'Epoir emperical data. 
+
+rm(list=ls())
+
+# Packages
+install.packages("bbmle", "emdbook") 
+library(bbmle)
+library(emdbook)
+
+# Test dataset 
+x1 <- rbetabinom(n=1000, prob=0.1, size=50, theta = 10)
+mtmp <- function(prob, size, theta){
+  -sum(dbetabinom(x1, prob, size, theta, log=T))
+}
+
+# Another example
+example(mle2)
+x <- 0:10
+y <- c(26, 17, 13, 12, 20, 5, 9, 8, 5, 4, 8)
+d <- data.frame(x,y)
+LL <- function(ymax=15, xhalf=6)
+  -sum(stats::dpois(y, lambda=ymax/(1+x/xhalf), log=TRUE))
+LL
+
+# Loading Bay D'Esspoir dataset
+baydespoir_prof <- read.csv("/Users/jakeprosser/Desktop/Shared-with-Amy/winter_2020/model_code/data_files/baydespoir/baydespoir_prof.csv")
+
+# The asymetric Laplace distrubution 
+# Time 
+dz <- 0.5 
+z <- seq(0,40, dz)
+
+# Parameters 
+m <- 30 # Location parameter
+pho <- 0.5 # Scaler parameter (needs to be greater then 0)
+k <- 3 # asymmetry parameter 
+
+# Probability and Cummulative Density Function 
+asymmetric.laplace.pdf <- (pho/(k+(1/k)))*exp(-((z-m)*pho*(sign(z-m))*k^(sign(z-m))))
+asymmetric.laplace.cdf <- cumsum(asymmetric.laplace.pdf)*dz
+
+# Summing 
+sum(asymmetric.laplace.pdf)*dz
+tail(asymmetric.laplace.cdf)
+
+# Plots
+plot(z, asymmetric.laplace.pdf, xlab="Salinity", ylab="Probability")
+
+# Distrubution 
+asymmetric.distrubution <- as.data.frame(cbind(z, asymmetric.laplace.pdf, 
+                                               asymmetric.laplace.cdf))
+names(asymmetric.distrubution) <- c("z", "PDF", "CDF")
+head(asymmetric.distrubution)
+sample(asymmetric.distrubution$z, 1) # Pulls a random salinity from the Laplace Distrubution
+

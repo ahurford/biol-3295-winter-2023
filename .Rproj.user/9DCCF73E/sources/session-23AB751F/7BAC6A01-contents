@@ -1,0 +1,209 @@
+--- 
+title: "BIOL 3295: Population and Evolutionary Ecology, Winter 2023"
+author: "Amy Hurford"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+biblio-style: apalike
+link-citations: false 
+---
+
+# Syllabus
+
+Placeholder
+
+
+## Instructor Information
+## Course Information	
+## Method of Evaluation
+## Additional Policies
+### Accommodation of students with disabilities
+### Academic misconduct
+### Equity and Diversity
+## Additional Supports
+
+<!--chapter:end:index.Rmd-->
+
+
+# Schedule {#schedule}
+
+Placeholder
+
+
+
+<!--chapter:end:01-schedule.Rmd-->
+
+# Jan 5: Introduction
+
+- Survey of student computer preferences
+
+## Some questions
+
+- What is a population?
+- What are some definitions of a population that are given in textbooks?
+- In research studies, how are populations discussed in the _Discussion_?
+- How are individuals that comprise the sample selected in the _Methods_ of a research study?
+- List some potential differences between how populations are defined and discussed and the research methods?
+- Why does the definition of a population matter?
+
+## References
+
+Vandermeer, J.H., Goldberg, D.E., 2013. Population Ecology: First Principles (Second Edition). Princeton University Press, Princeton, United States. [Link](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619)
+
+The Princeton Guide to Ecology, edited by Simon A. Levin, et al., Princeton University Press, 2009. ProQuest Ebook Central, [Link](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=557123)
+
+Sacchi, R., Gentilli, A., Razzetti, E., Barbieri, F., 2002. Effects of building features on density and flock distribution of feral pigeons Columba livia var. domestica in an urban environment. Can. J. Zool. 80, 48-54. [Link](https://cdnsciencepub.com/doi/10.1139/z01-202)
+
+<!--chapter:end:02-jan5-introduction.Rmd-->
+
+# Jan 6: Discrete and continous variables
+
+Reading: Otto, Sarah P., and Troy Day. 2007. A Biologist’s Guide to Mathematical Modeling in Ecology and Evolution, Princeton University Press. [Link](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=768551) **pages 33-38 in Section 2.3**
+
+- Parameters versus variables
+
+- Fitted versus independently estimated parameters
+
+<!--chapter:end:03-jan6-discrete-continuous.Rmd-->
+
+
+# Jan 12: **ASSIGNMENT** Rmarkdown and tidyverse 
+
+Placeholder
+
+
+
+<!--chapter:end:04-jan10-Rmarkdown.Rmd-->
+
+# Jan 13: Geometric growth
+
+## Reading
+
+Vandermeer, J.H., Goldberg, D.E., 2013. Population Ecology: First Principles (Second Edition). Princeton University Press, Princeton, United States. **p1-3.** [Link](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619)
+
+- Von Foerster human population become effectively infinite on Nov 13 2026
+
+- Lilly pads replicate once per week. If it take a year for 1/2 a pond to be covered, when will it be completely covered? See also the [wheat and chessboard](https://en.wikipedia.org/wiki/Wheat_and_chessboard_problem)
+
+- $N_{t+1} = \lambda N_t$ equation 3 in [Vandermeer and Goldberg](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619). For what values of $\lambda$ will the population size, $N_t$, grow?
+
+- $N_t = N_0 \lambda^t$ is equation 4 in [Vandermeer and Goldberg](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619) (but written more generally). With $N_0 > 0$ sketch a graph of $N_t$ for different values of $\lambda$. If $N_0 = 0$, sketch a graph of $N_t$.
+
+- If $N_0 = 1.1$ individuals per km$^2$, $\lambda = 2$, what is is the population size at time $t = 10$?
+
+- Consider population growth of pheasants on [Protection Island](#pheasant). If we were to apply the geometric growth model to the pheasant population, what are some assumptions? How might this affect our parameterization (i.e., our estimate of $\lambda$) for the pheasant population?
+
+- How can we understand what $\lambda$ is in a population that has births and deaths?
+
+<!--chapter:end:05-jan12-geometric.Rmd-->
+
+
+# Jan 17: Geometric growth {#pheasant}
+
+Placeholder
+
+
+## Reading
+## Questions
+
+<!--chapter:end:06-jan13-geometric.Rmd-->
+
+# Jan 19: **ASSIGNMENT** Geometric growth {#pheasant}
+
+ASSIGNMENT 2 due Jan 26.
+
+You are to write an Rmarkdown report that estimates the geometric growth rate, $\lambda$, for the [Protection Island pheasant population]{#pheasant}. Your report needs to consider two methods for estimating the geometric growth rate: (1) fitting; and (2) estimation from independent data.
+
+The code you will need to complete this assignment is below. You just need to copy and paste this code, and sometimes change the values, to complete the assignment.
+
+The requirements of the report follow the code.
+
+# Graphing code
+```{r}
+require(ggplot2)
+data = read.csv("https://raw.githubusercontent.com/ahurford/biol-4605-data/main/data/protection-island.csv")
+
+protection.island <- data[,1:2]
+
+g1 = ggplot(data = protection.island, aes(x = year, y = size)) + 
+  geom_point() +
+  xlab("year")+
+  ylab("population size")+
+  ggtitle("Protection Island")
+g1
+```
+
+# Function for geometric growth
+
+```{r}
+require(bbmle)
+
+# The geometric growth function
+# Here the function is defined. We will use it later
+geo.pred <- function(lambda){
+  size = N0*lambda^t
+  pred = data.frame(year = protection.island$year, size = size)
+}
+
+# We will make a prediction corresponding to each year in the data
+# Why is is necessary to subtract off "protection.island$year[1]"?
+# What happens if we don't do this?
+# This "t" is used in the geo.pred() function
+t <- protection.island$year - protection.island$year[1]
+# N0 is the population size at time, t = 0.
+# We use the value from the data:
+N0 <- protection.island$size[1]
+
+prediction = geo.pred(3)
+prediction = geo.pred(5)
+
+```
+
+```{r}
+library(bbmle)
+
+# This is a function that quantifies the fit, or the likelihood, of different values of lambda given the 
+geofit <- function(lambda, sigma){
+  pred=geo.pred(lambda=lambda)
+  Ypred = pred$size
+  -sum(dnorm(protection.island$size, mean=Ypred, sd=sigma, log=T))
+}
+
+
+fit.geo <- mle2(geofit, start=list(lambda=3, sigma=1))
+
+summary(fit.geo)
+confint(fit.geo)
+```
+
+```{r}
+fit.predictions = geo.pred(3.41)$size
+lower.fit = geo.pred(3.39)$size
+upper.fit = geo.pred(3.44)$size
+
+g2 = g1 +
+  geom_line(aes(y=fit.predictions)) +
+  geom_ribbon(aes(ymin = lower.fit, ymax = upper.fit), alpha = .2)+
+```
+
+<!--chapter:end:07-jan18-protection.Rmd-->
+
+
+# PART I - Instructions {#partI .unlisted .unnumbered}
+
+Placeholder
+
+
+
+<!--chapter:end:Part-I-instructions.Rmd-->
+
+
+# PART II - Instructions {#partII .unlisted .unnumbered}
+
+Placeholder
+
+
+
+<!--chapter:end:Part-II-instructions.Rmd-->
+

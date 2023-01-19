@@ -117,7 +117,7 @@
 
 \title{BIOL 3295: Population and Evolutionary Ecology, Winter 2023}
 \author{Amy Hurford}
-\date{2023-01-17}
+\date{2023-01-19}
 
 \begin{document}
 \maketitle
@@ -524,6 +524,257 @@ This approach is called independent parameter estimation because we will estimat
 
 Use the formula and your answer to 3. to predict the number of pheasants in May 1938, May 1939, May 1940, and May 1950.
 
+\hypertarget{estimate}{%
+\chapter{\texorpdfstring{Jan 19: \textbf{ASSIGNMENT} Estimating the geometric growth rate}{Jan 19: ASSIGNMENT Estimating the geometric growth rate}}\label{estimate}}
+
+ASSIGNMENT 2 due Jan 26.
+
+You are to write an Rmarkdown report that estimates the geometric growth rate, \(\lambda\), for the \protect\hyperlink{pheasant}{Protection Island pheasant population}. Your report needs to consider two methods for estimating the geometric growth rate: (1) fitting; and (2) estimation from independent data.
+
+The code you will need to complete this assignment is below. You may copy and paste this code into your Rmarkdown report. Sometimes you will need to change the values.
+
+The requirements of the report follow the code.
+
+\hypertarget{code}{%
+\section{Code}\label{code}}
+
+\hypertarget{loading-and-plotting-the-data}{%
+\subsection{Loading and plotting the data}\label{loading-and-plotting-the-data}}
+
+Load the data. I copied the data on to a website, so it can be loaded with the command below. Click \href{https://github.com/ahurford/biol-4605-data/blob/main/data/protection-island.csv}{here} to view the code on the website
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data }\OtherTok{=} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"https://raw.githubusercontent.com/ahurford/biol{-}4605{-}data/main/data/protection{-}island.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Let's plot the data. We select only columns 1 and 2 of the data because column 3 contains comments. We plot \texttt{year} on the horizontal axis and \texttt{size} on the vertical axis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{require}\NormalTok{(ggplot2)}
+\NormalTok{protection.island }\OtherTok{\textless{}{-}}\NormalTok{ data[,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+
+\NormalTok{g1 }\OtherTok{=} \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ protection.island, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ year, }\AttributeTok{y =}\NormalTok{ size)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{"year"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{ylab}\NormalTok{(}\StringTok{"population size"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Protection Island"}\NormalTok{)}
+\NormalTok{g1}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{BIOL-3295_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\hypertarget{function-for-geometric-growth}{%
+\subsection{Function for geometric growth}\label{function-for-geometric-growth}}
+
+Below is the definition of a geometric growth function with time, \(t\), specifically defined for the number of years of Protection Island pheasant data and the initial population size, \(N_0\), defined specifically for the Protection Island data. Define this function in your code before you call the function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{geo.pred }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(lambda)\{}
+\NormalTok{  t }\OtherTok{=}\NormalTok{ protection.island}\SpecialCharTok{$}\NormalTok{year }\SpecialCharTok{{-}}\NormalTok{ protection.island}\SpecialCharTok{$}\NormalTok{year[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  N0 }\OtherTok{=}\NormalTok{ protection.island}\SpecialCharTok{$}\NormalTok{size[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  size }\OtherTok{=}\NormalTok{ N0}\SpecialCharTok{*}\NormalTok{lambda}\SpecialCharTok{\^{}}\NormalTok{t}
+\NormalTok{  pred }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{year =}\NormalTok{ protection.island}\SpecialCharTok{$}\NormalTok{year, }\AttributeTok{size =}\NormalTok{ size)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+The function \texttt{geo.pred(lambda)} will predict the population size of the pheasant population for values of \texttt{lambda} that you supply.
+
+After you have run the code (i.e.~in the Console) that defines the \texttt{geo.pred(lambda)} function, try \texttt{lambda\ =\ 3}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result }\OtherTok{=} \FunctionTok{geo.pred}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\NormalTok{result}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   year size
+## 1 1936   10
+## 2 1937   30
+## 3 1938   90
+## 4 1939  270
+\end{verbatim}
+
+\textbf{Question 1} This code works with the lines of code inside the \texttt{geo.pred()} function. What are these lines of code doing? What is the data frame \texttt{protection.island}? (Note that \texttt{data{[}1{]}} selects the first value of a list of values).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{  t }\OtherTok{=}\NormalTok{ protection.island}\SpecialCharTok{$}\NormalTok{year }\SpecialCharTok{{-}}\NormalTok{ protection.island}\SpecialCharTok{$}\NormalTok{year[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  N0 }\OtherTok{=}\NormalTok{ protection.island}\SpecialCharTok{$}\NormalTok{size[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{fitting-lambda}{%
+\subsection{Fitting lambda}\label{fitting-lambda}}
+
+We have defined a function that will predict the population size of pheasants on Protection Island for different user supplied values of \texttt{lambda}. But what value of \texttt{lambda} is most likely given the data?
+
+To answer this question we will use a statistical method known as maximum likelihood.
+
+Our first step is to define a function that quantifies the fit of a given \texttt{lambda} value. This function assumes that deviations of the recorded data from the predicted values follow a normal distribution with a standard deviation, \texttt{sigma}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{geofit }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(lambda, sigma)\{}
+\NormalTok{  pred}\OtherTok{=}\FunctionTok{geo.pred}\NormalTok{(}\AttributeTok{lambda=}\NormalTok{lambda)}
+\NormalTok{  Ypred }\OtherTok{=}\NormalTok{ pred}\SpecialCharTok{$}\NormalTok{size}
+  \SpecialCharTok{{-}}\FunctionTok{sum}\NormalTok{(}\FunctionTok{dnorm}\NormalTok{(protection.island}\SpecialCharTok{$}\NormalTok{size, }\AttributeTok{mean=}\NormalTok{Ypred, }\AttributeTok{sd=}\NormalTok{sigma, }\AttributeTok{log=}\NormalTok{T))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+After running the \texttt{geo.fit(lambda,\ sigma)} function (in the Console), lets try to use the function and get some values of the negative log likelihood (i.e.~the fit):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{geofit}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2172.073
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{geofit}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20347.07
+\end{verbatim}
+
+This result tells us that when \texttt{sigma\ =\ 2}, given the data, \texttt{lambda\ =\ 3} is much more likely than \texttt{lambda\ =\ 1} because the negative log likelihood value (2172.073) is much smaller.
+
+But what value of \texttt{lambda} is most likelihood given the data? To answer this question we need to call some functions that will perform an optimization. Specifically, we need to find the value of \texttt{lambda} that minimizes the log likelihood. This requires the \texttt{mle2} function from the \texttt{bbmle} package, and you will need to install this package prior to using this function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(bbmle)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: stats4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit.geo }\OtherTok{\textless{}{-}} \FunctionTok{mle2}\NormalTok{(geofit, }\AttributeTok{start=}\FunctionTok{list}\NormalTok{(}\AttributeTok{lambda=}\DecValTok{3}\NormalTok{, }\AttributeTok{sigma=}\DecValTok{1}\NormalTok{))}
+\FunctionTok{summary}\NormalTok{(fit.geo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Maximum likelihood estimation
+## 
+## Call:
+## mle2(minuslogl = geofit, start = list(lambda = 3, sigma = 1))
+## 
+## Coefficients:
+##         Estimate Std. Error  z value   Pr(z)    
+## lambda 3.4162840  0.0096489 354.0611 < 2e-16 ***
+## sigma  3.4416804  1.2168831   2.8283 0.00468 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## -2 log L: 21.2389
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{confint}\NormalTok{(fit.geo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           2.5 %   97.5 %
+## lambda 3.391599 3.440619
+## sigma  1.963852 8.440683
+\end{verbatim}
+
+The output above tells us that the maximum likelihood estimate of \texttt{lambda} is 3.41 and that the 95\% confidence interval is {[}3.39, 3.44{]}. (This approach also fits the standard deviation in the normal distribution, but this estimate is less interesting).
+
+\hypertarget{plotting-the-fit}{%
+\subsection{Plotting the fit}\label{plotting-the-fit}}
+
+Finally, we would like to use our estimate values of \texttt{lambda} in the geometric growth function and compare the fitted values with the observed data.
+
+In the code below, \texttt{lambda\ =\ 3} is the estimated lambda value and the 95\% confidence interval is {[}2,4{]}. To use this code for your assignment you will need to substitute different values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit.predictions }\OtherTok{=} \FunctionTok{geo.pred}\NormalTok{(}\DecValTok{3}\NormalTok{)}\SpecialCharTok{$}\NormalTok{size}
+\NormalTok{lower.fit }\OtherTok{=} \FunctionTok{geo.pred}\NormalTok{(}\DecValTok{2}\NormalTok{)}\SpecialCharTok{$}\NormalTok{size}
+\NormalTok{upper.fit }\OtherTok{=} \FunctionTok{geo.pred}\NormalTok{(}\DecValTok{4}\NormalTok{)}\SpecialCharTok{$}\NormalTok{size}
+\end{Highlighting}
+\end{Shaded}
+
+We had already made a plot of the data and we named our graph \texttt{g1}. We can now add some more layers to the graph as shown below. Note that the line is the value of \texttt{fit.predictions} as defined above, and the shaded ribbon spans from \texttt{lower.fit} to \texttt{upper.fit}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{g2 }\OtherTok{=}\NormalTok{ g1 }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{fit.predictions)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_ribbon}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{ymin =}\NormalTok{ lower.fit, }\AttributeTok{ymax =}\NormalTok{ upper.fit), }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{to-hand-in}{%
+\section{To hand in}\label{to-hand-in}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Answer Question 1 which appears in bold in the \emph{Function for geometric growth} section.
+\item
+  Write an Rmarkdown report that estimates \(\lambda\) (i.e.~\texttt{lambda}) in the geometric growth rate function using maximum likelihood fitting.
+  You must include a graph that shows:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  The data (shown as dots);
+\item
+  The predicted values for the maximum likelihood estimate of \texttt{lambda} (shown as a line);
+\item
+  The predicted values for the 95\% confidence interval for the estimate of \texttt{lambda} (shown as a shaded region);
+\end{itemize}
+
+You must include a figure caption that explains the main point of your graph, and what the symbols are.
+
+Your Rmarkdown file must contain a sequence of R commands that produces the graph.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Estimate \(\lambda\) from data independent of the time series describing the population size of pheasants on Protection Island. This means that you cannot use more than one value of the population size to estimate one value of a quantity (you should only be using the population size in a given year to calculate per capita rates by dividing). In your Rmarkdown report you should:
+\end{enumerate}
+
+\begin{itemize}
+\item
+  Derive a formula for \(\lambda\) in terms of \(b\) the per capita birth rate, and the probability of mortality \(d\) each year.
+\item
+  State some important assumptions of your \(\lambda\) formula.
+\item
+  Estimate \(b\) and \(d\) using some of the information given \protect\hyperlink{pheasant}{here}. Calculate \(\lambda\) given the formula you derived.
+\item
+  Use the \texttt{geo.pred(lambda)} function to predict the population size of pheasants on Protection Island for your independently estimated \(\lambda\) value. The code to do this must be included in your Rmarkdown file.
+\item
+  Make a plot of your predictions relative to the reported data. Include a figure caption that describes the main point of your figure and defines all the symbols.
+\end{itemize}
+
 \hypertarget{partI}{%
 \chapter*{PART I - Instructions}\label{partI}}
 
@@ -673,7 +924,7 @@ As you can see, I have guessed the values in the plot and entered them manually.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{BIOL-3295_files/figure-latex/unnamed-chunk-8-1.pdf}
+\includegraphics{BIOL-3295_files/figure-latex/unnamed-chunk-18-1.pdf}
 
 If you need to add a title, you can add a layer \texttt{+\ ggtitle("Your\ title)}, to control the axis limits, use \texttt{+\ xlim(c(-10,10))} (with the values you need). Generally, you should be able to use an internet search to find what you need. You can also read more about \texttt{ggplot} \href{https://ahurford.github.io/quant-guide-all-courses/ggplot.html}{here}.
 
@@ -810,6 +1061,6 @@ Now the data is in a format that I can make a plot:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{BIOL-3295_files/figure-latex/unnamed-chunk-14-1.pdf}
+\includegraphics{BIOL-3295_files/figure-latex/unnamed-chunk-24-1.pdf}
 
 \end{document}
