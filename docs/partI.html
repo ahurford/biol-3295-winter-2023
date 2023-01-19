@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="pheasant.html"/>
+<link rel="prev" href="estimate.html"/>
 <link rel="next" href="partII.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -163,6 +163,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="pheasant.html"><a href="pheasant.html#reading-1"><i class="fa fa-check"></i><b>7.1</b> Reading</a></li>
 <li class="chapter" data-level="7.2" data-path="pheasant.html"><a href="pheasant.html#questions"><i class="fa fa-check"></i><b>7.2</b> Questions</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="estimate.html"><a href="estimate.html"><i class="fa fa-check"></i><b>8</b> Jan 19: <strong>ASSIGNMENT</strong> Estimating the geometric growth rate</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="estimate.html"><a href="estimate.html#code"><i class="fa fa-check"></i><b>8.1</b> Code</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="estimate.html"><a href="estimate.html#loading-and-plotting-the-data"><i class="fa fa-check"></i><b>8.1.1</b> Loading and plotting the data</a></li>
+<li class="chapter" data-level="8.1.2" data-path="estimate.html"><a href="estimate.html#function-for-geometric-growth"><i class="fa fa-check"></i><b>8.1.2</b> Function for geometric growth</a></li>
+<li class="chapter" data-level="8.1.3" data-path="estimate.html"><a href="estimate.html#fitting-lambda"><i class="fa fa-check"></i><b>8.1.3</b> Fitting lambda</a></li>
+<li class="chapter" data-level="8.1.4" data-path="estimate.html"><a href="estimate.html#plotting-the-fit"><i class="fa fa-check"></i><b>8.1.4</b> Plotting the fit</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="estimate.html"><a href="estimate.html#to-hand-in"><i class="fa fa-check"></i><b>8.2</b> To hand in</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -231,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Use latex commands to include in-text equations, i.e., <code>$y = \beta_0 + \beta_1 x$</code> renders as <span class="math inline">\(y = \beta_0 + \beta_1 x\)</span>; <code>$\frac{dy}{dt} = e^x$</code> renders as <span class="math inline">\(\frac{dy}{dt} = e^x\)</span>. <em>(You may need to type <code>require(tinytex)</code> in the Console to get this to work. `The website <a href="https://detexify.kirelabs.org/classify.html">Detexify</a> is fun for identifying latex commands for different symbols (Some advanced symbols may require packages that you haven’t installed and therfore won’t work))</em>.</p></li>
 <li><p>Try some <a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#math-expressions">more complicated</a> Latex.</p></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="partI.html#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/ahurford/biol-4605-data/main/data/corn.csv&#39;</span>, <span class="at">fill=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="partI.html#cb21-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/ahurford/biol-4605-data/main/data/corn.csv&#39;</span>, <span class="at">fill=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <ul>
 <li><p>If you would like a more structured introduction to R Markdown you can read <a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: the definitive guide</a>.</p></li>
 <li><p>This <a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">R markdown cheat sheet</a> is helpful.</p></li>
@@ -241,21 +252,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="5" style="list-style-type: decimal">
 <li>For your PART I specifically, you need to make a figure in <code>ggplot</code>. For <code>ggplot</code> you need your data as a data frame. The code that I used in the example was:</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="partI.html#cb3-1" aria-hidden="true" tabindex="-1"></a>age <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">25</span>)</span>
-<span id="cb3-2"><a href="partI.html#cb3-2" aria-hidden="true" tabindex="-1"></a>difference <span class="ot">=</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">20</span>, <span class="sc">-</span><span class="dv">26</span>, <span class="sc">-</span><span class="dv">24</span>, <span class="sc">-</span><span class="dv">20</span>, <span class="sc">-</span><span class="dv">22</span>, <span class="sc">-</span><span class="dv">20</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="dv">0</span>,</span>
-<span id="cb3-3"><a href="partI.html#cb3-3" aria-hidden="true" tabindex="-1"></a>               <span class="dv">20</span>, <span class="dv">23</span>, <span class="dv">9</span>, <span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">11</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">10</span>)</span>
-<span id="cb3-4"><a href="partI.html#cb3-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">age=</span>age, <span class="at">difference =</span> difference)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="partI.html#cb22-1" aria-hidden="true" tabindex="-1"></a>age <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">25</span>)</span>
+<span id="cb22-2"><a href="partI.html#cb22-2" aria-hidden="true" tabindex="-1"></a>difference <span class="ot">=</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">20</span>, <span class="sc">-</span><span class="dv">26</span>, <span class="sc">-</span><span class="dv">24</span>, <span class="sc">-</span><span class="dv">20</span>, <span class="sc">-</span><span class="dv">22</span>, <span class="sc">-</span><span class="dv">20</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="dv">0</span>,</span>
+<span id="cb22-3"><a href="partI.html#cb22-3" aria-hidden="true" tabindex="-1"></a>               <span class="dv">20</span>, <span class="dv">23</span>, <span class="dv">9</span>, <span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">11</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">10</span>)</span>
+<span id="cb22-4"><a href="partI.html#cb22-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">age=</span>age, <span class="at">difference =</span> difference)</span></code></pre></div>
 <p>As you can see, I have guessed the values in the plot and entered them manually. This is okay for the purposes of completing your assignment. (Extra for experts - try a package like <a href="https://github.com/adamkucharski/scrapR"><code>scrapR</code></a> or <a href="https://github.com/tpoisot/digitize"><code>digitize</code></a>).</p>
 <ol start="6" style="list-style-type: decimal">
 <li>You need to install <code>ggplot2</code>. You also need to load that package because we are going to use functions from it now (do this as <code>require(ggplot2)</code>). The code that I used to make my <code>ggplot</code> was:</li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="partI.html#cb4-1" aria-hidden="true" tabindex="-1"></a>g1<span class="ot">=</span><span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> difference)) <span class="sc">+</span> </span>
-<span id="cb4-2"><a href="partI.html#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb4-3"><a href="partI.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb4-4"><a href="partI.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Adult Age, Days&quot;</span>)<span class="sc">+</span></span>
-<span id="cb4-5"><a href="partI.html#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Difference&quot;</span>)</span>
-<span id="cb4-6"><a href="partI.html#cb4-6" aria-hidden="true" tabindex="-1"></a>g1</span></code></pre></div>
-<p><img src="BIOL-3295_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="partI.html#cb23-1" aria-hidden="true" tabindex="-1"></a>g1<span class="ot">=</span><span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> difference)) <span class="sc">+</span> </span>
+<span id="cb23-2"><a href="partI.html#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb23-3"><a href="partI.html#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb23-4"><a href="partI.html#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Adult Age, Days&quot;</span>)<span class="sc">+</span></span>
+<span id="cb23-5"><a href="partI.html#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Difference&quot;</span>)</span>
+<span id="cb23-6"><a href="partI.html#cb23-6" aria-hidden="true" tabindex="-1"></a>g1</span></code></pre></div>
+<p><img src="BIOL-3295_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>If you need to add a title, you can add a layer <code>+ ggtitle("Your title)</code>, to control the axis limits, use <code>+ xlim(c(-10,10))</code> (with the values you need). Generally, you should be able to use an internet search to find what you need. You can also read more about <code>ggplot</code> <a href="https://ahurford.github.io/quant-guide-all-courses/ggplot.html">here</a>.</p>
 <ol start="7" style="list-style-type: decimal">
 <li><p>To make your figure caption, just type below where your figure prints. To get bold text, use ** bold text ** (but without space between the ** and the text).</p></li>
@@ -270,7 +281,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="pheasant.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="estimate.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="partII.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
