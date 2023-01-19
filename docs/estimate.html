@@ -287,6 +287,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="estimate.html#cb19-1" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">=</span> g1 <span class="sc">+</span></span>
 <span id="cb19-2"><a href="estimate.html#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>fit.predictions)) <span class="sc">+</span></span>
 <span id="cb19-3"><a href="estimate.html#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower.fit, <span class="at">ymax =</span> upper.fit), <span class="at">alpha =</span> .<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="estimate.html#cb20-1" aria-hidden="true" tabindex="-1"></a>g2</span></code></pre></div>
+<p><img src="BIOL-3295_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>(The value of <code>alpha = 0.2</code> makes the ribbon transparent)</p>
 </div>
 </div>
