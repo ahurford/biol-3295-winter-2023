@@ -285,7 +285,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We had already made a plot of the data and we named our graph <code>g1</code>. We can now add some more layers to the graph as shown below. Note that the line is the value of <code>fit.predictions</code> as defined above (i.e., set <code>=3</code> as an example), and the shaded ribbon spans from <code>lower.fit</code> to <code>upper.fit</code> (i.e., set to <code>1</code> and <code>2</code> as an example).</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="estimate.html#cb19-1" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">=</span> g1 <span class="sc">+</span></span>
 <span id="cb19-2"><a href="estimate.html#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>fit.predictions)) <span class="sc">+</span></span>
-<span id="cb19-3"><a href="estimate.html#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower.fit, <span class="at">ymax =</span> upper.fit), <span class="at">alpha =</span> .<span class="dv">2</span>)</span></code></pre></div>
+<span id="cb19-3"><a href="estimate.html#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower.fit, <span class="at">ymax =</span> upper.fit), <span class="at">alpha =</span> .<span class="dv">2</span>)</span>
+<span id="cb19-4"><a href="estimate.html#cb19-4" aria-hidden="true" tabindex="-1"></a>g2</span></code></pre></div>
+<p><img src="BIOL-3295_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 </div>
 </div>
 <div id="to-hand-in" class="section level2 hasAnchor" number="8.2">
