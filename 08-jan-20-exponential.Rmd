@@ -1,0 +1,55 @@
+# Jan 20: Exponential growth {#exponential}
+
+## Required reading
+Vandermeer, J.H., Goldberg, D.E., 2013. Population Ecology: First Principles (Second Edition). Princeton University Press, Princeton, United States. p4-8. [Link](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619)
+
+We now have two ways of describing how population size changes with time whereby each individual has the same average number of offspring per unit time and the same probability of dying.
+
+1) Discrete time geometric growth:
+
+\begin{equation}
+N_t = N_0\lambda^t
+(\#eq:Geo)
+\end{equation}
+
+and,
+
+2) Continuous time exponential growth:
+
+\begin{equation}
+N(t) = N(0)e^{rt}
+(\#eq:Exp)
+\end{equation}
+
+Notably, for both these models the per capita birth and death rates do not change change over time, and do not change with density or age.
+
+The notation $N_t$ and $N(t)$ is conventional for discrete time versus continuous time formulations respectively, however, these notations both mean the same: the population size at a particular time, $t$. When $t=0$ we have the population size at time 0: $N_0$ or $N(0)$.
+
+As noted in the reading, when $\lambda = e^{r}$ the equations are the same.
+
+Note that $e$ is the exponential function, `exp()` or $e^x$.
+
+## Discrete or continuous time formulations
+It is appropriate to use the discrete time formulation when births are synchronous.
+
+It is appropriate to use the continuous time formulation when births occur throughout the year.
+
+For example, for many animals there is a distinct breeding season: a short proportion of the year when offspring are born (synchronous reproduction). As such, there is very little temporal overlap between the times of year when births and deaths occur. Humans are an example of a species that might reasonably be modelled as continuous time because babies are born year round.
+
+## Questions
+
+1. For what values of $r$ does the population size increase over time? Note that $r$ might be negative, and I am asking not if the population size, $N(t)$ is positive, but if the population is increasing, i.e., if $N(t)$ is getting larger in value over time. 
+
+2. As described in the reading, $b$ is a per capita birth rate, and $d$ is a per capita death rate, and $r = b-d$. For continuous time exponential growth, both $b$ and $d$ must be non-negative and can take any values bigger than 0. Note that this differs from the discrete time model formulation where $0 \leq d \leq 1$. When $d > 1$ in the continuous time formulation, this means that the average lifespan is less than one time step (i.e., the average life span is $1/d$). For example, when $d = 2$ this means that the average life expectancy for an individual is 1/2 a time step (i.e., days or year, however, the time unit is defined in the model). When the population size increases over time, what is true of $b$ relative to $d$? 
+
+4. For what value of $r$ does $N(t)$ not change over time? Hint: if $N(t)$ is not changing then $N(t)=N(0)$ for all $t$. 
+
+5. Consider the equation:
+\[
+\frac{dN(t)}{dt} = rN(t).
+\]
+As described in the reading, this is an alternative way to write the continuous time exponential growth equation. The quantity $\frac{dN(t)}{dt}$ can be understood as the slope of a graph where population size is on the vertical axis and time is on the horizontal axis. As such, if the slope is zero, $\frac{dN(t)}{dt}=0$, then the population size is not changing. If $\frac{dN(t)}{dt}<0$, then the population size is decreasing. For what value of $r$ does the population size decrease? What is true about $b$ relative to $d$ in this instance?
+
+6. Which population would be more appropriate to be modelled as a continuous time formulation: _E. coli_ bacteria or moose?
+
+7. Calculate the formula for the doubling time for continuous time exponential growth (equation \@ref(eq:Exp)). This is the time for the population to double in size. The value of $N(0)$, the population size at $t=0$ doesn't matter as long as it is a positive number. When the population has doubled, $N(t) = 2N(0)$. To answer this question you need to find $t$ such that $N(t) = 2N(0)$. You may need to revisit some rules about working with logarithms to complete this question (i.e. see [here](https://en.wikipedia.org/wiki/Logarithm), specifically the _Product, Quotient, Power, and Root_ table.

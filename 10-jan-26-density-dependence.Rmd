@@ -1,0 +1,7 @@
+# Jan 26: Density dependence
+
+I give the derivation of the logistic growth equation as from Vandermeer and Goldberg [here](https://www.youtube.com/watch?v=UisbkgNlaOE&t=118s). 
+
+However, the logistic growth equation, in its classic form does not have a strong mechanistic basis making it difficult to parameterize.
+
+These issues are discussed [here](https://www.sciencedirect.com/science/article/pii/S030438000400554X?via%3Dihub)

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Jan 6: Discrete and continous variables | BIOL 3295: Population and Evolutionary Ecology, Winter 2023</title>
-  <meta name="description" content="4 Jan 6: Discrete and continous variables | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
+  <title>9 Jan 20: Exponential growth | BIOL 3295: Population and Evolutionary Ecology, Winter 2023</title>
+  <meta name="description" content="9 Jan 20: Exponential growth | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 Jan 6: Discrete and continous variables | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
+  <meta property="og:title" content="9 Jan 20: Exponential growth | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Jan 6: Discrete and continous variables | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
+  <meta name="twitter:title" content="9 Jan 20: Exponential growth | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="jan-5-introduction.html"/>
-<link rel="next" href="jan-12-assignment-rmarkdown-and-tidyverse.html"/>
+<link rel="prev" href="estimate.html"/>
+<link rel="next" href="dd.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -203,22 +203,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="jan-6-discrete-and-continous-variables" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">4</span> Jan 6: Discrete and continous variables<a href="jan-6-discrete-and-continous-variables.html#jan-6-discrete-and-continous-variables" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Reading: Otto, Sarah P., and Troy Day. 2007. A Biologist’s Guide to Mathematical Modeling in Ecology and Evolution, Princeton University Press. <a href="https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=768551">Link</a> <strong>pages 33-38 in Section 2.3</strong></p>
-<ul>
-<li><p>Parameters versus variables</p></li>
-<li><p>Fitted versus independently estimated parameters</p></li>
-</ul>
+<div id="exponential" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">9</span> Jan 20: Exponential growth<a href="exponential.html#exponential" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="required-reading" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Required reading<a href="exponential.html#required-reading" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Vandermeer, J.H., Goldberg, D.E., 2013. Population Ecology: First Principles (Second Edition). Princeton University Press, Princeton, United States. p4-8. <a href="https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619">Link</a></p>
+<p>We now have two ways of describing how population size changes with time whereby each individual has the same average number of offspring per unit time and the same probability of dying.</p>
+<ol style="list-style-type: decimal">
+<li>Discrete time geometric growth:</li>
+</ol>
+<p><span class="math display" id="eq:Geo">\[\begin{equation}
+N_t = N_0\lambda^t
+\tag{9.1}
+\end{equation}\]</span></p>
+<p>and,</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Continuous time exponential growth:</li>
+</ol>
+<p><span class="math display" id="eq:Exp">\[\begin{equation}
+N(t) = N(0)e^{rt}
+\tag{9.2}
+\end{equation}\]</span></p>
+<p>Notably, for both these models the per capita birth and death rates do not change change over time, and do not change with density or age.</p>
+<p>The notation <span class="math inline">\(N_t\)</span> and <span class="math inline">\(N(t)\)</span> is conventional for discrete time versus continuous time formulations respectively, however, these notations both mean the same: the population size at a particular time, <span class="math inline">\(t\)</span>. When <span class="math inline">\(t=0\)</span> we have the population size at time 0: <span class="math inline">\(N_0\)</span> or <span class="math inline">\(N(0)\)</span>.</p>
+<p>As noted in the reading, when <span class="math inline">\(\lambda = e^{r}\)</span> the equations are the same.</p>
+<p>Note that <span class="math inline">\(e\)</span> is the exponential function, <code>exp()</code> or <span class="math inline">\(e^x\)</span>.</p>
+</div>
+<div id="discrete-or-continuous-time-formulations" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Discrete or continuous time formulations<a href="exponential.html#discrete-or-continuous-time-formulations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It is appropriate to use the discrete time formulation when births are synchronous.</p>
+<p>It is appropriate to use the continuous time formulation when births occur throughout the year.</p>
+<p>For example, for many animals there is a distinct breeding season: a short proportion of the year when offspring are born (synchronous reproduction). As such, there is very little temporal overlap between the times of year when births and deaths occur. Humans are an example of a species that might reasonably be modelled as continuous time because babies are born year round.</p>
+</div>
+<div id="questions-1" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Questions<a href="exponential.html#questions-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><p>For what values of <span class="math inline">\(r\)</span> does the population size increase over time? Note that <span class="math inline">\(r\)</span> might be negative, and I am asking not if the population size, <span class="math inline">\(N(t)\)</span> is positive, but if the population is increasing, i.e., if <span class="math inline">\(N(t)\)</span> is getting larger in value over time.</p></li>
+<li><p>As described in the reading, <span class="math inline">\(b\)</span> is a per capita birth rate, and <span class="math inline">\(d\)</span> is a per capita death rate, and <span class="math inline">\(r = b-d\)</span>. For continuous time exponential growth, both <span class="math inline">\(b\)</span> and <span class="math inline">\(d\)</span> must be non-negative and can take any values bigger than 0. Note that this differs from the discrete time model formulation where <span class="math inline">\(0 \leq d \leq 1\)</span>. When <span class="math inline">\(d &gt; 1\)</span> in the continuous time formulation, this means that the average lifespan is less than one time step (i.e., the average life span is <span class="math inline">\(1/d\)</span>). For example, when <span class="math inline">\(d = 2\)</span> this means that the average life expectancy for an individual is 1/2 a time step (i.e., days or year, however, the time unit is defined in the model). When the population size increases over time, what is true of <span class="math inline">\(b\)</span> relative to <span class="math inline">\(d\)</span>?</p></li>
+<li><p>For what value of <span class="math inline">\(r\)</span> does <span class="math inline">\(N(t)\)</span> not change over time? Hint: if <span class="math inline">\(N(t)\)</span> is not changing then <span class="math inline">\(N(t)=N(0)\)</span> for all <span class="math inline">\(t\)</span>.</p></li>
+<li><p>Consider the equation:
+<span class="math display">\[
+\frac{dN(t)}{dt} = rN(t).
+\]</span>
+As described in the reading, this is an alternative way to write the continuous time exponential growth equation. The quantity <span class="math inline">\(\frac{dN(t)}{dt}\)</span> can be understood as the slope of a graph where population size is on the vertical axis and time is on the horizontal axis. As such, if the slope is zero, <span class="math inline">\(\frac{dN(t)}{dt}=0\)</span>, then the population size is not changing. If <span class="math inline">\(\frac{dN(t)}{dt}&lt;0\)</span>, then the population size is decreasing. For what value of <span class="math inline">\(r\)</span> does the population size decrease? What is true about <span class="math inline">\(b\)</span> relative to <span class="math inline">\(d\)</span> in this instance?</p></li>
+<li><p>Which population would be more appropriate to be modelled as a continuous time formulation: <em>E. coli</em> bacteria or moose?</p></li>
+<li><p>Calculate the formula for the doubling time for continuous time exponential growth (equation <a href="exponential.html#eq:Exp">(9.2)</a>). This is the time for the population to double in size. The value of <span class="math inline">\(N(0)\)</span>, the population size at <span class="math inline">\(t=0\)</span> doesn’t matter as long as it is a positive number. When the population has doubled, <span class="math inline">\(N(t) = 2N(0)\)</span>. To answer this question you need to find <span class="math inline">\(t\)</span> such that <span class="math inline">\(N(t) = 2N(0)\)</span>. You may need to revisit some rules about working with logarithms to complete this question (i.e. see <a href="https://en.wikipedia.org/wiki/Logarithm">here</a>, specifically the <em>Product, Quotient, Power, and Root</em> table.</p></li>
+</ol>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="jan-5-introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="jan-12-assignment-rmarkdown-and-tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="estimate.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dd.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

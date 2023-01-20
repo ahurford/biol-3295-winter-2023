@@ -1,3 +1,5 @@
+eq:Geo
+eq:Exp
 syllabus
 instructor-information
 course-information
@@ -25,3 +27,11 @@ function-for-geometric-growth
 fitting-lambda
 plotting-the-fit
 to-hand-in
+exponential
+required-reading
+discrete-or-continuous-time-formulations
+questions-1
+dd
+required-reading-1
+questions-2
+jan-26-density-dependence
