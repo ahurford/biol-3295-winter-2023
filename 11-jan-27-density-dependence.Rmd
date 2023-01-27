@@ -1,0 +1,26 @@
+# Jan 27: Density dependence (discrete time)
+
+Density-yield and discrete time density dependence
+
+## Required reading
+Vandermeer, J.H., Goldberg, D.E., 2013. Population Ecology: First Principles (Second Edition). Princeton University Press, Princeton, United States. p17-19 and 28-29. [Link](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619)
+
+## Questions
+
+1. Logistic growth assumes density dependence in the population growth rate. This, however, may be insufficient in many applications. In the section, _The Yield-Density Relationship_ what solution is proposed?
+
+2. As written in Vandermeer and Goldberg the Shinozaki-Kira equation is presented without an `=`. Write the complete equation, by adding in an equals and quantity on the other size of the equals. Define all the parameters and variables in the equation.
+
+3. The Beverton-Holt equation is equation (28) on p29. There are two values of $N_t$ such that $N_t = N_{t+1}$. One value can be found by re-arranging,
+
+\[
+1 = \frac{\lambda}{1+\alpha N_t},
+\]
+
+until $N_t$ is isolated on one side. To find the other value inspect the equation,
+
+\[
+N_{t+1} = \frac{\lambda N_t}{1+\alpha N_t}.
+\]
+
+What is another value of $N_t$ such that $N_{t+1}=N_t$.

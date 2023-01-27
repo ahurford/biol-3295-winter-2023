@@ -35,3 +35,6 @@ dd
 required-reading-1
 questions-2
 jan-26-density-dependence
+jan-27-density-dependence-discrete-time
+required-reading-2
+questions-3
