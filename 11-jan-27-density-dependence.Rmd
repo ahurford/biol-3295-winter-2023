@@ -5,6 +5,8 @@ Density-yield and discrete time density dependence
 ## Required reading
 Vandermeer, J.H., Goldberg, D.E., 2013. Population Ecology: First Principles (Second Edition). Princeton University Press, Princeton, United States. p17-19 and 28-29. [Link](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619)
 
+There are also slides on BrightSpace: Additional resources > Density Dependence DT.pdf
+
 ## Questions
 
 1. Logistic growth assumes density dependence in the population growth rate. This, however, may be insufficient in many applications. In the section, _The Yield-Density Relationship_ what solution is proposed?
