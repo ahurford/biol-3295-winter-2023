@@ -117,7 +117,7 @@
 
 \title{BIOL 3295: Population and Evolutionary Ecology, Winter 2023}
 \author{Amy Hurford}
-\date{2023-01-27}
+\date{2023-02-15}
 
 \begin{document}
 \maketitle
@@ -227,6 +227,10 @@ Resources for additional support can be found at:
 
 All lectures are in SN 3060 unless otherwise stated
 
+This is a tentative revision of the schedule following the MUNFA strike.
+
+This revised version fo the schedule will be confirmed after discussion with the class.
+
 \begin{itemize}
 \tightlist
 \item
@@ -250,25 +254,17 @@ All lectures are in SN 3060 unless otherwise stated
 \item
   Thurs Jan 26: Density dependence and logistic growth \textbf{Assignments 1 \& 2 are due}
 \item
-  Fri Jan 27: Density dependence and logistic growth
+  Fri Jan 27: Discrete time models with density dependence
+\end{itemize}
+
+MUNFA STRIKE
+
+\begin{itemize}
+\tightlist
 \item
-  Tues Jan 31: Discrete time density dependence
+  Fri Feb 16: Age-structured models
 \item
-  Thurs Feb 2: \textbf{EXAM I} (all material covered to date)
-\item
-  Fri Feb 3: Age-structured models
-\item
-  Tues Feb 7: Stage-structured models
-\item
-  Thurs Feb 9: Stage-structured models
-\item
-  Fri Feb 10: Stage-structured models
-\item
-  Tues Feb 14: \textbf{CSF 2218} Numerical analysis of stage-structured models \textbf{Assignment 3 is assigned}
-\item
-  Thurs Feb 16: Density dependence in stage-structured models
-\item
-  Fri Feb 17: Metapopulation models
+  Tues Feb 17: \textbf{CSF 2218} Numerical analysis of stage-structured models \textbf{Assignment 3 is assigned}
 \end{itemize}
 
 WINTER BREAK
@@ -276,21 +272,21 @@ WINTER BREAK
 \begin{itemize}
 \tightlist
 \item
-  Tues Feb 28: Continuous space models \textbf{Assignment 3 is due}
+  Tues Feb 28: Stage-structured models
 \item
-  Thurs Mar 2: Spatially explicit models in population biology
+  Thurs Mar 2: Stage-structured models
 \item
-  Fri Mar 3: Population dynamics in a warming world
+  Fri Mar 3: Density dependence in stage-structured models \textbf{Assignment 3 is due}
 \item
-  Tues Mar 7: Spatially explicit population dynamics in a warming world
+  Tues Mar 7: Metapopulation models
 \item
-  Thurs Mar 9: Disease dynamics
+  Thurs Mar 9: Continuous space models
 \item
-  Fri Mar 10: The net reproduction number
+  Fri Mar 10: Disease dynamics
 \item
-  Tues Mar 14: Overview of models in population biology
+  Tues Mar 14: The net reproduction number
 \item
-  Thurs Mar 16: \textbf{EXAM II} (All material since Exam I)
+  Thurs Mar 16: \textbf{EXAM I} (All material covered to date)
 \item
   Fri Mar 17: What is evolutionary ecology?
 \item
@@ -953,6 +949,281 @@ N_{t+1} = \frac{\lambda N_t}{1+\alpha N_t}.
 
 What is another value of \(N_t\) such that \(N_{t+1}=N_t\).
 
+\hypertarget{feb-16-stage-structure}{%
+\chapter{Feb 16: Stage structure}\label{feb-16-stage-structure}}
+
+We will start by discussing the syllabus for the remainder of the semester.
+
+\hypertarget{required-reading-3}{%
+\section{Required Reading}\label{required-reading-3}}
+
+Vandermeer, J.H., Goldberg, D.E., 2013. Population Ecology: First Principles (Second Edition). Princeton University Press, Princeton, United States. p30-34. \href{https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619}{Link}
+
+The reading mentions \emph{`readers who have forgotten their linear algebra'}, however, linear algebra is not a pre-requisite for BIOL 3295. To learn enough linear algebra to complete today's questions you might watch this 4 minute \href{https://www.youtube.com/watch?v=Awcj447pYuk}{video} explaining how to multiply a matrix by a column vector on the right.
+
+We are learning a little bit of linear algebra now because the notation is compact and because later this formulation will be helpful to calculate the year-to-year multiplicative change in the population size.
+
+Let's consider an age-structured population where:
+
+\begin{itemize}
+\item
+  Individuals aged less than 1 year old do not reproduce, and will survive to 1 year old with a probability of 0.5.
+\item
+  Individuals aged less than 2 years old have 2 offspring and then die.
+\end{itemize}
+
+We can write the equations for the number of individuals in each stage one year from now as:
+
+\begin{eqnarray}
+N_{1,t+1} & = & 2 N_{2,t}, \nonumber \\
+N_{2,t+1} & = & 0.5 N_{1,t}, 
+ \label{eq:N1N2}
+\end{eqnarray}
+
+where \(N_{1,t+1}\) is the number of individuals aged less than 1 year at time \(t+1\), and \(N_{2,t+1}\) is the number of individuals aged between 1 and 2 years at time \(t+1\). Try out the system of equations: suppose, \(N_{1,0} = 10\) and \(N_{2,0} = 5\), what is \(N_{1,1}\) and \(N_{2,1}\)?
+
+Note that in the system of equations \eqref{eq:N1N2}, some of the values that were zeros were omitted, i.e.,
+
+\begin{eqnarray}
+N_{1,t+1} & = & 0 N_{1,t} + 2 N_{2,t}, \nonumber \\
+N_{2,t+1} & = & 0.5 N_{1,t} + 0 N_{2,t},
+ \label{eq:ver2}
+\end{eqnarray}
+
+Note that as written above, consistency with the ordering is necessary: \(N_{1,t+1}\) appears above \(N_{2,t+1}\), and on the other side of the \texttt{=} \(N_{1,t}\) always appears to the left of \(N_{2,t}\). When written as the system of equations \eqref{eq:ver2}, we can now more easily write the system of equations \eqref{eq:N1N2} in matrix notation:
+
+\begin{equation}
+\left[
+\begin{array}{c}
+N_{1,t+1}\\
+N_{2,t+1}\\
+\end{array}
+\right]
+=
+\left[
+\begin{array}{cc}
+0 & 2\\
+0.5 & 0\\
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+N_{1,t}\\
+N_{2,t}\\
+\end{array}
+\right]
+\label{eq:ver3}
+\end{equation}
+
+Again, let \(N_{1,0} = 10\) and \(N_{2,0} = 5\). Using the system of equations \eqref{eq:ver3}, and remembering how to \href{https://www.youtube.com/watch?v=Awcj447pYuk}{multiply a matrix by a column vector}, what is \(N_{1,1}\) and \(N_{2,1}\)? Did you get the same answer (but now formatted as a vector) as you did to this same question, but when the problem wasn't in matrix notation (i.e., equation \eqref{eq:N1N2})? Yes? Super!
+
+Now, we have two equivalent ways to write our population models with age structure. This may seem unhelpful now, but remember that later matrix notation will be helpful to calculate the rate of population increase and the ratio of individuals in the age or stage classes.
+
+\hypertarget{questions-4}{%
+\section{Questions}\label{questions-4}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Consider an age-structured population where:
+\end{enumerate}
+
+\begin{itemize}
+\item
+  Individuals aged less than 1 year old do not reproduce, and will survive to 1 year old with a probability of 0.2.
+\item
+  Individuals aged less than 2 years old have 4 offspring and then die.
+\end{itemize}
+
+Write the equations for the number of individuals in each age class in one year from now, in the format of the system of equations \eqref{eq:N1N2}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Using your system of equations from question 1, assume that at \(t=0\) there are 4 individuals aged less than 1 year, and 4 individuals aged 1 to 2 years. Calculate the number of individuals in each of the two age classes at \(t=1\).
+\end{enumerate}
+
+\hypertarget{feb-17-assignment-stage-structured-population-dynamics}{%
+\chapter{\texorpdfstring{Feb 17: \textbf{ASSIGNMENT} Stage-structured population dynamics}{Feb 17: ASSIGNMENT Stage-structured population dynamics}}\label{feb-17-assignment-stage-structured-population-dynamics}}
+
+Class will be in CSF 2218
+
+ASSIGNMENT 3 is due on March 3.
+
+{[}currently unfinished{]}
+
+We will do this exact example in lecture. Here we are
+verifying that we can get the same conclusions using R.
+
+Install and load the \texttt{popbio} package.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{require}\NormalTok{(}\StringTok{"popbio"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: popbio
+\end{verbatim}
+
+Define our projection matrix:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{,}\FloatTok{0.5}\NormalTok{,.}\DecValTok{1}\NormalTok{), }\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{, }\AttributeTok{byrow=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Type \texttt{A} into the console to check that A has the correct number of rows and columns and the numerical entries in the correct place.
+
+The function \texttt{eigen()} is a built-in function that will calculate the eigenvalues and eigenvectors for the projection matrix \texttt{A}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ev }\OtherTok{=} \FunctionTok{eigen}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
+Type \texttt{ev} into the console. There are two eigenvalues. Why are there two? Which is the dominant eigenvalue? Will this population grow (for a positive initial number of individuals)?
+
+There is an eigenvector (2 rows x 1 column) associated with each eigenvalue (= 2 eignvectors). The eigenvector associated with the \(n^{th}\) eigenvalue is in column \(n\).
+
+The dominant eigenvalue is the first one. Therefore, the associated right eigenvector, that will tell us about the long-term relative stage abundance, is in the first column.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vec1 }\OtherTok{=}\NormalTok{ ev}\SpecialCharTok{$}\NormalTok{vectors[,}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+Eigenvectors are not unique - they can be multiplied by a constant and are still the same eigenvector:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{norm.vec1 }\OtherTok{=} \SpecialCharTok{{-}}\DecValTok{100}\SpecialCharTok{*}\NormalTok{vec1}
+\end{Highlighting}
+\end{Shaded}
+
+What happens if our initial population size is a right eigenvector?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vec2 }\OtherTok{=}\NormalTok{ A}\SpecialCharTok{\%*\%}\NormalTok{norm.vec1}
+\NormalTok{vec3 }\OtherTok{=}\NormalTok{ A}\SpecialCharTok{\%*\%}\NormalTok{vec2}
+\end{Highlighting}
+\end{Shaded}
+
+How does this compare to if the right eigenvector is multiplied by the dominant eigenvalue?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FloatTok{1.05}\SpecialCharTok{*}\NormalTok{norm.vec1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 92.94288 48.85306
+\end{verbatim}
+
+Let's simulate the long term population dyanmics:
+
+\hypertarget{schedule-old}{%
+\chapter{Schedule - prior to strike - outdated}\label{schedule-old}}
+
+All lectures are in SN 3060 unless otherwise stated
+
+\begin{itemize}
+\tightlist
+\item
+  Thurs Jan 5: Introduction
+\item
+  Fri Jan 6: Population biology with discrete and continuous variables
+\item
+  Tues Jan 10: ---
+\item
+  Thurs Jan 12: \textbf{CSF 2218} Introduction to Rmarkdown and tidyverse \textbf{Assignment 1 is assigned}
+\item
+  Fri Jan 13: Geometric growth
+\item
+  Tues Jan 17: Exponential growth
+\item
+  Thurs Jan 19: \textbf{CSF 2218} Numerical solutions and graphing population data \textbf{Assignment 2 is assigned}
+\item
+  Fri Jan 20: Exponential growth
+\item
+  Tues Jan 24: Density dependence and logistic growth
+\item
+  Thurs Jan 26: Density dependence and logistic growth \textbf{Assignments 1 \& 2 are due}
+\item
+  Fri Jan 27: Density dependence and logistic growth
+\item
+  Tues Jan 31: Discrete time density dependence
+\item
+  Thurs Feb 2: \textbf{EXAM I} (all material covered to date)
+\item
+  Fri Feb 3: Age-structured models
+\item
+  Tues Feb 7: Stage-structured models
+\item
+  Thurs Feb 9: Stage-structured models
+\item
+  Fri Feb 10: Stage-structured models
+\item
+  Tues Feb 14: \textbf{CSF 2218} Numerical analysis of stage-structured models \textbf{Assignment 3 is assigned}
+\item
+  Thurs Feb 16: Density dependence in stage-structured models
+\item
+  Fri Feb 17: Metapopulation models
+\end{itemize}
+
+WINTER BREAK
+
+\begin{itemize}
+\tightlist
+\item
+  Tues Feb 28: Continuous space models \textbf{Assignment 3 is due}
+\item
+  Thurs Mar 2: Spatially explicit models in population biology
+\item
+  Fri Mar 3: Population dynamics in a warming world
+\item
+  Tues Mar 7: Spatially explicit population dynamics in a warming world
+\item
+  Thurs Mar 9: Disease dynamics
+\item
+  Fri Mar 10: The net reproduction number
+\item
+  Tues Mar 14: Overview of models in population biology
+\item
+  Thurs Mar 16: \textbf{EXAM II} (All material since Exam I)
+\item
+  Fri Mar 17: What is evolutionary ecology?
+\item
+  Tues Mar 21: Haploid selection model
+\item
+  Thur Mar 23: \href{https://www.zoology.ubc.ca/~otto/Talks/SSE2022_Otto.pdf}{Selection coefficients for COVID-19 variants}
+\item
+  Fri Mar 24: \textbf{CSF 2218} Estimating selection coefficients \textbf{Assignment 4 is assigned}
+\item
+  Tues Mar 28: The evolutionary ecology of pathogens
+\item
+  Thurs Mar 30: The evolutionary ecology of COVID-19
+\item
+  Fri Mar 31: The evolutionary ecology of hosts \textbf{Assignment 4 is due}
+\item
+  Tues Apr 3: The evolution of reproductive effort in plants
+\item
+  Thurs Apr 5: Evolutionarily stable and convergent stable strategies
+\item
+  Fri Apr 6: Review
+\end{itemize}
+
+TBD \textbf{FINAL EXAM} (all course material)
+
 \hypertarget{partI}{%
 \chapter*{PART I - Instructions}\label{partI}}
 
@@ -1102,7 +1373,7 @@ As you can see, I have guessed the values in the plot and entered them manually.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{BIOL-3295_files/figure-latex/unnamed-chunk-18-1.pdf}
+\includegraphics{BIOL-3295_files/figure-latex/unnamed-chunk-25-1.pdf}
 
 If you need to add a title, you can add a layer \texttt{+\ ggtitle("Your\ title)}, to control the axis limits, use \texttt{+\ xlim(c(-10,10))} (with the values you need). Generally, you should be able to use an internet search to find what you need. You can also read more about \texttt{ggplot} \href{https://ahurford.github.io/quant-guide-all-courses/ggplot.html}{here}.
 
@@ -1239,6 +1510,6 @@ Now the data is in a format that I can make a plot:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{BIOL-3295_files/figure-latex/unnamed-chunk-24-1.pdf}
+\includegraphics{BIOL-3295_files/figure-latex/unnamed-chunk-31-1.pdf}
 
 \end{document}

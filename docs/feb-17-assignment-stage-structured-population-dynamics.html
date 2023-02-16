@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>PART II - Instructions | BIOL 3295: Population and Evolutionary Ecology, Winter 2023</title>
-  <meta name="description" content="PART II - Instructions | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
+  <title>14 Feb 17: ASSIGNMENT Stage-structured population dynamics | BIOL 3295: Population and Evolutionary Ecology, Winter 2023</title>
+  <meta name="description" content="14 Feb 17: ASSIGNMENT Stage-structured population dynamics | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="PART II - Instructions | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
+  <meta property="og:title" content="14 Feb 17: ASSIGNMENT Stage-structured population dynamics | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="PART II - Instructions | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
+  <meta name="twitter:title" content="14 Feb 17: ASSIGNMENT Stage-structured population dynamics | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="partI.html"/>
-
+<link rel="prev" href="feb-16-stage-structure.html"/>
+<link rel="next" href="schedule-old.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -215,80 +215,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="partII" class="section level1 unlisted unnumbered hasAnchor">
-<h1>PART II - Instructions<a href="partII.html#partII" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<ul>
-<li><p><a href="https://ahurford.github.io/quant-guide-all-courses/install.html">Install</a> the <code>dplyr</code> package, all dependencies, and load the package.</p></li>
-<li><p>For instructions to clean data using tidyverse see <a href="https://ahurford.github.io/quant-guide-all-courses/handling-data.html#dplyr">here</a></p></li>
-</ul>
-<p>First you need to <a href="https://ahurford.github.io/quant-guide-all-courses/data-entry.html#loading-or-importing-data">load</a> the messy data from <a href="https://datacarpentry.org/semester-biology/exercises/Tidy-data-improving-messy-data-SQL/">here</a>.</p>
-<p>It may be helpful to view the data in Excel to understand what it looks like before you import it to <code>R</code>.</p>
-<p>Use <code>head(data)</code> in the Console, or <code>data</code> to view your data (where <code>data</code> is the name I gave my data).</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="partII.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div>
-<pre><code>##                 X          X.1       X.2      X.3    X.4 X.5            X.6
-## 1                                                         NA               
-## 2 Data for Site 7                                         NA               
-## 3                                                         NA               
-## 4         Plot: 1                                         NA        Plot: 2
-## 5  Date collected       Family     Genus  Species Weight  NA Date collected
-## 6        01/09/14 Heteromyidae Dipodomys merriami     40  NA       01/08/14
-##          X.7     X.8      X.9   X.10 X.11           X.12             X.13
-## 1                                      NA                                
-## 2                                      NA                                
-## 3                                      NA                                
-## 4                                      NA        Plot: 3                 
-## 5     Family   Genus  Species Weight   NA Date collected          Species
-## 6 Cricetidae Neotoma albigula   -999   NA            1/8 Dipodomys ordii*
-##     X.14
-## 1       
-## 2       
-## 3       
-## 4       
-## 5 Weight
-## 6     42</code></pre>
-<p>These data are very messy indeed! A helpful command is to know the column names:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="partII.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data)</span></code></pre></div>
-<pre><code>##  [1] &quot;X&quot;    &quot;X.1&quot;  &quot;X.2&quot;  &quot;X.3&quot;  &quot;X.4&quot;  &quot;X.5&quot;  &quot;X.6&quot;  &quot;X.7&quot;  &quot;X.8&quot;  &quot;X.9&quot; 
-## [11] &quot;X.10&quot; &quot;X.11&quot; &quot;X.12&quot; &quot;X.13&quot; &quot;X.14&quot;</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="partII.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract a row using tidyverse commands</span></span>
-<span id="cb37-2"><a href="partII.html#cb37-2" aria-hidden="true" tabindex="-1"></a>dataX <span class="ot">=</span><span class="fu">select</span>(data, <span class="st">&quot;X&quot;</span>)</span>
-<span id="cb37-3"><a href="partII.html#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># This is base R syntax to extract specifically rows 6 to 14</span></span>
-<span id="cb37-4"><a href="partII.html#cb37-4" aria-hidden="true" tabindex="-1"></a>date.collected <span class="ot">=</span> dataX<span class="sc">$</span>X[<span class="dv">6</span><span class="sc">:</span><span class="dv">14</span>]</span>
-<span id="cb37-5"><a href="partII.html#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co"># as.Date() is needed for R to treat this variable as a date</span></span>
-<span id="cb37-6"><a href="partII.html#cb37-6" aria-hidden="true" tabindex="-1"></a>date.collected <span class="ot">=</span> <span class="fu">as.Date</span>(date.collected, <span class="at">format =</span> <span class="st">&quot;%m/%d/%y&quot;</span>)</span>
-<span id="cb37-7"><a href="partII.html#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co"># This prints to the output, so you can see what I have done</span></span>
-<span id="cb37-8"><a href="partII.html#cb37-8" aria-hidden="true" tabindex="-1"></a>date.collected</span></code></pre></div>
-<pre><code>## [1] &quot;2014-01-09&quot; &quot;2014-01-09&quot; &quot;2014-01-09&quot; &quot;2014-01-09&quot; &quot;2014-01-20&quot;
-## [6] &quot;2014-01-20&quot; &quot;2014-03-13&quot; &quot;2014-03-13&quot; &quot;2014-03-13&quot;</code></pre>
-<p>I will aim to make a data frame with “date collected” and “weight” for Plot 1. Inspecting the data, weight is <code>"X.4"</code> for Plot 1.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="partII.html#cb39-1" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">=</span> <span class="fu">select</span>(data, <span class="st">&quot;X.4&quot;</span>)</span>
-<span id="cb39-2"><a href="partII.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># as.numeric() is needed because otherwise R doesn&#39;t recognize these data as numbers - which I need for the multiplication later</span></span>
-<span id="cb39-3"><a href="partII.html#cb39-3" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">=</span> <span class="fu">as.numeric</span>(weight<span class="sc">$</span>X<span class="fl">.4</span>[<span class="dv">6</span><span class="sc">:</span><span class="dv">14</span>])</span>
-<span id="cb39-4"><a href="partII.html#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Make this into a data frame so I can plot using ggplot</span></span>
-<span id="cb39-5"><a href="partII.html#cb39-5" aria-hidden="true" tabindex="-1"></a>cleaned.data <span class="ot">=</span> <span class="fu">data.frame</span>(date.collected, weight)</span>
-<span id="cb39-6"><a href="partII.html#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="co"># add a column that is a mutated column</span></span>
-<span id="cb39-7"><a href="partII.html#cb39-7" aria-hidden="true" tabindex="-1"></a>cleaned.data <span class="ot">=</span> <span class="fu">mutate</span>(cleaned.data,<span class="at">weight.kg =</span> weight<span class="sc">/</span><span class="dv">1000</span>)</span>
-<span id="cb39-8"><a href="partII.html#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="co"># print the cleaned data so we can see what it looks like</span></span>
-<span id="cb39-9"><a href="partII.html#cb39-9" aria-hidden="true" tabindex="-1"></a>cleaned.data</span></code></pre></div>
-<pre><code>##   date.collected weight weight.kg
-## 1     2014-01-09     40     0.040
-## 2     2014-01-09     36     0.036
-## 3     2014-01-09    135     0.135
-## 4     2014-01-09     39     0.039
-## 5     2014-01-20     43     0.043
-## 6     2014-01-20    144     0.144
-## 7     2014-03-13     51     0.051
-## 8     2014-03-13     44     0.044
-## 9     2014-03-13    146     0.146</code></pre>
-<p>Now the data is in a format that I can make a plot:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="partII.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span>
-<span id="cb41-2"><a href="partII.html#cb41-2" aria-hidden="true" tabindex="-1"></a>g1<span class="ot">=</span><span class="fu">ggplot</span>(<span class="at">data =</span> cleaned.data, <span class="fu">aes</span>(<span class="at">x =</span> date.collected, <span class="at">y =</span> weight.kg)) <span class="sc">+</span> </span>
-<span id="cb41-3"><a href="partII.html#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb41-4"><a href="partII.html#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb41-5"><a href="partII.html#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Date collected&quot;</span>)<span class="sc">+</span></span>
-<span id="cb41-6"><a href="partII.html#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Weight in kg&quot;</span>)</span>
-<span id="cb41-7"><a href="partII.html#cb41-7" aria-hidden="true" tabindex="-1"></a>g1</span></code></pre></div>
-<p><img src="BIOL-3295_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<div id="feb-17-assignment-stage-structured-population-dynamics" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">14</span> Feb 17: <strong>ASSIGNMENT</strong> Stage-structured population dynamics<a href="feb-17-assignment-stage-structured-population-dynamics.html#feb-17-assignment-stage-structured-population-dynamics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Class will be in CSF 2218</p>
+<p>ASSIGNMENT 3 is due on March 3.</p>
+<p>[currently unfinished]</p>
+<p>We will do this exact example in lecture. Here we are
+verifying that we can get the same conclusions using R.</p>
+<p>Install and load the <code>popbio</code> package.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;popbio&quot;</span>)</span></code></pre></div>
+<pre><code>## Loading required package: popbio</code></pre>
+<p>Define our projection matrix:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb22-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="fl">0.5</span>,.<span class="dv">1</span>), <span class="dv">2</span>,<span class="dv">2</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Type <code>A</code> into the console to check that A has the correct number of rows and columns and the numerical entries in the correct place.</p>
+<p>The function <code>eigen()</code> is a built-in function that will calculate the eigenvalues and eigenvectors for the projection matrix <code>A</code>:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb23-1" aria-hidden="true" tabindex="-1"></a>ev <span class="ot">=</span> <span class="fu">eigen</span>(A)</span></code></pre></div>
+<p>Type <code>ev</code> into the console. There are two eigenvalues. Why are there two? Which is the dominant eigenvalue? Will this population grow (for a positive initial number of individuals)?</p>
+<p>There is an eigenvector (2 rows x 1 column) associated with each eigenvalue (= 2 eignvectors). The eigenvector associated with the <span class="math inline">\(n^{th}\)</span> eigenvalue is in column <span class="math inline">\(n\)</span>.</p>
+<p>The dominant eigenvalue is the first one. Therefore, the associated right eigenvector, that will tell us about the long-term relative stage abundance, is in the first column.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb24-1" aria-hidden="true" tabindex="-1"></a>vec1 <span class="ot">=</span> ev<span class="sc">$</span>vectors[,<span class="dv">1</span>]</span></code></pre></div>
+<p>Eigenvectors are not unique - they can be multiplied by a constant and are still the same eigenvector:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb25-1" aria-hidden="true" tabindex="-1"></a>norm.vec1 <span class="ot">=</span> <span class="sc">-</span><span class="dv">100</span><span class="sc">*</span>vec1</span></code></pre></div>
+<p>What happens if our initial population size is a right eigenvector?</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb26-1" aria-hidden="true" tabindex="-1"></a>vec2 <span class="ot">=</span> A<span class="sc">%*%</span>norm.vec1</span>
+<span id="cb26-2"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb26-2" aria-hidden="true" tabindex="-1"></a>vec3 <span class="ot">=</span> A<span class="sc">%*%</span>vec2</span></code></pre></div>
+<p>How does this compare to if the right eigenvector is multiplied by the dominant eigenvalue?</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.05</span><span class="sc">*</span>norm.vec1</span></code></pre></div>
+<pre><code>## [1] 92.94288 48.85306</code></pre>
+<p>Let’s simulate the long term population dyanmics:</p>
+<!-- tvec = seq(1,30,1) -->
+<!-- n = matrix(0,length(tvec),3) -->
+<!-- n[,1]=tvec -->
+<!-- n[1,2:3] = c(89,47) -->
+<!-- for(t in seq(1,length(tvec)-1,1)){ -->
+<!--   n[t+1,2:3] = A%*%n[t,2:3] -->
+<!-- } -->
+<!-- # Plot the long-term population dynamics -->
+<!-- plot(n[,1], n[,2], typ = "l", col = "red", ylim = c(0,200), ylab = "stage abundance", xlab = "time", main = "Initial stage abundance is an eigenvector") -->
+<!-- lines(n[,1], n[,3]) -->
+<!-- # How does the proportion of the population in the first (juvenile stage) -->
+<!-- # change over time -->
+<!-- plot(tvec,n[,2]/(n[,2]+n[,3]), typ="l", ylab = "proportion juveniles", xlab = "time", ylim =c(0,1), main = "Initial stage abundance is an eigenvector") -->
+<!-- # Next, determine the longterm population dynamics where the initial -->
+<!-- # abundance does not begin on an eigenvector. -->
+<!-- tvec = seq(1,50,1) -->
+<!-- n = matrix(0,length(tvec),3) -->
+<!-- n[,1]=tvec -->
+<!-- n[1,2:3] = c(0,100) -->
+<!-- for(t in seq(1,length(tvec)-1,1)){ -->
+<!--   n[t+1,2:3] = A%*%n[t,2:3] -->
+<!-- } -->
+<!-- plot(n[,1], n[,2], typ = "l", col = "red", ylim = c(0,1000), ylab = "stage abundance", xlab = "time", main = "Initial stage abundance not an eigenvector") -->
+<!-- lines(n[,1], n[,3]) -->
+<!-- plot(tvec,n[,2]/(n[,2]+n[,3]), typ="l", ylab = "proportion juveniles", xlab = "time", ylim =c(0,1), main = "Initial stage abundance not an eigenvector") -->
 
 </div>
             </section>
@@ -296,8 +275,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="partI.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="feb-16-stage-structure.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="schedule-old.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

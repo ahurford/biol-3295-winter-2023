@@ -1,5 +1,8 @@
 eq:Geo
 eq:Exp
+eq:N1N2
+eq:ver2
+eq:ver3
 syllabus
 instructor-information
 course-information
@@ -38,3 +41,8 @@ jan-26-density-dependence
 jan-27-density-dependence-discrete-time
 required-reading-2
 questions-3
+feb-16-stage-structure
+required-reading-3
+questions-4
+feb-17-assignment-stage-structured-population-dynamics
+schedule-old

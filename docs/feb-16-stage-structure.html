@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>PART II - Instructions | BIOL 3295: Population and Evolutionary Ecology, Winter 2023</title>
-  <meta name="description" content="PART II - Instructions | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
+  <title>13 Feb 16: Stage structure | BIOL 3295: Population and Evolutionary Ecology, Winter 2023</title>
+  <meta name="description" content="13 Feb 16: Stage structure | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="PART II - Instructions | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
+  <meta property="og:title" content="13 Feb 16: Stage structure | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="PART II - Instructions | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
+  <meta name="twitter:title" content="13 Feb 16: Stage structure | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="partI.html"/>
-
+<link rel="prev" href="jan-27-density-dependence-discrete-time.html"/>
+<link rel="next" href="feb-17-assignment-stage-structured-population-dynamics.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -215,89 +215,81 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="partII" class="section level1 unlisted unnumbered hasAnchor">
-<h1>PART II - Instructions<a href="partII.html#partII" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="feb-16-stage-structure" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">13</span> Feb 16: Stage structure<a href="feb-16-stage-structure.html#feb-16-stage-structure" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>We will start by discussing the syllabus for the remainder of the semester.</p>
+<div id="required-reading-3" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> Required Reading<a href="feb-16-stage-structure.html#required-reading-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Vandermeer, J.H., Goldberg, D.E., 2013. Population Ecology: First Principles (Second Edition). Princeton University Press, Princeton, United States. p30-34. <a href="https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619">Link</a></p>
+<p>The reading mentions <em>‘readers who have forgotten their linear algebra’</em>, however, linear algebra is not a pre-requisite for BIOL 3295. To learn enough linear algebra to complete today’s questions you might watch this 4 minute <a href="https://www.youtube.com/watch?v=Awcj447pYuk">video</a> explaining how to multiply a matrix by a column vector on the right.</p>
+<p>We are learning a little bit of linear algebra now because the notation is compact and because later this formulation will be helpful to calculate the year-to-year multiplicative change in the population size.</p>
+<p>Let’s consider an age-structured population where:</p>
 <ul>
-<li><p><a href="https://ahurford.github.io/quant-guide-all-courses/install.html">Install</a> the <code>dplyr</code> package, all dependencies, and load the package.</p></li>
-<li><p>For instructions to clean data using tidyverse see <a href="https://ahurford.github.io/quant-guide-all-courses/handling-data.html#dplyr">here</a></p></li>
+<li><p>Individuals aged less than 1 year old do not reproduce, and will survive to 1 year old with a probability of 0.5.</p></li>
+<li><p>Individuals aged less than 2 years old have 2 offspring and then die.</p></li>
 </ul>
-<p>First you need to <a href="https://ahurford.github.io/quant-guide-all-courses/data-entry.html#loading-or-importing-data">load</a> the messy data from <a href="https://datacarpentry.org/semester-biology/exercises/Tidy-data-improving-messy-data-SQL/">here</a>.</p>
-<p>It may be helpful to view the data in Excel to understand what it looks like before you import it to <code>R</code>.</p>
-<p>Use <code>head(data)</code> in the Console, or <code>data</code> to view your data (where <code>data</code> is the name I gave my data).</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="partII.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div>
-<pre><code>##                 X          X.1       X.2      X.3    X.4 X.5            X.6
-## 1                                                         NA               
-## 2 Data for Site 7                                         NA               
-## 3                                                         NA               
-## 4         Plot: 1                                         NA        Plot: 2
-## 5  Date collected       Family     Genus  Species Weight  NA Date collected
-## 6        01/09/14 Heteromyidae Dipodomys merriami     40  NA       01/08/14
-##          X.7     X.8      X.9   X.10 X.11           X.12             X.13
-## 1                                      NA                                
-## 2                                      NA                                
-## 3                                      NA                                
-## 4                                      NA        Plot: 3                 
-## 5     Family   Genus  Species Weight   NA Date collected          Species
-## 6 Cricetidae Neotoma albigula   -999   NA            1/8 Dipodomys ordii*
-##     X.14
-## 1       
-## 2       
-## 3       
-## 4       
-## 5 Weight
-## 6     42</code></pre>
-<p>These data are very messy indeed! A helpful command is to know the column names:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="partII.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data)</span></code></pre></div>
-<pre><code>##  [1] &quot;X&quot;    &quot;X.1&quot;  &quot;X.2&quot;  &quot;X.3&quot;  &quot;X.4&quot;  &quot;X.5&quot;  &quot;X.6&quot;  &quot;X.7&quot;  &quot;X.8&quot;  &quot;X.9&quot; 
-## [11] &quot;X.10&quot; &quot;X.11&quot; &quot;X.12&quot; &quot;X.13&quot; &quot;X.14&quot;</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="partII.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract a row using tidyverse commands</span></span>
-<span id="cb37-2"><a href="partII.html#cb37-2" aria-hidden="true" tabindex="-1"></a>dataX <span class="ot">=</span><span class="fu">select</span>(data, <span class="st">&quot;X&quot;</span>)</span>
-<span id="cb37-3"><a href="partII.html#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># This is base R syntax to extract specifically rows 6 to 14</span></span>
-<span id="cb37-4"><a href="partII.html#cb37-4" aria-hidden="true" tabindex="-1"></a>date.collected <span class="ot">=</span> dataX<span class="sc">$</span>X[<span class="dv">6</span><span class="sc">:</span><span class="dv">14</span>]</span>
-<span id="cb37-5"><a href="partII.html#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co"># as.Date() is needed for R to treat this variable as a date</span></span>
-<span id="cb37-6"><a href="partII.html#cb37-6" aria-hidden="true" tabindex="-1"></a>date.collected <span class="ot">=</span> <span class="fu">as.Date</span>(date.collected, <span class="at">format =</span> <span class="st">&quot;%m/%d/%y&quot;</span>)</span>
-<span id="cb37-7"><a href="partII.html#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co"># This prints to the output, so you can see what I have done</span></span>
-<span id="cb37-8"><a href="partII.html#cb37-8" aria-hidden="true" tabindex="-1"></a>date.collected</span></code></pre></div>
-<pre><code>## [1] &quot;2014-01-09&quot; &quot;2014-01-09&quot; &quot;2014-01-09&quot; &quot;2014-01-09&quot; &quot;2014-01-20&quot;
-## [6] &quot;2014-01-20&quot; &quot;2014-03-13&quot; &quot;2014-03-13&quot; &quot;2014-03-13&quot;</code></pre>
-<p>I will aim to make a data frame with “date collected” and “weight” for Plot 1. Inspecting the data, weight is <code>"X.4"</code> for Plot 1.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="partII.html#cb39-1" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">=</span> <span class="fu">select</span>(data, <span class="st">&quot;X.4&quot;</span>)</span>
-<span id="cb39-2"><a href="partII.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># as.numeric() is needed because otherwise R doesn&#39;t recognize these data as numbers - which I need for the multiplication later</span></span>
-<span id="cb39-3"><a href="partII.html#cb39-3" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">=</span> <span class="fu">as.numeric</span>(weight<span class="sc">$</span>X<span class="fl">.4</span>[<span class="dv">6</span><span class="sc">:</span><span class="dv">14</span>])</span>
-<span id="cb39-4"><a href="partII.html#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Make this into a data frame so I can plot using ggplot</span></span>
-<span id="cb39-5"><a href="partII.html#cb39-5" aria-hidden="true" tabindex="-1"></a>cleaned.data <span class="ot">=</span> <span class="fu">data.frame</span>(date.collected, weight)</span>
-<span id="cb39-6"><a href="partII.html#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="co"># add a column that is a mutated column</span></span>
-<span id="cb39-7"><a href="partII.html#cb39-7" aria-hidden="true" tabindex="-1"></a>cleaned.data <span class="ot">=</span> <span class="fu">mutate</span>(cleaned.data,<span class="at">weight.kg =</span> weight<span class="sc">/</span><span class="dv">1000</span>)</span>
-<span id="cb39-8"><a href="partII.html#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="co"># print the cleaned data so we can see what it looks like</span></span>
-<span id="cb39-9"><a href="partII.html#cb39-9" aria-hidden="true" tabindex="-1"></a>cleaned.data</span></code></pre></div>
-<pre><code>##   date.collected weight weight.kg
-## 1     2014-01-09     40     0.040
-## 2     2014-01-09     36     0.036
-## 3     2014-01-09    135     0.135
-## 4     2014-01-09     39     0.039
-## 5     2014-01-20     43     0.043
-## 6     2014-01-20    144     0.144
-## 7     2014-03-13     51     0.051
-## 8     2014-03-13     44     0.044
-## 9     2014-03-13    146     0.146</code></pre>
-<p>Now the data is in a format that I can make a plot:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="partII.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span>
-<span id="cb41-2"><a href="partII.html#cb41-2" aria-hidden="true" tabindex="-1"></a>g1<span class="ot">=</span><span class="fu">ggplot</span>(<span class="at">data =</span> cleaned.data, <span class="fu">aes</span>(<span class="at">x =</span> date.collected, <span class="at">y =</span> weight.kg)) <span class="sc">+</span> </span>
-<span id="cb41-3"><a href="partII.html#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb41-4"><a href="partII.html#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb41-5"><a href="partII.html#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Date collected&quot;</span>)<span class="sc">+</span></span>
-<span id="cb41-6"><a href="partII.html#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Weight in kg&quot;</span>)</span>
-<span id="cb41-7"><a href="partII.html#cb41-7" aria-hidden="true" tabindex="-1"></a>g1</span></code></pre></div>
-<p><img src="BIOL-3295_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p>We can write the equations for the number of individuals in each stage one year from now as:</p>
+<p><span class="math display" id="eq:N1N2">\[\begin{eqnarray}
+N_{1,t+1} &amp; = &amp; 2 N_{2,t}, \nonumber \\
+N_{2,t+1} &amp; = &amp; 0.5 N_{1,t},
+\tag{13.1}
+\end{eqnarray}\]</span></p>
+<p>where <span class="math inline">\(N_{1,t+1}\)</span> is the number of individuals aged less than 1 year at time <span class="math inline">\(t+1\)</span>, and <span class="math inline">\(N_{2,t+1}\)</span> is the number of individuals aged between 1 and 2 years at time <span class="math inline">\(t+1\)</span>. Try out the system of equations: suppose, <span class="math inline">\(N_{1,0} = 10\)</span> and <span class="math inline">\(N_{2,0} = 5\)</span>, what is <span class="math inline">\(N_{1,1}\)</span> and <span class="math inline">\(N_{2,1}\)</span>?</p>
+<p>Note that in the system of equations <a href="feb-16-stage-structure.html#eq:N1N2">(13.1)</a>, some of the values that were zeros were omitted, i.e.,</p>
+<p><span class="math display" id="eq:ver2">\[\begin{eqnarray}
+N_{1,t+1} &amp; = &amp; 0 N_{1,t} + 2 N_{2,t}, \nonumber \\
+N_{2,t+1} &amp; = &amp; 0.5 N_{1,t} + 0 N_{2,t},
+\tag{13.2}
+\end{eqnarray}\]</span></p>
+<p>Note that as written above, consistency with the ordering is necessary: <span class="math inline">\(N_{1,t+1}\)</span> appears above <span class="math inline">\(N_{2,t+1}\)</span>, and on the other side of the <code>=</code> <span class="math inline">\(N_{1,t}\)</span> always appears to the left of <span class="math inline">\(N_{2,t}\)</span>. When written as the system of equations <a href="feb-16-stage-structure.html#eq:ver2">(13.2)</a>, we can now more easily write the system of equations <a href="feb-16-stage-structure.html#eq:N1N2">(13.1)</a> in matrix notation:</p>
+<p><span class="math display" id="eq:ver3">\[\begin{equation}
+\left[
+\begin{array}{c}
+N_{1,t+1}\\
+N_{2,t+1}\\
+\end{array}
+\right]
+=
+\left[
+\begin{array}{cc}
+0 &amp; 2\\
+0.5 &amp; 0\\
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+N_{1,t}\\
+N_{2,t}\\
+\end{array}
+\right]
+\tag{13.3}
+\end{equation}\]</span></p>
+<p>Again, let <span class="math inline">\(N_{1,0} = 10\)</span> and <span class="math inline">\(N_{2,0} = 5\)</span>. Using the system of equations <a href="feb-16-stage-structure.html#eq:ver3">(13.3)</a>, and remembering how to <a href="https://www.youtube.com/watch?v=Awcj447pYuk">multiply a matrix by a column vector</a>, what is <span class="math inline">\(N_{1,1}\)</span> and <span class="math inline">\(N_{2,1}\)</span>? Did you get the same answer (but now formatted as a vector) as you did to this same question, but when the problem wasn’t in matrix notation (i.e., equation <a href="feb-16-stage-structure.html#eq:N1N2">(13.1)</a>)? Yes? Super!</p>
+<p>Now, we have two equivalent ways to write our population models with age structure. This may seem unhelpful now, but remember that later matrix notation will be helpful to calculate the rate of population increase and the ratio of individuals in the age or stage classes.</p>
+</div>
+<div id="questions-4" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> Questions<a href="feb-16-stage-structure.html#questions-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Consider an age-structured population where:</li>
+</ol>
+<ul>
+<li><p>Individuals aged less than 1 year old do not reproduce, and will survive to 1 year old with a probability of 0.2.</p></li>
+<li><p>Individuals aged less than 2 years old have 4 offspring and then die.</p></li>
+</ul>
+<p>Write the equations for the number of individuals in each age class in one year from now, in the format of the system of equations <a href="feb-16-stage-structure.html#eq:N1N2">(13.1)</a></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Using your system of equations from question 1, assume that at <span class="math inline">\(t=0\)</span> there are 4 individuals aged less than 1 year, and 4 individuals aged 1 to 2 years. Calculate the number of individuals in each of the two age classes at <span class="math inline">\(t=1\)</span>.</li>
+</ol>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="partI.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="jan-27-density-dependence-discrete-time.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="feb-17-assignment-stage-structured-population-dynamics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

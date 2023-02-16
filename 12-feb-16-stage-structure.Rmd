@@ -1,0 +1,74 @@
+# Feb 16: Stage structure
+
+We will start by discussing the syllabus for the remainder of the semester.
+
+## Required Reading
+Vandermeer, J.H., Goldberg, D.E., 2013. Population Ecology: First Principles (Second Edition). Princeton University Press, Princeton, United States. p30-34. [Link](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619)
+
+The reading mentions _'readers who have forgotten their linear algebra'_, however, linear algebra is not a pre-requisite for BIOL 3295. To learn enough linear algebra to complete today's questions you might watch this 4 minute [video](https://www.youtube.com/watch?v=Awcj447pYuk) explaining how to multiply a matrix by a column vector on the right.
+
+We are learning a little bit of linear algebra now because the notation is compact and because later this formulation will be helpful to calculate the year-to-year multiplicative change in the population size.
+
+Let's consider an age-structured population where:
+
+- Individuals aged less than 1 year old do not reproduce, and will survive to 1 year old with a probability of 0.5.
+
+- Individuals aged less than 2 years old have 2 offspring and then die.
+
+We can write the equations for the number of individuals in each stage one year from now as:
+
+\begin{eqnarray}
+N_{1,t+1} & = & 2 N_{2,t}, \nonumber \\
+N_{2,t+1} & = & 0.5 N_{1,t}, 
+ (\#eq:N1N2)
+\end{eqnarray}
+
+where $N_{1,t+1}$ is the number of individuals aged less than 1 year at time $t+1$, and $N_{2,t+1}$ is the number of individuals aged between 1 and 2 years at time $t+1$. Try out the system of equations: suppose, $N_{1,0} = 10$ and $N_{2,0} = 5$, what is $N_{1,1}$ and $N_{2,1}$?
+
+Note that in the system of equations \@ref(eq:N1N2), some of the values that were zeros were omitted, i.e.,
+
+\begin{eqnarray}
+N_{1,t+1} & = & 0 N_{1,t} + 2 N_{2,t}, \nonumber \\
+N_{2,t+1} & = & 0.5 N_{1,t} + 0 N_{2,t},
+ (\#eq:ver2)
+\end{eqnarray}
+
+Note that as written above, consistency with the ordering is necessary: $N_{1,t+1}$ appears above $N_{2,t+1}$, and on the other side of the `=` $N_{1,t}$ always appears to the left of $N_{2,t}$. When written as the system of equations \@ref(eq:ver2), we can now more easily write the system of equations \@ref(eq:N1N2) in matrix notation:
+
+\begin{equation}
+\left[
+\begin{array}{c}
+N_{1,t+1}\\
+N_{2,t+1}\\
+\end{array}
+\right]
+=
+\left[
+\begin{array}{cc}
+0 & 2\\
+0.5 & 0\\
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+N_{1,t}\\
+N_{2,t}\\
+\end{array}
+\right]
+(\#eq:ver3)
+\end{equation}
+
+Again, let $N_{1,0} = 10$ and $N_{2,0} = 5$. Using the system of equations \@ref(eq:ver3), and remembering how to [multiply a matrix by a column vector](https://www.youtube.com/watch?v=Awcj447pYuk), what is $N_{1,1}$ and $N_{2,1}$? Did you get the same answer (but now formatted as a vector) as you did to this same question, but when the problem wasn't in matrix notation (i.e., equation \@ref(eq:N1N2))? Yes? Super!
+
+Now, we have two equivalent ways to write our population models with age structure. This may seem unhelpful now, but remember that later matrix notation will be helpful to calculate the rate of population increase and the ratio of individuals in the age or stage classes.
+
+## Questions
+1. Consider an age-structured population where:
+
+- Individuals aged less than 1 year old do not reproduce, and will survive to 1 year old with a probability of 0.2.
+
+- Individuals aged less than 2 years old have 4 offspring and then die.
+
+Write the equations for the number of individuals in each age class in one year from now, in the format of the system of equations \@ref(eq:N1N2) 
+
+2. Using your system of equations from question 1, assume that at $t=0$ there are 4 individuals aged less than 1 year, and 4 individuals aged 1 to 2 years. Calculate the number of individuals in each of the two age classes at $t=1$.
