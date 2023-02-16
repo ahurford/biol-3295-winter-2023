@@ -1,0 +1,58 @@
+# Feb 28: Stage-structured population dynamics
+
+
+## Required Reading
+Vandermeer, J.H., Goldberg, D.E., 2013. Population Ecology: First Principles (Second Edition). Princeton University Press, Princeton, United States. p39-40. [Link](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619)
+
+Where $\mathbb{P}$ is a projection matrix, the element $p_{ij}$ is the contribution _from_ individuals in stage $j$ at time $t$, _to_ stage $i$ at time $t+1$, 
+
+\begin{equation}
+\mathbb{P} = 
+\left[
+\begin{array}{ccccc}
+p_{11} & p_{12} & \dots & \dots & p_{1n} \\
+p_{21} & p_{22} & \dots & \dots & p_{2n} \\
+\vdots & \vdots & \vdots & \vdots & \vdots \\
+p_{n1} & \dots & \dots & \dots & p_{nn} \\
+\end{array}
+\right].
+\end{equation}
+
+Note that it is convention for both age-structured and stage-structured population models that the most immature stages: i.e, newborns, eggs, or offspring are indexed as $i,j = 1$, and progressively more mature stages are indexed with progressively larger indexes. For example, in Question 3 below the sensible choice of indexes is:
+
+$i,j = 1:$ larvae
+
+$i,j = 2:$ pupae
+
+$i,j = 3:$ adults
+
+
+## Questions
+1. Consider the projection matrix of the age-structured model from the previous class:
+\begin{equation}
+\left[
+\begin{array}{cc}
+0 & 2\\
+0.5 & 0\\
+\end{array}
+\right]
+\end{equation}
+What are the special characteristics of the projection matrix for an age-structured population model (Leslie-Lewis matrix), that don't necessarily occur for a stage-structured population model (Leftkovitch matrix)?
+
+2. Which elements of the Leftkovitch matrix may be larger than 1? Note that elements of the matrix occurring in a horizontal line are called rows, and elements occurring in a vertical line are called columns. 
+
+3. Complete Exercise 2.15 on p40 of Vandermeer and Goldberg (2013). This question is a bit tricky, so here's a hint. The correct answer for the projection matrix has this form:
+
+\begin{equation}
+\mathbb{P} = 
+\left[
+\begin{array}{ccc}
+p_{11} & p_{12} & 50 \\
+p_{21} & p_{22} & p_{23}\\
+p_{31} & p_{32} & p_{33}\\
+\end{array}
+\right].
+\end{equation}
+
+Note that it isn't necessary to include eggs as a stage because after a month either all eggs have become larvae or died.
+

@@ -1,0 +1,155 @@
+# Mar 2: Eigenvalues and eigenvectors
+
+## Required Reading
+Vandermeer, J.H., Goldberg, D.E., 2013. Population Ecology: First Principles (Second Edition). Princeton University Press, Princeton, United States. p37-39. [Link](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=1205619)
+
+Today we will learn how to determine if a population with age- or stage-structure is expected to increase or decrease over time. Recall, that for discrete time, without age- or stage-structure, and for exponential (also called geometric) growth we had:
+
+\[N_{t+1} = \lambda N_t,\]
+
+where the population size, $N_t$, increases over time if $\lambda > 1$. For age- and stage-structured populations, rather than a scalar, $\lambda$, (i.e. just one number) we have a matrix, $\mathbb{P}$,  containing many numbers:
+
+\begin{equation}
+\mathbb{P} = 
+\left[
+\begin{array}{ccccc}
+p_{11} & p_{12} & \dots & \dots & p_{1n} \\
+p_{21} & p_{22} & \dots & \dots & p_{2n} \\
+\vdots & \vdots & \vdots & \vdots & \vdots \\
+p_{n1} & \dots & \dots & \dots & p_{nn} \\
+\end{array}
+\right],
+\end{equation}
+
+where each number represents the contribution that one of the age- or stage-classes makes to another.
+
+Recall that to calculate the population size at the next time step, we use matrix multiplication:
+
+\begin{eqnarray}
+\left[
+\begin{array}{c}
+N_{1,t+1} \\
+N_{2,t+1}\\
+\vdots \\
+N_{n,t+1}
+\end{array}
+\right] = 
+\left[
+\begin{array}{ccccc}
+p_{11} & p_{12} & \dots & \dots & p_{1n} \\
+p_{21} & p_{22} & \dots & \dots & p_{2n} \\
+\vdots & \vdots & \vdots & \vdots & \vdots \\
+p_{n1} & \dots & \dots & \dots & p_{nn} \\
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+N_{1,t} \\
+N_{2,t} \\
+\vdots \\
+N_{n,t}
+\end{array}
+\right]
+,
+\end{eqnarray}
+
+Let us ask: is there a scalar (a single number), $\lambda$, that we could multiply the population sizes in each of the age or stage classes at time, $t$, by, such that the effect would be the same as doing the matrix multiplication, i.e., is there a $\lambda$, such that,
+
+\begin{eqnarray}
+\left[
+\begin{array}{c}
+N_{1,t+1} \\
+N_{2,t+1}\\
+\vdots \\
+N_{n,t+1}
+\end{array}
+\right] = 
+\lambda
+\left[
+\begin{array}{c}
+N_{1,t} \\
+N_{2,t} \\
+\vdots \\
+N_{n,t}
+\end{array}
+\right]
+,
+\end{eqnarray}
+
+and $\lambda$ can be substituted for the matrix $\mathbb{P}$, and the population sizes in each age and stage in the future are projected to be the same?
+
+The answer to this question, in general, is 'no' because the different stage classes increase by different amounts. However, for special values of the population sizes in each stage class at time, $t$, the equivalence relationship between the scalar $\lambda$, and matrix $\mathbb{P}$, does hold. These special values are called the _stable stage structure_ (or _stable age structure_ if the population is grouped by age). When the stable stage structure is reached, all stages increase by the same factor, $\lambda$, each time step, such that:
+
+
+\begin{eqnarray}
+\lambda \left[
+\begin{array}{c}
+\hat{N}_{1,t} \\
+\hat{N}_{2,t} \\
+\end{array}
+\right]
+ = 
+\left[
+\begin{array}{cc}
+a_{11} & a_{12}
+\\
+a_{21} & a_{22} \\
+\end{array}
+\right]
+
+\left[
+\begin{array}{c}
+\hat{N}_{1,t} \\
+\hat{N}_{2,t} \\
+\end{array}
+\right]
+,
+\end{eqnarray}
+
+where the hat notation, $[\hat{N}_{1,t}, \hat{N}_{2,t}]^T$, is to indicate that the population sizes for each of the stages are that of the stable stage structure. The matrix elements have been written as $a_{ij}$ because as we continue with this example, we will consider two stages, rather then $n$ (as in the matrix $\mathbb{P}$), to make the calculation simpler.
+
+For a 2 $\times$ 2 matrix (i.e., two stages in a stage structured population), $\lambda$ is calculated as,
+
+\begin{equation}
+Det \left[
+\begin{array}{cc}
+a_{11}-\lambda & a_{12}
+\\
+a_{21} & a_{22}-\lambda \\
+\end{array}
+\right] = 0
+\end{equation}
+
+which in math is called the determinant of $\mathbb{A} - \lambda \mathbb{I}$. The determinant for the 2 $\times$ 2 matrix is calculated as follows: 
+
+\begin{eqnarray}
+(a_{11} - \lambda)(a_{22} - \lambda) - a_{12}a_{21} & = & 0 \\
+\lambda^2 - (a_{11} + a_{22})\lambda + a_{11}a_{22} - a_{12}a_{21} & = & 0
+\end{eqnarray}
+
+We can solve this equation using the quadratic formula:
+
+\[\lambda = \frac{a_{11} + a_{22} \pm \sqrt{(a_{11}+a_{22})^2 - 4(a_{11}a_{22} - a_{21}a_{12})}}{2}. \]
+
+This gives two solutions. The _dominant eigenvalue_ is the solution for $\lambda$ that has largest absolute value.
+
+- If the absolute value of the dominant eigenvalue is greater than 1, the population will increase.
+- If the absolute value of the dominant eigenvalue is less than 1, the population will decrease.
+
+## Questions
+1. The Leslie matrix for a frog population is:
+
+\begin{equation}
+\left[
+\begin{array}{cc}
+0 & 2\\
+0.5 & 0.2\\
+\end{array}
+\right]
+\end{equation}
+
+a. Let 0.5 be the fraction of young-of-the-year frogs that survive to be more than 1 year old. What do the values of 0.5 and 0.2 represent in the Leslie matrix corresponding to a population with two stages: young-of-the-year and older than 1 year old? 
+
+b. Find the eigenvalues of the Leslie matrix? 
+
+c. Is this population of frogs expected to increase in size over time? [1 mark]
