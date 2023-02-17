@@ -23,7 +23,7 @@
 <meta name="author" content="Amy Hurford" />
 
 
-<meta name="date" content="2023-02-16" />
+<meta name="date" content="2023-02-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -230,55 +230,152 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">14</span> Feb 17: <strong>ASSIGNMENT</strong> Stage-structured population dynamics<a href="feb-17-assignment-stage-structured-population-dynamics.html#feb-17-assignment-stage-structured-population-dynamics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Class will be in CSF 2218</p>
 <p>ASSIGNMENT 3 is due on March 3.</p>
-<p>[currently unfinished]</p>
-<p>We will do this exact example in lecture. Here we are
-verifying that we can get the same conclusions using R.</p>
+<p>Your assignment will be to write an R markdown file that does these same calculations but for a different projection matrix, <span class="math inline">\(A\)</span> (further details are provided after these sample calculations).</p>
 <p>Install and load the <code>popbio</code> package.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;popbio&quot;</span>)</span></code></pre></div>
 <pre><code>## Loading required package: popbio</code></pre>
-<p>Define our projection matrix:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb22-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="fl">0.5</span>,.<span class="dv">1</span>), <span class="dv">2</span>,<span class="dv">2</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Define our projection matrix (this is the one from class on Feb 16, but with 0.2 in row 2, column 2, so this is a stage-structured, rather than and age-structured, projection matrix, where there is a 0.2 probability of surviving to the next year when older than 1 year. The stages are 0-1 years old and <span class="math inline">\(&gt;1\)</span> year old):</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb22-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="fl">0.5</span>,<span class="fl">0.2</span>), <span class="dv">2</span>,<span class="dv">2</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span>
+<span id="cb22-2"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb22-2" aria-hidden="true" tabindex="-1"></a>A</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]  0.0  2.0
+## [2,]  0.5  0.2</code></pre>
 <p>Type <code>A</code> into the console to check that A has the correct number of rows and columns and the numerical entries in the correct place.</p>
-<p>The function <code>eigen()</code> is a built-in function that will calculate the eigenvalues and eigenvectors for the projection matrix <code>A</code>:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb23-1" aria-hidden="true" tabindex="-1"></a>ev <span class="ot">=</span> <span class="fu">eigen</span>(A)</span></code></pre></div>
-<p>Type <code>ev</code> into the console. There are two eigenvalues. Why are there two? Which is the dominant eigenvalue? Will this population grow (for a positive initial number of individuals)?</p>
-<p>There is an eigenvector (2 rows x 1 column) associated with each eigenvalue (= 2 eignvectors). The eigenvector associated with the <span class="math inline">\(n^{th}\)</span> eigenvalue is in column <span class="math inline">\(n\)</span>.</p>
-<p>The dominant eigenvalue is the first one. Therefore, the associated right eigenvector, that will tell us about the long-term relative stage abundance, is in the first column.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb24-1" aria-hidden="true" tabindex="-1"></a>vec1 <span class="ot">=</span> ev<span class="sc">$</span>vectors[,<span class="dv">1</span>]</span></code></pre></div>
-<p>Eigenvectors are not unique - they can be multiplied by a constant and are still the same eigenvector:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb25-1" aria-hidden="true" tabindex="-1"></a>norm.vec1 <span class="ot">=</span> <span class="sc">-</span><span class="dv">100</span><span class="sc">*</span>vec1</span></code></pre></div>
-<p>What happens if our initial population size is a right eigenvector?</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb26-1" aria-hidden="true" tabindex="-1"></a>vec2 <span class="ot">=</span> A<span class="sc">%*%</span>norm.vec1</span>
-<span id="cb26-2"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb26-2" aria-hidden="true" tabindex="-1"></a>vec3 <span class="ot">=</span> A<span class="sc">%*%</span>vec2</span></code></pre></div>
-<p>How does this compare to if the right eigenvector is multiplied by the dominant eigenvalue?</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.05</span><span class="sc">*</span>norm.vec1</span></code></pre></div>
-<pre><code>## [1] 92.94288 48.85306</code></pre>
-<p>Let’s simulate the long term population dyanmics:</p>
-<!-- tvec = seq(1,30,1) -->
-<!-- n = matrix(0,length(tvec),3) -->
-<!-- n[,1]=tvec -->
-<!-- n[1,2:3] = c(89,47) -->
-<!-- for(t in seq(1,length(tvec)-1,1)){ -->
-<!--   n[t+1,2:3] = A%*%n[t,2:3] -->
-<!-- } -->
-<!-- # Plot the long-term population dynamics -->
-<!-- plot(n[,1], n[,2], typ = "l", col = "red", ylim = c(0,200), ylab = "stage abundance", xlab = "time", main = "Initial stage abundance is an eigenvector") -->
-<!-- lines(n[,1], n[,3]) -->
-<!-- # How does the proportion of the population in the first (juvenile stage) -->
-<!-- # change over time -->
-<!-- plot(tvec,n[,2]/(n[,2]+n[,3]), typ="l", ylab = "proportion juveniles", xlab = "time", ylim =c(0,1), main = "Initial stage abundance is an eigenvector") -->
-<!-- # Next, determine the longterm population dynamics where the initial -->
-<!-- # abundance does not begin on an eigenvector. -->
-<!-- tvec = seq(1,50,1) -->
-<!-- n = matrix(0,length(tvec),3) -->
-<!-- n[,1]=tvec -->
-<!-- n[1,2:3] = c(0,100) -->
-<!-- for(t in seq(1,length(tvec)-1,1)){ -->
-<!--   n[t+1,2:3] = A%*%n[t,2:3] -->
-<!-- } -->
-<!-- plot(n[,1], n[,2], typ = "l", col = "red", ylim = c(0,1000), ylab = "stage abundance", xlab = "time", main = "Initial stage abundance not an eigenvector") -->
-<!-- lines(n[,1], n[,3]) -->
-<!-- plot(tvec,n[,2]/(n[,2]+n[,3]), typ="l", ylab = "proportion juveniles", xlab = "time", ylim =c(0,1), main = "Initial stage abundance not an eigenvector") -->
+<p>Read about the function <code>pop.projection()</code>. (One way to do this is to type <code>?pop.projection</code> into the Console. The details will appear in the <em>Help</em> pane).</p>
+<p>Let us first try to do one iteration (i.e., one future time step) for the projection matrix, when we have the initial values <span class="math inline">\(n = c(10,5)\)</span>. This means that initially, i.e., at <span class="math inline">\(t=0\)</span>, we have 10 individuals aged 0-1 years, and 5 individuals aged more than 1 year. Because this is in matrix notation, we need to write the initial number of individuals as a vector, i.e. using the <span class="math inline">\(c()\)</span> function.</p>
+<p>Let’s do this:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb24-1" aria-hidden="true" tabindex="-1"></a>n0 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">5</span>)</span>
+<span id="cb24-2"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb24-2" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">=</span> <span class="fu">pop.projection</span>(A, n0, <span class="dv">2</span>)</span>
+<span id="cb24-3"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb24-3" aria-hidden="true" tabindex="-1"></a>n1<span class="sc">$</span>stage.vectors</span></code></pre></div>
+<pre><code>##       0  1
+## [1,] 10 10
+## [2,]  5  6</code></pre>
+<p>Here the print out is the number of individuals in each of the stages at time 0 and time 1. You should be able to verify, by doing the matrix multiplication, that <span class="math inline">\([10, 6]\)</span> is the correct stage-structured population size for <span class="math inline">\(t=1\)</span>, for the projection matrix, <span class="math inline">\(A\)</span>, when the intial population size is <span class="math inline">\([10,5]\)</span>.</p>
+<p>Now, let us continue to estimate the stage-structured population size further into the future:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb26-1" aria-hidden="true" tabindex="-1"></a>n20 <span class="ot">=</span> <span class="fu">pop.projection</span>(A, n0, <span class="dv">21</span>)</span>
+<span id="cb26-2"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb26-2" aria-hidden="true" tabindex="-1"></a>n20<span class="sc">$</span>stage.vectors</span></code></pre></div>
+<pre><code>##       0  1    2     3      4       5        6        7        8        9
+## [1,] 10 10 12.0 12.40 14.480 15.2960 17.53920 18.80384 21.29997 23.06383
+## [2,]  5  6  6.2  7.24  7.648  8.7696  9.40192 10.64998 11.53192 12.95637
+##            10       11       12       13       14       15       16       17
+## [1,] 25.91273 28.24638 31.56201 34.55878 38.47377 42.25354 46.92447 51.63843
+## [2,] 14.12319 15.78101 17.27939 19.23688 21.12677 23.46224 25.81922 28.62608
+##            18       19       20
+## [1,] 57.25216 63.08886 69.86993
+## [2,] 31.54443 34.93497 38.53142</code></pre>
+<p>That output is hard to read and understand so let’s graph the result. To graph in <code>ggplot()</code> we will need to reformat this output as a dataframe:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb28-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">time =</span> <span class="fu">as.numeric</span>(<span class="fu">colnames</span>(n20<span class="sc">$</span>stage.vectors)), <span class="at">pop1 =</span> n20<span class="sc">$</span>stage.vectors[<span class="dv">1</span>,], <span class="at">pop2 =</span> n20<span class="sc">$</span>stage.vectors[<span class="dv">2</span>,])</span>
+<span id="cb28-2"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb28-2" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div>
+<pre><code>##    time     pop1     pop2
+## 0     0 10.00000  5.00000
+## 1     1 10.00000  6.00000
+## 2     2 12.00000  6.20000
+## 3     3 12.40000  7.24000
+## 4     4 14.48000  7.64800
+## 5     5 15.29600  8.76960
+## 6     6 17.53920  9.40192
+## 7     7 18.80384 10.64998
+## 8     8 21.29997 11.53192
+## 9     9 23.06383 12.95637
+## 10   10 25.91273 14.12319
+## 11   11 28.24638 15.78101
+## 12   12 31.56201 17.27939
+## 13   13 34.55878 19.23688
+## 14   14 38.47377 21.12677
+## 15   15 42.25354 23.46224
+## 16   16 46.92447 25.81922
+## 17   17 51.63843 28.62608
+## 18   18 57.25216 31.54443
+## 19   19 63.08886 34.93497
+## 20   20 69.86993 38.53142</code></pre>
+<p>Running the <code>data</code> command in the console checks that <code>data</code> looks correct when reformatted as a dataframe.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span>
+<span id="cb30-2"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb30-2" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">=</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>time))<span class="sc">+</span></span>
+<span id="cb30-3"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>pop1), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
+<span id="cb30-4"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>pop2), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)<span class="sc">+</span></span>
+<span id="cb30-5"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;number of ind. in each stage&quot;</span>)</span>
+<span id="cb30-6"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb30-6" aria-hidden="true" tabindex="-1"></a>g1</span></code></pre></div>
+<p><img src="BIOL-3295_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>It is interesting to consider the per capita change in the population size (within a stage) for each time step. We calculate this as:</p>
+<p><span class="math display">\[ \lambda_t = 1+\frac{N_{i,t+1} - N_{i,t}}{N_{i,t}} \qquad \mbox{for $t= \{0, 1, \dots, T-1\}$.} \]</span></p>
+<p>Let’s do this for each of the stages and plot the result:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb31-1" aria-hidden="true" tabindex="-1"></a>n1t1 <span class="ot">=</span> <span class="fu">tail</span>(data<span class="sc">$</span>pop1,<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb31-2"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb31-2" aria-hidden="true" tabindex="-1"></a>n1t <span class="ot">=</span> <span class="fu">head</span>(data<span class="sc">$</span>pop1,<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb31-3"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb31-3" aria-hidden="true" tabindex="-1"></a>lambda1 <span class="ot">=</span> <span class="dv">1</span><span class="sc">+</span>(n1t1 <span class="sc">-</span> n1t)<span class="sc">/</span>n1t</span>
+<span id="cb31-4"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb31-5" aria-hidden="true" tabindex="-1"></a>n2t1 <span class="ot">=</span> <span class="fu">tail</span>(data<span class="sc">$</span>pop2,<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb31-6"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb31-6" aria-hidden="true" tabindex="-1"></a>n2t <span class="ot">=</span> <span class="fu">head</span>(data<span class="sc">$</span>pop2,<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb31-7"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb31-7" aria-hidden="true" tabindex="-1"></a>lambda2 <span class="ot">=</span> <span class="dv">1</span><span class="sc">+</span>(n2t1 <span class="sc">-</span> n2t)<span class="sc">/</span>n2t</span>
+<span id="cb31-8"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb31-9" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">time =</span> <span class="fu">head</span>(data<span class="sc">$</span>time,<span class="sc">-</span><span class="dv">1</span>), lambda1, lambda2)</span>
+<span id="cb31-10"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb31-10" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>data2, <span class="fu">aes</span>(<span class="at">x=</span>time))<span class="sc">+</span></span>
+<span id="cb31-11"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb31-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>lambda1), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
+<span id="cb31-12"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb31-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>lambda2), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)<span class="sc">+</span></span>
+<span id="cb31-13"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb31-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;lambda_t&quot;</span>)<span class="sc">+</span></span>
+<span id="cb31-14"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb31-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;per capita change in population size for each stage&quot;</span>)</span>
+<span id="cb31-15"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb31-15" aria-hidden="true" tabindex="-1"></a>g2</span></code></pre></div>
+<p><img src="BIOL-3295_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>This plot has two interesting features:
+- eventually the per capita change in population size becomes constant, and
+- the constant value is the same for both stages.</p>
+<p>In fact, both stages are growing exponentially, and in the limit as <span class="math inline">\(t\to \infty\)</span> the exponential growth rate for both stages is the value that this plot is converging to (i.e., a little more than 1.1).</p>
+<p>This has been calculated for us by the <code>pop.projection()</code> function (the final per capita change for 20 iterations). Let’s recover the value:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb32-1" aria-hidden="true" tabindex="-1"></a>n20<span class="sc">$</span>lambda</span></code></pre></div>
+<pre><code>## [1] 1.105867</code></pre>
+<p>Super! As we expected: a little more than 1.1.</p>
+<p>In fact, the exponential growth rate, for both stages, in the limit as <span class="math inline">\(t \to \infty\)</span> is the <em>dominant eigenvalue</em> of <span class="math inline">\(A\)</span>. Let’s find the eigenvalues of <span class="math inline">\(A\)</span>:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eigen</span>(A)<span class="sc">$</span>values</span></code></pre></div>
+<pre><code>## [1]  1.1049876 -0.9049876</code></pre>
+<p>Because <span class="math inline">\(A\)</span> is a 2 row by 2 column matrix, the <em>dominant eigenvalue</em> is the eigenvalue that is largest in absolute value. Since <span class="math inline">\(|1.105| &gt; |-0.905| = 0.905\)</span> the dominant eigenvalue is <span class="math inline">\(1.105\)</span>.</p>
+<p>Would we get a closer <span class="math inline">\(\lambda\)</span> value if we did more iterations (i.e. more time steps). Let’s try:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb36-1" aria-hidden="true" tabindex="-1"></a>n100 <span class="ot">=</span> <span class="fu">pop.projection</span>(A,n0,<span class="dv">101</span>)</span>
+<span id="cb36-2"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb36-2" aria-hidden="true" tabindex="-1"></a>n100<span class="sc">$</span>lambda</span></code></pre></div>
+<pre><code>## [1] 1.104988</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eigen</span>(A)<span class="sc">$</span>values[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] 1.104988</code></pre>
+<p>Let’s consider another interesting feature of our stage-structured population dynamics. What is the proportion of age 0-1 year olds and the proportion of <span class="math inline">\(&gt;1\)</span> year olds in the population?</p>
+<p>Let’s make graph:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb40-1" aria-hidden="true" tabindex="-1"></a>g3 <span class="ot">=</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>time))<span class="sc">+</span></span>
+<span id="cb40-2"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> pop1<span class="sc">/</span>(pop1<span class="sc">+</span>pop2)), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
+<span id="cb40-3"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> pop2<span class="sc">/</span>(pop1<span class="sc">+</span>pop2)), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)<span class="sc">+</span></span>
+<span id="cb40-4"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="fl">0.3</span>, <span class="fl">0.7</span>))<span class="sc">+</span></span>
+<span id="cb40-5"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;stage proportions&quot;</span>)</span>
+<span id="cb40-6"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb40-6" aria-hidden="true" tabindex="-1"></a>g3</span></code></pre></div>
+<p><img src="BIOL-3295_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>Super interesting! Although both stages grow exponentially, the <em>proportion</em> of the population eventually reaches a constant value with a little more than 35% of the population over 1 year old.</p>
+<p>We can recover this from the <code>pop.projection()</code> function too:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb41-1" aria-hidden="true" tabindex="-1"></a>n20<span class="sc">$</span>stable.stage</span></code></pre></div>
+<pre><code>## [1] 0.6445485 0.3554515</code></pre>
+<p>This says that after 20 iterations (time steps) we had 64.4% of the population 0-1 years old and 35.6% of the population &gt;1 year old.</p>
+<p>In terms of the projection matrix, <span class="math inline">\(A\)</span>, this stable stage structure (the proportion of the stages as <span class="math inline">\(t \to \infty\)</span>) is the <em>right eigenvector</em> associated with the dominant eigenvalue.</p>
+<p>Let’s find this:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eigen</span>(A)</span></code></pre></div>
+<pre><code>## eigen() decomposition
+## $values
+## [1]  1.1049876 -0.9049876
+## 
+## $vectors
+##            [,1]       [,2]
+## [1,] -0.8752926 -0.9110693
+## [2,] -0.4835937  0.4122532</code></pre>
+<p>This output states that the <em>right eigenvector</em> associated with the dominant eigenvalue (recall that the dominant eigenvalue is 1.105) is <span class="math inline">\([-0.875, -0.484]\)</span>. To complete our calculation, we need to normalize the right eigenvector so that it’s elements sum to 1. We do this by dividing by its sum:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb45-1" aria-hidden="true" tabindex="-1"></a>eig.vec <span class="ot">=</span> <span class="fu">eigen</span>(A)<span class="sc">$</span>vectors[,<span class="dv">1</span>]</span>
+<span id="cb45-2"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb45-2" aria-hidden="true" tabindex="-1"></a>norm.eig.vec <span class="ot">=</span> eig.vec<span class="sc">/</span><span class="fu">sum</span>(eig.vec)</span>
+<span id="cb45-3"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb45-3" aria-hidden="true" tabindex="-1"></a>norm.eig.vec</span></code></pre></div>
+<pre><code>## [1] 0.644125 0.355875</code></pre>
+<p>Yay! We have the result we were expecting: over time, eventually, the percentage of the population that are aged 0-1 years becomes closer and closer to 64.4%. Therefore, the right eigenvector associated with the dominant eigenvalue tells as the stable stage structure (i.e. the proportion of individuals in each stage as <span class="math inline">\(t \to \infty\)</span>.</p>
+<p>You assignment is to write an R markdown file where you do all these same calculations and graphs but for a different projection matrix, <span class="math inline">\(A\)</span>.</p>
+<p>In addition, your projection matrix must either be:</p>
+<ul>
+<li><p>a 3-row by 3-column Leslie matrix; or</p></li>
+<li><p>a 2-row by 2-column Leslie matrix where the population
+<em>decreases</em> exponentially (since this example was exponential increase).</p></li>
+</ul>
+<p>Here is an example of writing a 3 <span class="math inline">\(\times\)</span> 3 matrix:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb47-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>), <span class="dv">3</span>,<span class="dv">3</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Note that for Leslie matrix only the elements in the first row can be larger than 1, and all other elements are stage transition probabilities that need to be <span class="math inline">\(\geq 0\)</span> and <span class="math inline">\(\leq 1\)</span>.</p>
+<p>To achieve a matrix <span class="math inline">\(A\)</span> where the population decreases exponentially you need to choose low reproduction rates and survivorship probabilities.</p>
+<p>Provide sensible axes names and titles for your graphs. In your write-up comment when values shown in graphs, and as calculated using functions have the same values as expected. It does not need to be a long write-up, but I need to see that you understand that the asymptotic (<span class="math inline">\(t\to \infty\)</span>) properties of the graphs can be calculated as the eigenvalues and eigenvectors of the projection matrices.</p>
 
 </div>
             </section>

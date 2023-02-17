@@ -1,3 +1,9 @@
+---
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
 # Schedule {#schedule}
 
 All lectures are in SN 3060 unless otherwise stated
@@ -20,10 +26,11 @@ This revised version fo the schedule will be confirmed after discussion with the
 
 MUNFA STRIKE
 
-- Fri Feb 16: Age-structured models
-- Tues Feb 17: **CSF 2218** Numerical analysis of stage-structured models **Assignment 3 is assigned**
+- Thurs Feb 16: Age-structured models
+- Fri Feb 17: **CSF 2218** Numerical analysis of stage-structured models **Assignment 3 is assigned**
 
 WINTER BREAK
+(**Exam I will be posted on Tuesday Feb 21. Exam I is now a takehome exam due on Monday April 10.**)
 
 - Tues Feb 28: Stage-structured models
 - Thurs Mar 2: Stage-structured models
@@ -32,7 +39,7 @@ WINTER BREAK
 - Thurs Mar 9: Continuous space models 
 - Fri Mar 10: Disease dynamics
 - Tues Mar 14: The net reproduction number
-- Thurs Mar 16: **EXAM I** (All material covered to date)
+- Thurs Mar 16: **EXAM II** (Only material since returning from the strike)
 - Fri Mar 17: What is evolutionary ecology?
 - Tues Mar 21: Haploid selection model 
 - Thur Mar 23: [Selection coefficients for COVID-19 variants](https://www.zoology.ubc.ca/~otto/Talks/SSE2022_Otto.pdf)
