@@ -83,7 +83,9 @@ g2
 ```
 
 This plot has two interesting features:
+
 - eventually the per capita change in population size becomes constant, and
+
 - the constant value is the same for both stages.
 
 In fact, both stages are growing exponentially, and in the limit as $t\to \infty$ the exponential growth rate for both stages is the value that this plot is converging to (i.e., a little more than 1.1).

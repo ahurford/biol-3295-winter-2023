@@ -23,7 +23,7 @@
 <meta name="author" content="Amy Hurford" />
 
 
-<meta name="date" content="2023-02-17" />
+<meta name="date" content="2023-02-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -315,9 +315,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb31-14"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb31-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;per capita change in population size for each stage&quot;</span>)</span>
 <span id="cb31-15"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb31-15" aria-hidden="true" tabindex="-1"></a>g2</span></code></pre></div>
 <p><img src="BIOL-3295_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
-<p>This plot has two interesting features:
-- eventually the per capita change in population size becomes constant, and
-- the constant value is the same for both stages.</p>
+<p>This plot has two interesting features:</p>
+<ul>
+<li><p>eventually the per capita change in population size becomes constant, and</p></li>
+<li><p>the constant value is the same for both stages.</p></li>
+</ul>
 <p>In fact, both stages are growing exponentially, and in the limit as <span class="math inline">\(t\to \infty\)</span> the exponential growth rate for both stages is the value that this plot is converging to (i.e., a little more than 1.1).</p>
 <p>This has been calculated for us by the <code>pop.projection()</code> function (the final per capita change for 20 iterations). Let’s recover the value:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="feb-17-assignment-stage-structured-population-dynamics.html#cb32-1" aria-hidden="true" tabindex="-1"></a>n20<span class="sc">$</span>lambda</span></code></pre></div>
