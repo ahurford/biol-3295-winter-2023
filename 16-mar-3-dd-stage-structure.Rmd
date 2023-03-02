@@ -1,1 +1,11 @@
-# Mar 3: Density-dependent stage-structured population dynamics
+# Mar 3: Sensitivity, parameterization, and density-dependence and stage-structured population dynamics
+
+## Required reading
+
+Eigenvectors, reproductive value, sensitivity and elasticity in
+[Vandermeer and Goldberg](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/reader.action?docID=1205619&ppg=55)p45-48
+
+Density dependence in structured populations in [Vandermeer and Goldberg](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/reader.action?docID=1205619&ppg=55) p48-57
+
+## Reference that will be covered in class
+Kendall et al. [Persistent problems in the construction of matrix population models](https://www.sciencedirect.com/science/article/pii/S0304380019301085). Ecological Modelling. 

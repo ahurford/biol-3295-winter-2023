@@ -51,5 +51,7 @@ questions-5
 mar-2-eigenvalues-and-eigenvectors
 required-reading-5
 questions-6
-mar-3-density-dependent-stage-structured-population-dynamics
+mar-3-sensitivity-parameterization-and-density-dependence-and-stage-structured-population-dynamics
+required-reading-6
+reference-that-will-be-covered-in-class
 schedule-old
