@@ -1,5 +1,4 @@
-# Mar 7: Metapopulations
+# Mar 7: Metapopulation models
 
-## Required reading
-
+## Required Reading
 Metapopulations in [Vandermeer and Goldberg](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/reader.action?docID=1205619&ppg=151) p142-151

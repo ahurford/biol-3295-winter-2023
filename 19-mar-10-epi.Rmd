@@ -1,0 +1,5 @@
+# Mar 10 & 14: Epidemiology
+
+## Required reading
+
+_2.1 Formulating the Deterministic SIR model_, p15-34 in _Modeling Infectious Disease in Humans and Animals_ by Keeling and Rohani. The entire book can be download via the MUN library. This specific reading is on the brightspace.

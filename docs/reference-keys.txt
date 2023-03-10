@@ -54,7 +54,9 @@ questions-6
 mar-3-sensitivity-parameterization-and-density-dependence-and-stage-structured-population-dynamics
 required-reading-6
 reference-that-will-be-covered-in-class
-mar-7-metapopulations
+mar-7-metapopulation-models
 required-reading-7
 mar-9-continuous-space-models
+mar-10-14-epidemiology
+required-reading-8
 schedule-old
