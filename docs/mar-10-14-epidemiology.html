@@ -23,7 +23,7 @@
 <meta name="author" content="Amy Hurford" />
 
 
-<meta name="date" content="2023-03-10" />
+<meta name="date" content="2023-03-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -244,6 +244,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="required-reading-8" class="section level2 hasAnchor" number="20.1">
 <h2><span class="header-section-number">20.1</span> Required reading<a href="mar-10-14-epidemiology.html#required-reading-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><em>2.1 Formulating the Deterministic SIR model</em>, p15-34 in <em>Modeling Infectious Disease in Humans and Animals</em> by Keeling and Rohani. The entire book can be download via the MUN library. This specific reading is on the brightspace.</p>
+<ul>
+<li><p>Individuals in a population have different infection statuses, which affects their mortality. Infectious disease spread in populations and can affect population dynamics.</p></li>
+<li><p>In the SIR model, susceptible individuals can be infected, infected individuals can spread the disease, and recovered individuals are immune.</p></li>
+<li><p>Variations on the SIR model include considering: A: asymptomatic individuals that are infectious but do not have symptoms, and E: exposed (or latently infected) individuals that have yet to become infectious (due to the delay from exposure to infection). If immunity wanes then the model is called SIRS becaues recovered individuals can be susceptible again.</p></li>
+<li><p>The best choice of model can depend on the disease and the question being asked.</p></li>
+<li><p>Demography (natural births and deaths) are often omitted for acute infections when the infectious disease dynamics occur quickly (i.e., over a year), relative to changes in the population size due to natural births and deaths.</p></li>
+<li><p>The SIR model can have describe infection transmission as either density-dependent (<span class="math inline">\(\beta S(t)I(t)\)</span>) or frequency-dependent (<span class="math inline">\(\beta S(t)I(t)/N\)</span>), where <span class="math inline">\(N\)</span> is the total population size, and where density-dependent is transmission is appropriate for plant and animal infections, and frequency-dependent transmission is appropriate for vector-borne infections, and when the contact rate is very heterogeneous.</p></li>
+<li><p>The threshold phenomenon is that for the SIR model the disease will spread if <span class="math inline">\(S(0)\)</span>, the initial number of susceptible individuals, is less than <span class="math inline">\(\gamma\)</span>/<span class="math inline">\(beta\)</span> where <span class="math inline">\(\beta\)</span> is the transmission rate, and <span class="math inline">\(\gamma\)</span> is the recovery rate.</p></li>
+<li><p>The basic reproduction number, <span class="math inline">\(R_0\)</span>, is the average number of secondary cases arising from the average primary case in an entirely susceptible population. For the SIR model with density-dependent transmission,</p></li>
+</ul>
+<p><span class="math display">\[R_0 = \beta S(0) \times \frac{1}{\gamma}.\]</span></p>
+<p>Here, <span class="math inline">\(R_0\)</span> can be understood as the transmission rate per infected individual in an entirely susceptible population. Since <span class="math inline">\(\beta S(0)\)</span> is a rate (with units new infections per time), multiplying by the duration of the infectious period, <span class="math inline">\(\frac{1}{\gamma}\)</span> (the reciprocal of the recover rate) produces a formula for <span class="math inline">\(R_0\)</span> that matches the word defintion.</p>
 
 </div>
 </div>

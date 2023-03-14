@@ -3,3 +3,23 @@
 ## Required reading
 
 _2.1 Formulating the Deterministic SIR model_, p15-34 in _Modeling Infectious Disease in Humans and Animals_ by Keeling and Rohani. The entire book can be download via the MUN library. This specific reading is on the brightspace.
+
+- Individuals in a population have different infection statuses, which affects their mortality. Infectious disease spread in populations and can affect population dynamics.
+
+- In the SIR model, susceptible individuals can be infected, infected individuals can spread the disease, and recovered individuals are immune.
+
+- Variations on the SIR model include considering: A: asymptomatic individuals that are infectious but do not have symptoms, and E: exposed (or latently infected) individuals that have yet to become infectious (due to the delay from exposure to infection). If immunity wanes then the model is called SIRS becaues recovered individuals can be susceptible again.
+
+- The best choice of model can depend on the disease and the question being asked.
+
+- Demography (natural births and deaths) are often omitted for acute infections when the infectious disease dynamics occur quickly (i.e., over a year), relative to changes in the population size due to natural births and deaths.
+
+- The SIR model can have describe infection transmission as either density-dependent ($\beta S(t)I(t)$) or frequency-dependent ($\beta S(t)I(t)/N$), where $N$ is the total population size, and where density-dependent is transmission is appropriate for plant and animal infections, and frequency-dependent transmission is appropriate for vector-borne infections, and when the contact rate is very heterogeneous.
+
+- The threshold phenomenon is that for the SIR model the disease will spread  if $S(0)$, the initial number of susceptible individuals, is less than $\gamma$/$beta$ where $\beta$ is the transmission rate, and $\gamma$ is the recovery rate. 
+
+- The basic reproduction number, $R_0$, is the average number of secondary cases arising from the average primary case in an entirely susceptible population. For the SIR model with density-dependent transmission,
+
+\[R_0 = \beta S(0) \times \frac{1}{\gamma}.\]
+
+Here, $R_0$ can be understood as the transmission rate per infected individual in an entirely susceptible population. Since $\beta S(0)$ is a rate (with units new infections per time), multiplying by the duration of the infectious period, $\frac{1}{\gamma}$ (the reciprocal of the recover rate) produces a formula for $R_0$ that matches the word defintion. 
