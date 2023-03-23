@@ -59,4 +59,10 @@ required-reading-7
 mar-9-continuous-space-models
 mar-10-14-epidemiology
 required-reading-8
+mar-21-what-is-evolutionary-ecology
+required-reading-9
+mar-23-haploid-selection-model
+required-reading-10
+mar-24-selection-for-covid-19-variants
+required-reading-11
 schedule-old
