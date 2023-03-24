@@ -23,7 +23,7 @@
 <meta name="author" content="Amy Hurford" />
 
 
-<meta name="date" content="2023-03-21" />
+<meta name="date" content="2023-03-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -229,10 +229,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="22.1" data-path="mar-23-haploid-selection-model.html"><a href="mar-23-haploid-selection-model.html#required-reading-10"><i class="fa fa-check"></i><b>22.1</b> Required reading</a></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="mar-24-selection-for-covid-19-variants.html"><a href="mar-24-selection-for-covid-19-variants.html"><i class="fa fa-check"></i><b>23</b> Mar 24 Selection for COVID-19 variants</a>
-<ul>
-<li class="chapter" data-level="23.1" data-path="mar-24-selection-for-covid-19-variants.html"><a href="mar-24-selection-for-covid-19-variants.html#required-reading-11"><i class="fa fa-check"></i><b>23.1</b> Required reading</a></li>
-</ul></li>
+<li class="chapter" data-level="23" data-path="mar-24-assignment-selection-for-covid-19-variants.html"><a href="mar-24-assignment-selection-for-covid-19-variants.html"><i class="fa fa-check"></i><b>23</b> Mar 24 <strong>ASSIGNMENT</strong> Selection for COVID-19 variants</a></li>
 <li class="chapter" data-level="24" data-path="schedule-old.html"><a href="schedule-old.html"><i class="fa fa-check"></i><b>24</b> Schedule - prior to strike - outdated</a></li>
 </ul>
 
@@ -260,7 +257,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>First you need to <a href="https://ahurford.github.io/quant-guide-all-courses/data-entry.html#loading-or-importing-data">load</a> the messy data from <a href="https://datacarpentry.org/semester-biology/exercises/Tidy-data-improving-messy-data-SQL/">here</a>.</p>
 <p>It may be helpful to view the data in Excel to understand what it looks like before you import it to <code>R</code>.</p>
 <p>Use <code>head(data)</code> in the Console, or <code>data</code> to view your data (where <code>data</code> is the name I gave my data).</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="partII.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="partII.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div>
 <pre><code>##                 X          X.1       X.2      X.3    X.4 X.5            X.6
 ## 1                                                         NA               
 ## 2 Data for Site 7                                         NA               
@@ -283,29 +280,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 Weight
 ## 6     42</code></pre>
 <p>These data are very messy indeed! A helpful command is to know the column names:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="partII.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="partII.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data)</span></code></pre></div>
 <pre><code>##  [1] &quot;X&quot;    &quot;X.1&quot;  &quot;X.2&quot;  &quot;X.3&quot;  &quot;X.4&quot;  &quot;X.5&quot;  &quot;X.6&quot;  &quot;X.7&quot;  &quot;X.8&quot;  &quot;X.9&quot; 
 ## [11] &quot;X.10&quot; &quot;X.11&quot; &quot;X.12&quot; &quot;X.13&quot; &quot;X.14&quot;</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="partII.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract a row using tidyverse commands</span></span>
-<span id="cb56-2"><a href="partII.html#cb56-2" aria-hidden="true" tabindex="-1"></a>dataX <span class="ot">=</span><span class="fu">select</span>(data, <span class="st">&quot;X&quot;</span>)</span>
-<span id="cb56-3"><a href="partII.html#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># This is base R syntax to extract specifically rows 6 to 14</span></span>
-<span id="cb56-4"><a href="partII.html#cb56-4" aria-hidden="true" tabindex="-1"></a>date.collected <span class="ot">=</span> dataX<span class="sc">$</span>X[<span class="dv">6</span><span class="sc">:</span><span class="dv">14</span>]</span>
-<span id="cb56-5"><a href="partII.html#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="co"># as.Date() is needed for R to treat this variable as a date</span></span>
-<span id="cb56-6"><a href="partII.html#cb56-6" aria-hidden="true" tabindex="-1"></a>date.collected <span class="ot">=</span> <span class="fu">as.Date</span>(date.collected, <span class="at">format =</span> <span class="st">&quot;%m/%d/%y&quot;</span>)</span>
-<span id="cb56-7"><a href="partII.html#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="co"># This prints to the output, so you can see what I have done</span></span>
-<span id="cb56-8"><a href="partII.html#cb56-8" aria-hidden="true" tabindex="-1"></a>date.collected</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="partII.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract a row using tidyverse commands</span></span>
+<span id="cb74-2"><a href="partII.html#cb74-2" aria-hidden="true" tabindex="-1"></a>dataX <span class="ot">=</span><span class="fu">select</span>(data, <span class="st">&quot;X&quot;</span>)</span>
+<span id="cb74-3"><a href="partII.html#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="co"># This is base R syntax to extract specifically rows 6 to 14</span></span>
+<span id="cb74-4"><a href="partII.html#cb74-4" aria-hidden="true" tabindex="-1"></a>date.collected <span class="ot">=</span> dataX<span class="sc">$</span>X[<span class="dv">6</span><span class="sc">:</span><span class="dv">14</span>]</span>
+<span id="cb74-5"><a href="partII.html#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="co"># as.Date() is needed for R to treat this variable as a date</span></span>
+<span id="cb74-6"><a href="partII.html#cb74-6" aria-hidden="true" tabindex="-1"></a>date.collected <span class="ot">=</span> <span class="fu">as.Date</span>(date.collected, <span class="at">format =</span> <span class="st">&quot;%m/%d/%y&quot;</span>)</span>
+<span id="cb74-7"><a href="partII.html#cb74-7" aria-hidden="true" tabindex="-1"></a><span class="co"># This prints to the output, so you can see what I have done</span></span>
+<span id="cb74-8"><a href="partII.html#cb74-8" aria-hidden="true" tabindex="-1"></a>date.collected</span></code></pre></div>
 <pre><code>## [1] &quot;2014-01-09&quot; &quot;2014-01-09&quot; &quot;2014-01-09&quot; &quot;2014-01-09&quot; &quot;2014-01-20&quot;
 ## [6] &quot;2014-01-20&quot; &quot;2014-03-13&quot; &quot;2014-03-13&quot; &quot;2014-03-13&quot;</code></pre>
 <p>I will aim to make a data frame with “date collected” and “weight” for Plot 1. Inspecting the data, weight is <code>"X.4"</code> for Plot 1.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="partII.html#cb58-1" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">=</span> <span class="fu">select</span>(data, <span class="st">&quot;X.4&quot;</span>)</span>
-<span id="cb58-2"><a href="partII.html#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="co"># as.numeric() is needed because otherwise R doesn&#39;t recognize these data as numbers - which I need for the multiplication later</span></span>
-<span id="cb58-3"><a href="partII.html#cb58-3" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">=</span> <span class="fu">as.numeric</span>(weight<span class="sc">$</span>X<span class="fl">.4</span>[<span class="dv">6</span><span class="sc">:</span><span class="dv">14</span>])</span>
-<span id="cb58-4"><a href="partII.html#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Make this into a data frame so I can plot using ggplot</span></span>
-<span id="cb58-5"><a href="partII.html#cb58-5" aria-hidden="true" tabindex="-1"></a>cleaned.data <span class="ot">=</span> <span class="fu">data.frame</span>(date.collected, weight)</span>
-<span id="cb58-6"><a href="partII.html#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="co"># add a column that is a mutated column</span></span>
-<span id="cb58-7"><a href="partII.html#cb58-7" aria-hidden="true" tabindex="-1"></a>cleaned.data <span class="ot">=</span> <span class="fu">mutate</span>(cleaned.data,<span class="at">weight.kg =</span> weight<span class="sc">/</span><span class="dv">1000</span>)</span>
-<span id="cb58-8"><a href="partII.html#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="co"># print the cleaned data so we can see what it looks like</span></span>
-<span id="cb58-9"><a href="partII.html#cb58-9" aria-hidden="true" tabindex="-1"></a>cleaned.data</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="partII.html#cb76-1" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">=</span> <span class="fu">select</span>(data, <span class="st">&quot;X.4&quot;</span>)</span>
+<span id="cb76-2"><a href="partII.html#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="co"># as.numeric() is needed because otherwise R doesn&#39;t recognize these data as numbers - which I need for the multiplication later</span></span>
+<span id="cb76-3"><a href="partII.html#cb76-3" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">=</span> <span class="fu">as.numeric</span>(weight<span class="sc">$</span>X<span class="fl">.4</span>[<span class="dv">6</span><span class="sc">:</span><span class="dv">14</span>])</span>
+<span id="cb76-4"><a href="partII.html#cb76-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Make this into a data frame so I can plot using ggplot</span></span>
+<span id="cb76-5"><a href="partII.html#cb76-5" aria-hidden="true" tabindex="-1"></a>cleaned.data <span class="ot">=</span> <span class="fu">data.frame</span>(date.collected, weight)</span>
+<span id="cb76-6"><a href="partII.html#cb76-6" aria-hidden="true" tabindex="-1"></a><span class="co"># add a column that is a mutated column</span></span>
+<span id="cb76-7"><a href="partII.html#cb76-7" aria-hidden="true" tabindex="-1"></a>cleaned.data <span class="ot">=</span> <span class="fu">mutate</span>(cleaned.data,<span class="at">weight.kg =</span> weight<span class="sc">/</span><span class="dv">1000</span>)</span>
+<span id="cb76-8"><a href="partII.html#cb76-8" aria-hidden="true" tabindex="-1"></a><span class="co"># print the cleaned data so we can see what it looks like</span></span>
+<span id="cb76-9"><a href="partII.html#cb76-9" aria-hidden="true" tabindex="-1"></a>cleaned.data</span></code></pre></div>
 <pre><code>##   date.collected weight weight.kg
 ## 1     2014-01-09     40     0.040
 ## 2     2014-01-09     36     0.036
@@ -317,14 +314,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 8     2014-03-13     44     0.044
 ## 9     2014-03-13    146     0.146</code></pre>
 <p>Now the data is in a format that I can make a plot:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="partII.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span>
-<span id="cb60-2"><a href="partII.html#cb60-2" aria-hidden="true" tabindex="-1"></a>g1<span class="ot">=</span><span class="fu">ggplot</span>(<span class="at">data =</span> cleaned.data, <span class="fu">aes</span>(<span class="at">x =</span> date.collected, <span class="at">y =</span> weight.kg)) <span class="sc">+</span> </span>
-<span id="cb60-3"><a href="partII.html#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb60-4"><a href="partII.html#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb60-5"><a href="partII.html#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Date collected&quot;</span>)<span class="sc">+</span></span>
-<span id="cb60-6"><a href="partII.html#cb60-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Weight in kg&quot;</span>)</span>
-<span id="cb60-7"><a href="partII.html#cb60-7" aria-hidden="true" tabindex="-1"></a>g1</span></code></pre></div>
-<p><img src="BIOL-3295_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="partII.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span>
+<span id="cb78-2"><a href="partII.html#cb78-2" aria-hidden="true" tabindex="-1"></a>g1<span class="ot">=</span><span class="fu">ggplot</span>(<span class="at">data =</span> cleaned.data, <span class="fu">aes</span>(<span class="at">x =</span> date.collected, <span class="at">y =</span> weight.kg)) <span class="sc">+</span> </span>
+<span id="cb78-3"><a href="partII.html#cb78-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb78-4"><a href="partII.html#cb78-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb78-5"><a href="partII.html#cb78-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Date collected&quot;</span>)<span class="sc">+</span></span>
+<span id="cb78-6"><a href="partII.html#cb78-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Weight in kg&quot;</span>)</span>
+<span id="cb78-7"><a href="partII.html#cb78-7" aria-hidden="true" tabindex="-1"></a>g1</span></code></pre></div>
+<p><img src="BIOL-3295_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
 
 </div>
             </section>

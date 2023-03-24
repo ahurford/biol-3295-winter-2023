@@ -3,3 +3,5 @@
 ## Required reading
 
 3.3.1 Haploid models of natural selection p76-83 in [_A Biologists Guide to Mathematical Modelling_](https://ebookcentral.proquest.com/lib/mun/reader.action?docID=768551&ppg=66)
+
+To be based on this [presentation](https://www.zoology.ubc.ca/~otto/Talks/SSE2022_Otto.pdf) by Dr. Sarah P. Otto.
