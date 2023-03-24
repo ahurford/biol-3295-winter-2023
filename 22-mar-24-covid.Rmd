@@ -88,7 +88,7 @@ data2 = data2%>%group_by(group,Date) %>%
   summarise(total_prop=sum(percent)/100)%>%filter(group == "XBB*"|group=="BQ*")%>%filter(total_prop>0)
 data2 = data2%>%mutate(log_percent = log(total_prop))
 
-g3 =ggplot(data2, aes(x = Date, y = total_prop, group=group)) + 
+g3 =ggplot(data2, aes(x = Date, y = total_prop, group=group, colour=group)) + 
   geom_point() +
   geom_line()
 g3
