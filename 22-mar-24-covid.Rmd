@@ -122,7 +122,7 @@ g4=ggplot(data=XBB.fit, aes(x=Date))+
   geom_ribbon(aes(ymin=lwr, ymax=uppr, fill = "#F8766D"), alpha = 0.1)+
   geom_line(aes(y=fit), color = "#F8766D")+
   geom_point(aes(y=log_percent), data=BQ, color = "#00BA38")+
-geom_ribbon(aes(ymin=lwr, ymax=uppr), alpha = 0.1, data=BQ.fit)+
+geom_ribbon(aes(ymin=lwr, ymax=uppr, fill = "#00BA38"), alpha = 0.1, data=BQ.fit)+
   geom_line(aes(y=fit), data = BQ.fit, color="#00BA38")+
   geom_point(aes(y=log_percent), data=XBB,  color = "#F8766D")+
   ylab("log(proportion of all variants)")
