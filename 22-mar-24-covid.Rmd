@@ -89,7 +89,8 @@ data2 = data2%>%group_by(group,Date) %>%
 data2 = data2%>%mutate(log_percent = log(total_prop))
 
 g3 =ggplot(data2, aes(x = Date, y = total_prop, group=group)) + 
-  geom_point()
+  geom_point() +
+  geom_line()
 g3
 ```
 I want to do the linear regression, but to do this I ended up splitting out the XBB* and QB* variants:
