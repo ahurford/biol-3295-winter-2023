@@ -90,7 +90,8 @@ data2 = data2%>%mutate(log_percent = log(total_prop))
 
 g3 =ggplot(data2, aes(x = Date, y = total_prop, group=group, colour=group)) + 
   geom_point() +
-  geom_line()
+  geom_line() +
+  ylab('proportion of all variants')
 g3
 ```
 I want to do the linear regression, but to do this I ended up splitting out the XBB* and QB* variants:
@@ -118,12 +119,13 @@ XBB.fit = data.frame(Date = XBB$Date, fit = PI.XBB[,1], lwr = PI.XBB[,2], uppr =
 BQ.fit = data.frame(Date = BQ$Date, fit = PI.BQ[,1], lwr = PI.BQ[,2], uppr = PI.BQ[,3])
 
 g4=ggplot(data=XBB.fit, aes(x=Date))+
-  geom_ribbon(aes(ymin=lwr, ymax=uppr), alpha = 0.1)+
-  geom_line(aes(y=fit))+
-  geom_point(aes(y=log_percent), data=BQ)+
+  geom_ribbon(aes(ymin=lwr, ymax=uppr, fill = "#F8766D"), alpha = 0.1)+
+  geom_line(aes(y=fit), color = "#F8766D")+
+  geom_point(aes(y=log_percent), data=BQ, color = "#00BA38")+
 geom_ribbon(aes(ymin=lwr, ymax=uppr), alpha = 0.1, data=BQ.fit)+
-  geom_line(aes(y=fit), data = BQ.fit)+
-  geom_point(aes(y=log_percent), data=XBB)
+  geom_line(aes(y=fit), data = BQ.fit, color="#00BA38")+
+  geom_point(aes(y=log_percent), data=XBB,  color = "#F8766D")+
+  ylab("log(proportion of all variants)")
   g4
 ```
 
