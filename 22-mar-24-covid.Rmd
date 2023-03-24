@@ -12,7 +12,7 @@ knitr::include_graphics("figures/selection1.png")
 
 Note that BQ* and XBB* are aggregations of finer variant classifications.
 
-**Your assignment is to write an .Rmd notebook that estimates the selection coefficient for different variants, and/or for a province rather than all of Canada.**
+**ASSIGNMENT 4: Your assignment is to write an .Rmd notebook that estimates the selection coefficient for different variants, and/or for a province rather than all of Canada. You need to include a graph, and state your estimate of the selection coefficient. This assignment is due FRIDAY MARCH 31**
 
 The duotong website contains several of the graphs for the other variants and/or regions to give you an idea of how data rich your chosen analysis might be before you start it.
 
@@ -137,4 +137,4 @@ This tells me the slope of my regression for the XBB* variant is `r round(coef(l
 
 These estimates of the slope are close to the slope of `0.08` for XBB* and `0.02` for BQ* shown in the figure. I expect they are not exact, because the data shown in the figure is more finely resolved on the `Date` axis than the data that could be downloaded.
 
-The selection coefficient is the slope of this regression, see [slide](https://www.zoology.ubc.ca/~otto/Talks/SSE2022_Otto.pdf) 23. The selection coefficient is $s_{XBB*} = r_{XBB*} - r_{BQ*}$, where $r_i$ is the exponential growth rate of the $i$ variant.
+The selection coefficient is the slope of this regression, see [slide](https://www.zoology.ubc.ca/~otto/Talks/SSE2022_Otto.pdf) 23. The selection coefficient is $s_{XBB*} = r_{XBB*} - r_{all}$, where $r_i$ is the exponential growth rate of the $i$ variant.

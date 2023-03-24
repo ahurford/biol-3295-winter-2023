@@ -255,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Below is an analysis that estimates the selection coefficient related to this plot estimating the selection coefficients for the BQ* and XBB* variants relative to each other for all of Canada:</p>
 <p><img src="figures/selection1.png" width="90%" /></p>
 <p>Note that BQ* and XBB* are aggregations of finer variant classifications.</p>
-<p><strong>Your assignment is to write an .Rmd notebook that estimates the selection coefficient for different variants, and/or for a province rather than all of Canada.</strong></p>
+<p><strong>ASSIGNMENT 4: Your assignment is to write an .Rmd notebook that estimates the selection coefficient for different variants, and/or for a province rather than all of Canada. You need to include a graph, and state your estimate of the selection coefficient. This assignment is due FRIDAY MARCH 31</strong></p>
 <p>The duotong website contains several of the graphs for the other variants and/or regions to give you an idea of how data rich your chosen analysis might be before you start it.</p>
 <p>First we load the packages we will need:</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="mar-24-assignment-selection-for-covid-19-variants.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
@@ -382,7 +382,7 @@ I want to do the linear regression, but to do this I ended up splitting out the 
 ## F-statistic: 0.003224 on 1 and 15 DF,  p-value: 0.9555</code></pre>
 <p>This tells me the slope of my regression for the XBB* variant is 0.05 and the intercept is -966.29. For the BQ* variant, the slope is 0 and the intercept is 1.379. You can get these values to print out in your Rmarkdown by writing <code>round(coef(lm.BQ)[1],3)</code> (for example) but enclosed within downward dashes, and where the first dash is followed by <code>r</code>.</p>
 <p>These estimates of the slope are close to the slope of <code>0.08</code> for XBB* and <code>0.02</code> for BQ* shown in the figure. I expect they are not exact, because the data shown in the figure is more finely resolved on the <code>Date</code> axis than the data that could be downloaded.</p>
-<p>The selection coefficient is the slope of this regression, see <a href="https://www.zoology.ubc.ca/~otto/Talks/SSE2022_Otto.pdf">slide</a> 23. The selection coefficient is <span class="math inline">\(s_{XBB*} = r_{XBB*} - r_{BQ*}\)</span>, where <span class="math inline">\(r_i\)</span> is the exponential growth rate of the <span class="math inline">\(i\)</span> variant.</p>
+<p>The selection coefficient is the slope of this regression, see <a href="https://www.zoology.ubc.ca/~otto/Talks/SSE2022_Otto.pdf">slide</a> 23. The selection coefficient is <span class="math inline">\(s_{XBB*} = r_{XBB*} - r_{all}\)</span>, where <span class="math inline">\(r_i\)</span> is the exponential growth rate of the <span class="math inline">\(i\)</span> variant.</p>
 
 </div>
             </section>
