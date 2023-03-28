@@ -1,0 +1,4 @@
+# Mar 28 Evolutionary ecology of pathogens
+
+This lecture will draw on material from **Example: Evolutionary of Pathogen Virulence** p479-484 of [A Biologists Guide for Mathematical Modelling](https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=768551).
+

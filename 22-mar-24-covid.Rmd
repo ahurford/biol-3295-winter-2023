@@ -12,7 +12,7 @@ knitr::include_graphics("figures/selection1.png")
 
 Note that BQ* and XBB* are aggregations of finer variant classifications.
 
-**ASSIGNMENT 4: Your assignment is to write an .Rmd notebook that estimates the selection coefficient for different variants, and/or for a province rather than all of Canada. You need to include a graph, and state your estimate of the selection coefficient. This assignment is due FRIDAY MARCH 31**
+**ASSIGNMENT 4: Your assignment is to write an .Rmd notebook that estimates the selection coefficient for a subvariant. You need to include a graph, and state your estimate of the selection coefficient. This assignment is due FRIDAY MARCH 31**
 
 The duotong website contains several of the graphs for the other variants and/or regions to give you an idea of how data rich your chosen analysis might be before you start it.
 
@@ -30,13 +30,13 @@ data = read.delim("https://raw.githubusercontent.com/ahurford/biol-4605-data/mai
 
 Note that the file is `.tsv` format, so I needed to look up what `R` function could read that in.
 
-Now that the data is loaded, the challenge in replicating the analysis, is cleaning the data up into the right form so that we can do the linear regression. We use the `tidyr` package commands to clean our data.
+Now that the data is loaded, the challenge in replicating the analysis, is cleaning the data up into the right form so that we can do the linear regression. We use the `tidyr` package commands to clean our data. It may be very helpful to review the tidyr commands [here](https://ahurford.github.io/quant-guide-all-courses/handling-data.html#dplyr).
 
 ```{r, results = F}
 data = data%>%rename(percent = X..Frequency)
 ```
 
-The code above renames a columan to make it a bit easier to work with in subsequent coding.
+The code above renames a column to make it a bit easier to work with in subsequent coding.
 
 ```{r, results = F}
 data$Frequency=as.numeric(data$Frequency)
@@ -81,19 +81,29 @@ data2=data%>%mutate(group=case_when(Lineage == "BQ.1" ~ "BQ*",
                               ))
 head(data2,10)
 ```
-I need to filter out just the BQ* and XBB* variants, and I need to sum the proportions attributed to each of the lineages aggregated into BQ* or XBB* (such aggregation may not be needed for your analysis). Additionally, I need to calculate the logarithm of the proportion of the variants, and filter out any reports of 0 because the logarithm of 0 is undefined. Also, here, I need to convert from percentage to proportion.
+This has created a new column called `group`. I need to filter out just the BQ* and XBB* variants, and I need to sum the proportions attributed to each of the lineages aggregated into BQ* or XBB* (such aggregation may not be needed for your analysis).
 
 ```{r}
 data2 = data2%>%group_by(group,Date) %>% 
-  summarise(total_prop=sum(percent)/100)%>%filter(group == "XBB*"|group=="BQ*")%>%filter(total_prop>0)
-data2 = data2%>%mutate(log_percent = log(total_prop))
+  summarise(total_prop=sum(percent)/100)%>%filter(group == "XBB*"|group=="BQ*")
+```
 
+Additionally, I need to calculate the logarithm of the proportion of the variants, and filter out any reports of 0 because the logarithm of 0 is undefined. Also, here, I need to convert from percentage to proportion.
+
+```{r}
+data2 = data2%>%filter(total_prop>0)%>%mutate(log_percent = log(total_prop))
+```
+
+Make a plot:
+
+```{r}
 g3 =ggplot(data2, aes(x = Date, y = total_prop, group=group, colour=group)) + 
   geom_point() +
   geom_line() +
   ylab('proportion of all variants')
 g3
 ```
+
 I want to do the linear regression, but to do this I ended up splitting out the XBB* and QB* variants:
 ```{r}
 XBB = filter(data2, group == "XBB*")

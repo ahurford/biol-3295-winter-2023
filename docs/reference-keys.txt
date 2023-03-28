@@ -64,4 +64,5 @@ required-reading-9
 mar-23-haploid-selection-model
 required-reading-10
 mar-24-assignment-selection-for-covid-19-variants
+mar-28-evolutionary-ecology-of-pathogens
 schedule-old
