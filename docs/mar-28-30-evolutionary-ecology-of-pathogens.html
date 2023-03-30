@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7 Jan 17: Geometric growth | BIOL 3295: Population and Evolutionary Ecology, Winter 2023</title>
-  <meta name="description" content="7 Jan 17: Geometric growth | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
+  <title>24 Mar 28 &amp; 30 Evolutionary ecology of pathogens | BIOL 3295: Population and Evolutionary Ecology, Winter 2023</title>
+  <meta name="description" content="24 Mar 28 &amp; 30 Evolutionary ecology of pathogens | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7 Jan 17: Geometric growth | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
+  <meta property="og:title" content="24 Mar 28 &amp; 30 Evolutionary ecology of pathogens | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7 Jan 17: Geometric growth | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
+  <meta name="twitter:title" content="24 Mar 28 &amp; 30 Evolutionary ecology of pathogens | BIOL 3295: Population and Evolutionary Ecology, Winter 2023" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="jan-13-geometric-growth.html"/>
-<link rel="next" href="estimate.html"/>
+<link rel="prev" href="mar-24-assignment-selection-for-covid-19-variants.html"/>
+<link rel="next" href="mar-31-evolution-of-virulence-for-sars-cov-2.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -253,47 +253,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="pheasant" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">7</span> Jan 17: Geometric growth<a href="pheasant.html#pheasant" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="reading-1" class="section level2 hasAnchor" number="7.1">
-<h2><span class="header-section-number">7.1</span> Reading<a href="pheasant.html#reading-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Download the .pdf of the MSc thesis below and read the Abstract (the first two pages prior to the title page). Pay specific attention to the number of pheasants at different points in time, these might be <span class="math inline">\(N_{t+1}\)</span> and <span class="math inline">\(N_t\)</span> in the geometric growth model formula; and the number of births and deaths that occur, these may help you estimate <span class="math inline">\(\lambda\)</span> in the geoemtric growth formula. Pay attention to the length of time that births and deaths are reported over, and what time of the year the population size is reported.</p>
-<p>Newcomb, HR. 1940. <a href="https://ir.library.oregonstate.edu/concern/graduate_thesis_or_dissertations/js956j801?locale=en">Ring-necked pheasant studies on Protection Island in the Strait of Juan de Fuca</a>, Washington. MS thesis. Oregon State University. [two pages prior to the title page]</p>
-<p>Noteably,</p>
-<ol style="list-style-type: lower-alpha">
-<li>Pheasant chicks are born during the summer.</li>
-<li>In May 1937, 10 pheasants were introduced to the island. Before the next breeding season there were 35.</li>
-<li>November 10, 1938 a census estimated 110 pheasants.</li>
-<li>October 13, 1939 a census estimated 400 pheasants.</li>
-<li>Between the 1938 and 1939 censuses, Newcomb observed that 17 adult birds died.</li>
-<li>During the 1938 nesting season there were 5.86 eggs/nest. 83.57% of eggs hatched.</li>
-<li>During the 1939 nesting season there were 8.73 eggs/nest. 64.58% hatched.</li>
-<li>During the 1939 nesting season: Average number of chicks per clutch was 6.93.<span class="math inline">\(^1\)</span></li>
-<li>You can assume the sex ratio is 50:50 male to female. Pheasants are a sexually reproducing species.</li>
-</ol>
-<p><span class="math inline">\(^1\)</span> Note that g. and h. appear to be contradictory.</p>
-</div>
-<div id="questions" class="section level2 hasAnchor" number="7.2">
-<h2><span class="header-section-number">7.2</span> Questions<a href="pheasant.html#questions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This approach is called independent parameter estimation because we will estimate the birth and mortality rates independently of the population size data for different years.</p>
-<ol style="list-style-type: decimal">
-<li><p><span class="math inline">\(b &gt; 0\)</span> is the per capita number of births each year. The estimation of <span class="math inline">\(b\)</span> for a geometric growth model is more subtle. First, <span class="math inline">\(b\)</span> is estimated as the number of births (occurring between <span class="math inline">\(t\)</span> and <span class="math inline">\(t+1\)</span>), divided by the number of individuals that could have given birth, <span class="math inline">\(N_t\)</span>. You might average this value across multiple years if sufficient data are available. Furthermore, to correctly project the future population size, we should consider what we have assumed about survival of the pheasant chicks, given the time step of our model. <strong>Given a.-i. estimate <span class="math inline">\(b\)</span>. Write down any assumptions you have made.</strong></p></li>
-<li><p>Is the probability that pheasants survive from one time step to the next. Estimate <span class="math inline">\(d\)</span>.</p></li>
-<li><p>What is the value of <span class="math inline">\(\lambda\)</span> given your estimate of <span class="math inline">\(b\)</span> and <span class="math inline">\(d\)</span> from previous questions? Is this population is expected to grow over time?</p></li>
-<li><p>Lets assume that the pheasant population on Protection Island grows geometrically (i.e. exponentially but for a discrete time model) where the geometric growth rate, <span class="math inline">\(\lambda\)</span>, is the value that you estimated in question 3. Let <span class="math inline">\(N_0 = 10\)</span> and let <span class="math inline">\(t\)</span> be the number of years since May 1937. Recall that when a population grows geometrically,</p></li>
-</ol>
-<p><span class="math display">\[ N_t = N_0 \lambda^t \]</span></p>
-<p>Use the formula and your answer to 3. to predict the number of pheasants in May 1938, May 1939, May 1940, and May 1950.</p>
+<div id="mar-28-30-evolutionary-ecology-of-pathogens" class="section level1 hasAnchor" number="24">
+<h1><span class="header-section-number">24</span> Mar 28 &amp; 30 Evolutionary ecology of pathogens<a href="mar-28-30-evolutionary-ecology-of-pathogens.html#mar-28-30-evolutionary-ecology-of-pathogens" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This lecture will draw on material from <strong>Example: Evolutionary of Pathogen Virulence</strong> p479-484 of <a href="https://ebookcentral-proquest-com.qe2a-proxy.mun.ca/lib/mun/detail.action?docID=768551">A Biologists Guide for Mathematical Modelling</a>.</p>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="jan-13-geometric-growth.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="estimate.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="mar-24-assignment-selection-for-covid-19-variants.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mar-31-evolution-of-virulence-for-sars-cov-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -1,0 +1,9 @@
+# Mar 31 Evolution of virulence for SARS-CoV-2
+
+## Relevant readings {-}
+
+[On the evolutionary epidemiology of SARS-CoV-2](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7287426/pdf/main.pdf). 2020. Day et al.
+
+[Evolving threat](https://www.science.org/content/article/new-sars-cov-2-variants-have-changed-pandemic-what-will-virus-do-next). 2021. Kupfershmidt.
+
+
